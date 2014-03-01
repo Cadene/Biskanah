@@ -29,7 +29,7 @@ class BuildingsController extends AppController {
 
 /**
 * create method
-* Créer un bâtiment
+* Créer un bâtiment de niveau 0 dans Building
 *
 * @param int $_POST['camp_id']
 * @param int $_POST['type']
@@ -39,23 +39,99 @@ class BuildingsController extends AppController {
 */
 	public function create() {
         if($this->request->is('post')){
-            $d['Building'] = array(
-                'camp_id' => $this->request->data['Building']['camp_id'],
-                'type' => $this->request->data['Building']['type'],
-                'field' => $this->request->data['Building']['field'],
-                'level' => $this->request->data['Building']['level']
+
+            //$query tableau de request
+
+            $query['Building'] = array(
+                'databuilding_id' => $this->request->data['Building']['databuilding_id'],
+                'field' => $this->request->data['Building']['field']
             );
-            /*$this->loadModel('Camp');
-            $this->Camp->enoughResources()
-            $this->loadModel('Resource');
-            $this->Resource->modify($d);
-            verif :
+            if(isset($this->request->data['Building']['camp_id'])){
+                $query['Building']['camp_id'] = $this->request->data['Building']['camp_id'];
+            }else{
+                $query['Building']['camp_id'] = $this->Session->read('Camp.current');
+            }
+
+            //récupère dans $data['Camp'] les infos du camp courant
+
+            $this->loadModel('Camp');
+
+            $data = $this->Camp->find('first', array(
+                'conditions' => array('Camp.id' => $query['Building']['camp_id'])
+            ));
+
+            foreach($data['Building'] as $building){
+                if($building['field'] == $query['Building']['field']){
+                    throw new NotImplementedException('Il existe déjà un batiment construit sur le field');
+                }
+            }
+
+            //récupère dans $data['Databuilding'] les infos du batiment à construire
+
+            $this->loadModel('Databuilding');
+
+            $tmp = $this->Databuilding->find('first', array(
+                'conditions' => array('id' => $query['Building']['databuilding_id'])
+            ));
+            $data['Databuilding'] = $tmp['Databuilding'];
+            unset($tmp);
+
+            if($data['Databuilding']['lvl'] != 1){
+                throw new NotImplementedException('Le batiment demandé est de niveau !=1');
+            }
+            //debug($data);die();
+            if(!$this->enoughResources($data['Resource'],$data['Databuilding'])){
+                throw new NotImplementedException('Pas assez de ressources dispo');
+            }else{
+
+                $this->loadModel('Building');
+                $this->Building->save(array(
+                    'camp_id' => $data['Camp']['id'],
+                    'field' => $query['Building']['field'],
+                    'databuilding_id' => $query['Building']['databuilding_id']-1 // id_building level(0) = (id_building level(1) - 1)
+                ));
+
+
+                $this->loadModel('Dtbuilding');
+                $this->Dtbuilding->save(array(
+                    'building_id' => $this->Building->id,
+                    'begin' => time(),
+                    'finish' => (time()+ $data['Databuilding']['time'])
+                ));
+
+
+                $this->loadModel('Resource');
+                $this->Resource->updateAll(
+                    array(
+                        'res1' => $data['Resource']['res1'],
+                        'res2' => $data['Resource']['res2'],
+                        'res3' => $data['Resource']['res3']
+                    ),
+                    array('id' => $data['Resource']['id'])
+                );
+            }
+
+            debug($data);die();
+
+            /* verif :
                 si assez d'argent on tax'
             crée DTBuilding
             save Building*/
 
         }
 	}
+
+    private function enoughResources(&$Resource, &$Data){
+        if( ($new['res1'] = $Resource['res1'] - $Data['res1']) >= 0)
+            if( ($new['res2'] = $Resource['res2'] - $Data['res2']) >= 0)
+                if( ($new['res3'] = $Resource['res3'] - $Data['res3']) >= 0){
+                  $Resource['res1'] = $new['res1'];
+                  $Resource['res2'] = $new['res2'];
+                  $Resource['res3'] = $new['res3'];
+                  return true;
+                }
+        return false;
+    }
 
 /**
 * upgrade method

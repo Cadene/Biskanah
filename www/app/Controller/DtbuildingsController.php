@@ -20,7 +20,7 @@ class DtbuildingsController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function admin_index() {
 		$this->Dtbuilding->recursive = 0;
 		$this->set('dtbuildings', $this->Paginator->paginate());
 	}
