@@ -6,7 +6,7 @@
 
 /www/*
 !/www/app
-!/www/SQL
+!/SQL
 
 /www/app/*
 !/www/app/Controller
