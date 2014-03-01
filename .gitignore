@@ -1,0 +1,14 @@
+
+# exclude everything except directory SQL, Controller, Model, View
+
+/*
+!/www
+
+/www/*
+!/www/app
+!/www/SQL
+
+/www/app/*
+!/www/app/Controller
+!/www/app/Model
+!/www/app/View
