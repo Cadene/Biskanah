@@ -76,7 +76,7 @@ class Message extends AppModel {
 
     public function getReceiver($msg_id){
         if(!$msg_id) return;
-        $reveiver = $this->query('SELECT to FROM Messages WHER id='.$msg_id);
-        return ($reveiver)?$reveiver:NULL;
+        $receiver = $this->query('SELECT `to` FROM `Messages` WHERE `id`='.$msg_id);
+        return ($receiver)?$receiver[0]['Messages']['to']:NULL;
     }
 }

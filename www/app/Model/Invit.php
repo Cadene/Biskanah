@@ -80,7 +80,7 @@ class Invit extends AppModel {
 
     public function getGuest($invit_id){
         if(!$invit_id) return;
-        $guest = $this->query('SELECT user_id FROM Invits WHERE id='.$invit_id);
+        $guest = $this->query('SELECT `user_id` FROM `Invits` WHERE `id`='.$invit_id);
         return ($guest)?$guest:NULL;
     }
 }

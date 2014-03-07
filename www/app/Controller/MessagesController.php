@@ -115,10 +115,11 @@ class MessagesController extends AppController {
 		}
 
         $this->Message->updateAll(array('read'=>"NOW()" ),array('id'=>$id, 'read' => NULL));
-		$this->loadModel('User');
-        $this->User->DowngradeUnreadMsg($this->Message->getReveiver($id));
+		$this->loadModel('User');œ
+        $this->User->DowngradeUnreadMsg($this->Message->getReceiver($id));
         $options = array('conditions' => array('Message.' . $this->Message->primaryKey => $id));
 		$this->set('message', $this->Message->find('first', $options));
+
 	}
 
 /**

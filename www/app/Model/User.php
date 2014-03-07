@@ -262,18 +262,18 @@ class User extends AppModel {
     }
 
     public function UpdateUnreadMsg($user_id){
-        $result = $this->query('SELECT unread_msg FROM Users WHERE id='.$user_id);
+        $result = $this->query('SELECT `unread_msg` FROM `Users` WHERE `id`='.$user_id);
         $unread_msg = $result[0]['Users']['unread_msg'];
         $unread_msg++;
-        $this->query('UPDATE Users SET unread_msg=\''.$unread_msg.'\' WHERE id='.$user_id);
+        $this->query('UPDATE `Users` SET `unread_msg`=\''.$unread_msg.'\' WHERE `id`='.$user_id);
     }
 
     public function DowngradeUnreadMsg($user_id){
         if(!$user_id) return;
-        $result = $this->query('SELECT unread_msg FROM Users WHERE id='.$user_id);
+        $result = $this->query('SELECT `unread_msg` FROM `Users` WHERE `id`='.$user_id);
         $unread_msg = $result[0]['Users']['unread_msg'];
         if($unread_msg > 0 ) $unread_msg--;
-        $this->query('UPDATE Users SET unread_msg=\''.$unread_msg.'\' WHERE id='.$user_id);
+        $this->query('UPDATE `Users`SET `unread_msg`=\''.$unread_msg.'\' WHERE `id`='.$user_id);
 
     }
 }

@@ -145,7 +145,9 @@ class TeamsController extends AppController {
 
             $this->Team->create();
 			if ($this->Team->generate($this->Session->read('User.id'),$d)) {
-                $this->User->UpdateTeam($this->Session->read('User.id'),$this->id);
+                $this->loadModel('User');
+
+                $this->User->UpdateTeam($this->Session->read('User.id'),$this->Team->id);
 				$this->Session->setFlash(__('The team has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
