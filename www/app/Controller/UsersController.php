@@ -14,8 +14,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array(
-        'Paginator');
+	public $components = array('Paginator','Data');
 
 /**
  * index method
@@ -58,8 +57,6 @@ class UsersController extends AppController {
                 $d['User']['id'] = $this->User->id;
                 $this->loadModel('World');
                 $d['World']['id'] = $this->World->generateFirstCamp();
-                $this->loadModel('Resource');
-                $d['Resource']['id'] = $this->Resource->generateFirst();
                 $this->loadModel('Camp');
                 $d['Camp']['id'] = $this->Camp->generate($d);
                //$this->Message->hello($this->User->id);
@@ -119,7 +116,9 @@ class UsersController extends AppController {
                 'password' => $this->Auth->password($this->request->data['User']['password']),
                 'username' => $this->request->data['User']['username']
             );
-
+            $this->Data->write('User',$data['User']);
+            debug($this->Data->read());
+            die();
             if ($query = $this->User->login($data['User']['username'])) {
                 if($query['User']['password'] == $data['User']['password']){
                     unset($query['User']['password']);
@@ -147,9 +146,10 @@ class UsersController extends AppController {
  * @param string $_POST['password']
  * @return void
  */
-	public function logout() {
-
-	}
+    public function logout(){
+        $this->Session->destroy();
+        return $this->redirect($this->Auth->logout());
+    }
 
 /**
  * edit method
@@ -166,6 +166,9 @@ class UsersController extends AppController {
  * @return void
  */
 	public function edit() {
+        $this->Data->write('User.First.Second',array('Test.nop'=>'Yes'));
+        debug($this->Data->read());
+        die();
 
 	}
 

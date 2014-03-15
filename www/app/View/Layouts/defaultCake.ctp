@@ -42,9 +42,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
 		</div>
 
-        <div id="resources">
-            <?php echo $this->element('resources');
-            ?>
+        <div id="menu">
+            <div id="resources">
+                <?php //echo $this->
+                ?>
+            </div>
         </div>
 
 
@@ -54,8 +56,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
-
-
 		<div id="footer">
 			<?php echo $this->Html->link(
 					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),

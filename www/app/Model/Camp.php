@@ -203,7 +203,24 @@ class Camp extends AppModel {
         $d['Camp']['prod2'] = 10;
         $d['Camp']['prod3'] = 0;
         $d['Camp']['unread_reports'] = 0;
+
+        $d['Camp']['res1'] = $res1;
+        $d['Camp']['res2'] = $res2;
+        $d['Camp']['res3'] = $res3;
+
         $this->save($d['Camp']);
+        return $this->id;
+    }
+
+    public function generateFirst(){
+        return $this->generate(500,300,50);
+    }
+
+    public function generate($res1,$res2,$res3){
+        $d['Resource']['res1'] = $res1;
+        $d['Resource']['res2'] = $res2;
+        $d['Resource']['res3'] = $res3;
+        $this->save($d['Resource']);
         return $this->id;
     }
 

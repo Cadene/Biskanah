@@ -53,8 +53,9 @@ class AppController extends Controller {
             ),
             'authError' => 'Did you really think you are allowed to see that?'
         //,'authorize' => array('Controller')
-
-        ));
+        ),
+        'DebugKit.Toolbar'
+    );
 
     /*public function isAuthorized() {
         if($this->Auth->user('role') == 'admin'){
