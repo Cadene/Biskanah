@@ -28,6 +28,10 @@ class BDD{
 		}
 	}
 
+    public function execute($sql_query)
+    {
+        $bdd->exec($sql_query);
+    }
 	public function worldsGenerate($max_x,$max_y){
 		$nb=0;
 		for($i=0-$max_x; $i<$max_x; $i++){

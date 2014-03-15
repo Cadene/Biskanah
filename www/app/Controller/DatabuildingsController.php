@@ -21,6 +21,7 @@ class DatabuildingsController extends AppController {
  * @return void
  */
 	public function index() {
+        preg_match_all()
 		$this->Databuilding->recursive = 0;
 		$this->set('databuildings', $this->Paginator->paginate());
 	}
@@ -92,7 +93,7 @@ class DatabuildingsController extends AppController {
 		$this->Databuilding->id = $id;
 		if (!$this->Databuilding->exists()) {
 			throw new NotFoundException(__('Invalid databuilding'));
-		}
+		}// TODO liste the other
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Databuilding->delete()) {
 			$this->Session->setFlash(__('The databuilding has been deleted.'));

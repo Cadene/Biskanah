@@ -36,7 +36,8 @@
         protected $buildings;
         protected $units;
         protected $camp;
-        protected $camps;*/
+        protected $camps;
+        */
 
         protected $config = array(
             'layout' => array(
@@ -100,8 +101,4 @@
             }
         }
 
-
-
-
-
-    }
+   }
