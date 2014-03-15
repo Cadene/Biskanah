@@ -1,12 +1,12 @@
 <?php
-App::uses('AppController', 'Controller');
+App::uses('GameController', 'Controller');
 /**
  * Camps Controller
  *
  * @property Camp $Camp
  * @property PaginatorComponent $Paginator
  */
-class CampsController extends AppController {
+class CampsController extends GameController {
 
     public $uses = array('Camp', 'World');
 /**
@@ -25,13 +25,24 @@ class CampsController extends AppController {
 * @return void
 */
 	public function index($id = null){
+        $this->Data = $this->Components->load('Data');
         if(!$id){
             $id = $this->Session->read('Camp.current');
         }else{
             $this->Session->write('Camp.current',$id);
         }
         $user_id = $this->Session->read('User.id');
-		$d = $this->Camp->find('first', array('conditions' => array('Camp.id' => $id, 'User.id' => $user_id)));
+		$d = $this->Camp->find('first',array(
+            'recursive' => 2,
+            'conditions' => array(
+                'Camp.id' => $id,
+            ),/*
+            'joins' => array(
+                'table' => 'Users',
+                'alias' => 'User',
+                'type' => 'left'
+            )*/
+        ));
         $this->set('d',$d);
     }
 

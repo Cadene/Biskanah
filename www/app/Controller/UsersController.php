@@ -14,7 +14,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator','Data');
+	public $components = array('Paginator');
 
 /**
  * index method
@@ -116,15 +116,11 @@ class UsersController extends AppController {
                 'password' => $this->Auth->password($this->request->data['User']['password']),
                 'username' => $this->request->data['User']['username']
             );
-            $this->Data->write('User',$data['User']);
-            debug($this->Data->read());
-            die();
             if ($query = $this->User->login($data['User']['username'])) {
                 if($query['User']['password'] == $data['User']['password']){
                     unset($query['User']['password']);
                     $this->Session->destroy();
                     $this->Session->write($query);
-                    //debug($this->Session->read());die();
                     $this->Session->setFlash(__('Le joueur est connecté.'));
                     return $this->redirect(array('controller'=>'camps','action' => 'index'));
                 } else {

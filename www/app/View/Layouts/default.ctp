@@ -42,10 +42,13 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
 		</div>
 
-        <div id="resources">
-            <?php echo $this->element('resources');
-            ?>
-        </div>
+        <?php echo $this->element('resources',array(
+            'data' => $resources
+        )); ?>
+
+        <?php echo $this->element('camps',array(
+            'data' => $camps
+        )); ?>
 
 
 		<div id="content">

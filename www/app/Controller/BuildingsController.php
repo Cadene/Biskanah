@@ -80,7 +80,7 @@ class BuildingsController extends AppController {
                 throw new NotImplementedException('Le batiment demandé est de niveau !=1');
             }
             //debug($data);die();
-            if(!$this->enoughResources($data['Resource'],$data['Databuilding'])){
+            if(!$this->enoughResources($data['Camp'],$data['Databuilding'])){
                 throw new NotImplementedException('Pas assez de ressources dispo');
             }else{
 
@@ -99,24 +99,17 @@ class BuildingsController extends AppController {
                     'finish' => (time()+ $data['Databuilding']['time'])
                 ));
 
-
-                $this->loadModel('Resource');
-                $this->Resource->updateAll(
+                $this->Camp->updateAll(
                     array(
-                        'res1' => $data['Resource']['res1'],
-                        'res2' => $data['Resource']['res2'],
-                        'res3' => $data['Resource']['res3']
+                        'res1' => $data['Camp']['res1'],
+                        'res2' => $data['Camp']['res2'],
+                        'res3' => $data['Camp']['res3']
                     ),
-                    array('id' => $data['Resource']['id'])
+                    array('id' => $data['Camp']['id'])
                 );
             }
 
             debug($data);die();
-
-            /* verif :
-                si assez d'argent on tax'
-            crée DTBuilding
-            save Building*/
 
         }
 	}
