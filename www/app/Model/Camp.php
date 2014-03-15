@@ -131,13 +131,6 @@ class Camp extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'Resource' => array(
-			'className' => 'Resource',
-			'foreignKey' => 'resource_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		)
 	);
 
@@ -191,7 +184,6 @@ class Camp extends AppModel {
 
     public function generate($d){
         $d['Camp']['user_id'] = $d['User']['id'];
-        $d['Camp']['resource_id'] = $d['Resource']['id'];
         $d['Camp']['world_id'] = $d['World']['id'];
         $d['Camp']['name'] = 'Default';
         $d['Camp']['pts'] = 0;
@@ -204,23 +196,11 @@ class Camp extends AppModel {
         $d['Camp']['prod3'] = 0;
         $d['Camp']['unread_reports'] = 0;
 
-        $d['Camp']['res1'] = $res1;
-        $d['Camp']['res2'] = $res2;
-        $d['Camp']['res3'] = $res3;
+        $d['Camp']['res1'] = 500;
+        $d['Camp']['res2'] = 300;
+        $d['Camp']['res3'] = 50;
 
         $this->save($d['Camp']);
-        return $this->id;
-    }
-
-    public function generateFirst(){
-        return $this->generate(500,300,50);
-    }
-
-    public function generate($res1,$res2,$res3){
-        $d['Resource']['res1'] = $res1;
-        $d['Resource']['res2'] = $res2;
-        $d['Resource']['res3'] = $res3;
-        $this->save($d['Resource']);
         return $this->id;
     }
 

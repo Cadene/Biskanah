@@ -228,6 +228,34 @@ class User extends AppModel {
 
 
     public function login($username){
+        $data = $this->find('first',array(
+            'conditions' => array('username'=>$username),
+            'recursive' => -1,
+            'joins' => array(
+                array(
+                    'table' => 'Camps',
+                    'alias' => 'Camp',
+                    'type' => 'INNER',
+                    'foreignKey' => 'user_id',
+                    'conditions' => array(
+                        'User.id = Camp.user_id'
+                    ),
+                    'limit' => 1
+                )
+            ),
+            'fields' => array(
+                'User.id','User.password','User.email','User.unread_msg','User.team_id',
+                'Camp.id'
+            )
+        ));
+
+        $data['User']['username'] = $username;
+        $data['Camp']['current'] = $data['Camp']['id'];
+        $data['Team']['id'] = $data['User']['team_id'];
+
+        return $data;
+
+        /*die();
         $q = $this->query('SELECT u.id, u.password, u.email, u.access, u.unread_msg, u.team_id '
                         . 'FROM Users u '
                         . 'WHERE u.username = \''.$username.'\' LIMIT 1;');
@@ -242,7 +270,7 @@ class User extends AppModel {
                         . 'FROM Camps c '
                         . 'WHERE c.user_id = \''.$d['User']['id'].'\' LIMIT 1;');
         $d['Camp']['current'] = $q[0]['c']['id'];
-        return $d;
+        return $d;*/
     }
 
 

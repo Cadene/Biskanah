@@ -8,8 +8,6 @@
  */
 ?>
 
-<div id="resources">
-    <div class="resources"></div>
-    <div class="resources"></div>
-    <div class="resources"></div>
+<div id="camps">
+    <?php debug($data);?>
 </div>

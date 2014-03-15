@@ -42,11 +42,35 @@
         protected $config = array(
             'layout' => array(
                 'default' => array( // layout name
-                    'ressources' => array( // element name
-                        'Camp' => array( // Model name
+                    'resources' => array( // element name
+                        'Camp' => array( // Model name(
                             'res1',
                             'res2',
-                            'res3'
+                            'res3',
+                            'prod1',
+                            'prod2',
+                            'prod3',
+                            'datetime'
+                        )
+                    ),
+                    'camps' => array( // element name
+                        'Camps' => array(
+                            array(
+                                'Camp' => array(
+                                    'id',
+                                    'name',
+                                    'unread_reports',
+                                ),
+                                'World' => array(
+                                    'id',
+                                    'x',
+                                    'y',
+                                ),
+                                'A2b' => array(
+                                    'id',
+                                    'type',
+                                )
+                            )
                         )
                     )
                 )
@@ -56,6 +80,7 @@
         protected $_DATA = array();
 
 
+        // write comme session
         public function write($name, $value = array()) {
             if (empty($name)) {
                 return false;
@@ -73,6 +98,7 @@
             return true;
         }
 
+        // read come session
         public function read($name=null){
             if ($name === null) {
                 return $this->_DATA;
@@ -101,4 +127,39 @@
             }
         }
 
+<<<<<<< HEAD
    }
+=======
+
+        protected function _check(Controller $controller)
+        {
+            foreach($this->config['layout'][$controller->layout] as $elementName => $elementTables)
+            {
+                $tableName = key($elementTables);
+
+                //checker dans ->_DATA si les tables sont bien chargées, sinon les charger
+                if(!isset($this->_DATA[$tableName])){
+                    $functionName = 'recover'.$tableName;
+                    $this->write($tableName,$controller->$functionName());
+                }
+
+                //envoyer les données aux différents éléments*/
+                $controller->set($elementName,$this->_DATA[$tableName]);
+            }
+        }
+
+
+        public function beforeRender(Controller $controller){
+            $this->_check($controller);
+        }
+
+
+
+
+
+
+
+
+
+    }
+>>>>>>> 7c7d07ac138c63dbb5d46c7cc513d0df0055f6b6
