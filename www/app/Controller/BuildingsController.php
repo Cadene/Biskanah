@@ -65,7 +65,6 @@ class BuildingsController extends AppController {
             // récupère dans $data['Camp'] les infos du camp courant
 
             $this->loadModel('Camp');
-
             $data = $this->Camp->find('first', array(
                 'conditions' => array('Camp.id' => $query['Building']['camp_id'])
             ));
@@ -78,8 +77,12 @@ class BuildingsController extends AppController {
 
             // TODO verifier que le joueur a les bons prérequis
 
-//            $this->loadModel('Datanode');
-//            $this->Datanode->verify($query['Building']['databuilding_id'],$data);
+            $this->loadModel('Datanode');
+            if($this->Datanode->verify($query['Building']['databuilding_id'],'building',$data)){
+
+            }else{
+                throw new NotImplementedException('Vous n\'avez pas les prérequis nécessaires.');
+            }
 
             // récupère dans $data['Databuilding'] les infos du batiment à construire
 

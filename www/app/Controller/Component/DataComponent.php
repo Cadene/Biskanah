@@ -29,7 +29,7 @@
      */
     class DataComponent extends Component {
 
-
+        public $components = array('Session');
         /*
         protected $user;
         protected $technos;
@@ -74,7 +74,7 @@
             )
         );
 
-        protected $_DATA = array();
+        /*protected $_DATA = array();
 
 
         // write comme session
@@ -109,7 +109,7 @@
                 return $result;
             }
             return null;
-        }
+        }*/
 
         protected static function _overwrite(&$old, $new) {
             if (!empty($old)) {
@@ -132,13 +132,16 @@
                 $tableName = key($elementTables);
 
                 //checker dans ->_DATA si les tables sont bien chargées, sinon les charger
-                if(!isset($this->_DATA[$tableName])){
+
+                debug($this->Session->read());
+                die();
+                /*if(!isset($this->Session->read($tableName))){
                     $functionName = '_recover'.ucfirst($elementName);
-                    $this->write($tableName,$this->$functionName($controller));
-                }
+                    $this->Session->write($tableName,$this->$functionName($controller));
+                }*/
 
                 //envoyer les données aux différents éléments*/
-                $controller->set($elementName,$this->_DATA[$tableName]);
+                $controller->set($elementName,$this->Session->read($tableName));
             }
         }
 
