@@ -16,30 +16,20 @@ class BuildingsController extends AppController {
 	public $components = array('Paginator');
 
 /**
-* view method
+* index method
 * Affiche un bâtiment
 *
 * @param int $_POST['building_id']
 * @param int $_SESSION['camp_id']
 * @return void
 */
-	public function view($id=null) {
-        $this->Data = $this->Components->load('Data');
-        if($id === null)
-            throw new  NotFoundException(__('Invalid building'));
-        $data = $this->Building->find('first',array(
-            'recursive' => -1,
-            'conditions' => array(
-                'Building.id' => $id
-            )
-        ));
-        $this->set('data',$data);
+	public function index() {
+
 	}
 
 /**
 * create method
-* Crée un bâtiment de niveau 0 dans la table Buildings
-* Crée un bâtiment de niveau 1 dans la table Dtbuildings
+* Créer un bâtiment de niveau 0 dans Building
 *
 * @param int $_POST['camp_id']
 * @param int $_POST['type']
@@ -50,7 +40,7 @@ class BuildingsController extends AppController {
 	public function create() {
         if($this->request->is('post')){
 
-            // $query tableau de request
+            //$query tableau de request
 
             $query['Building'] = array(
                 'databuilding_id' => $this->request->data['Building']['databuilding_id'],
@@ -62,7 +52,7 @@ class BuildingsController extends AppController {
                 $query['Building']['camp_id'] = $this->Session->read('Camp.current');
             }
 
-            // récupère dans $data['Camp'] les infos du camp courant
+            //récupère dans $data['Camp'] les infos du camp courant
 
             $this->loadModel('Camp');
             $data = $this->Camp->find('first', array(
@@ -75,6 +65,7 @@ class BuildingsController extends AppController {
                 }
             }
 
+<<<<<<< HEAD
             // TODO verifier que le joueur a les bons prérequis
 
             $this->loadModel('Datanode');
@@ -85,6 +76,9 @@ class BuildingsController extends AppController {
             }
 
             // récupère dans $data['Databuilding'] les infos du batiment à construire
+=======
+            //récupère dans $data['Databuilding'] les infos du batiment à construire
+>>>>>>> parent of f4775c1... Console directory added with generate functions
 
             $this->loadModel('Databuilding');
 
@@ -94,13 +88,11 @@ class BuildingsController extends AppController {
             $data['Databuilding'] = $tmp['Databuilding'];
             unset($tmp);
 
-            debug($data);
-
             if($data['Databuilding']['lvl'] != 1){
                 throw new NotImplementedException('Le batiment demandé est de niveau !=1');
             }
-//            debug($data);die();
-            if(!$this->_enoughResources($data['Camp'],$data['Databuilding'])){
+            //debug($data);die();
+            if(!$this->enoughResources($data['Camp'],$data['Databuilding'])){
                 throw new NotImplementedException('Pas assez de ressources dispo');
             }else{
 
@@ -125,7 +117,7 @@ class BuildingsController extends AppController {
                         'res2' => $data['Camp']['res2'],
                         'res3' => $data['Camp']['res3']
                     ),
-                    array('Camp.id' => $data['Camp']['id'])
+                    array('id' => $data['Camp']['id'])
                 );
             }
 
@@ -134,7 +126,7 @@ class BuildingsController extends AppController {
         }
 	}
 
-    private function _enoughResources(&$Resource, &$Data){
+    private function enoughResources(&$Resource, &$Data){
         if( ($new['res1'] = $Resource['res1'] - $Data['res1']) >= 0)
             if( ($new['res2'] = $Resource['res2'] - $Data['res2']) >= 0)
                 if( ($new['res3'] = $Resource['res3'] - $Data['res3']) >= 0){
@@ -155,24 +147,7 @@ class BuildingsController extends AppController {
 * @return void
 */
 	public function upgrade() {
-        if($this->request->is('post')){
 
-            // $query tableau de request
-
-            $query['Building'] = array(
-                'id' => $this->request->data['Building']['id'],
-            );
-
-            // TODO verifier que le building existe
-
-            // TODO récupérer le bon databuilding
-
-            // TODO verifier que le joueur a les bons prérequis
-
-            // TODO verifier que le joueur a assez de ressources
-
-            // TODO créer le batiment dans dtbuilding
-        }
 	}
 
 /**

@@ -18,108 +18,32 @@ class CampsController extends GameController {
 
 
 /**
-*	view method
+*	index method
 * Vue privée du camp avec les multiples bâtiments
 * 
 * @param int id s:camp_id
 * @return void
 */
-	public function view($id = null){
+	public function index($id = null){
         $this->Data = $this->Components->load('Data');
-        $user_id = $this->Session->read('User.id');
-
-        if($id){
-            $data = $this->Camp->recoverCamps($user_id);
-            if($this->_isInCamps($id,$data)){
-                $this->Session->write('Camp.current',$id);
-                $this->Data->write('Camps',$data);
-            }
-            throw new NotFoundException(__('Invalid camp'));
-        }else{
+        if(!$id){
             $id = $this->Session->read('Camp.current');
+        }else{
+            $this->Session->write('Camp.current',$id);
         }
-
-		$data = $this->Camp->find('first',array(
-            'recursive' => -1,
+        $user_id = $this->Session->read('User.id');
+		$d = $this->Camp->find('first',array(
+            'recursive' => 2,
             'conditions' => array(
                 'Camp.id' => $id,
-            ),
+            ),/*
             'joins' => array(
-                array(
-                    'table' => 'worlds',
-                    'alias' => 'World',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'World.id = Camp.world_id'
-                    )
-                ),
-                array(
-                    'table' => 'users',
-                    'alias' => 'User',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'User.id = Camp.user_id'
-                    )
-                ),
-            ),
-            'fields' => array(
-                '*'
-            )
+                'table' => 'Users',
+                'alias' => 'User',
+                'type' => 'left'
+            )*/
         ));
-
-        $this->loadModel('Building');
-        $data['Buildings'] = $this->Building->find('all', array(
-            'recursive' => -1,
-            'conditions' => array(
-                'Building.camp_id' => $id
-            ),
-            'joins' => array(
-                array(
-                    'table' => 'databuildings',
-                    'alias' => 'Databuilding',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'Databuilding.id = Building.databuilding_id'
-                    )
-                )
-            ),
-            'fields' => array(
-                '*'
-            )
-        ));
-
-        $data['Dtbuildings'] = $this->Building->find('all', array(
-            'recursive' => -1,
-            'conditions' => array(
-                'Building.camp_id' => $id
-            ),
-            'joins' => array(
-                array(
-                    'table' => 'dtbuildings',
-                    'alias' => 'Dtbuilding',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'Dtbuilding.building_id = Building.id'
-                    )
-                )
-            ),
-            'fields' => array(
-                '*'
-            ),
-            'order' => array(
-                'Dtbuilding.finish'
-            )
-        ));
-
-        $this->set('data',$data);
-    }
-
-    private function _isInCamps($id,$data){
-        foreach($data as $camp){
-            if($camp['Camp']['id'] == $id)
-                return true;
-        }
-        return false;
+        $this->set('d',$d);
     }
 
 /**

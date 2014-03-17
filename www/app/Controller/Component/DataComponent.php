@@ -29,7 +29,6 @@
      */
     class DataComponent extends Component {
 
-        public $components = array('Session');
         /*
         protected $user;
         protected $technos;
@@ -42,7 +41,7 @@
             'layout' => array(
                 'default' => array( // layout name
                     'resources' => array( // element name
-                        'Camp' => array( // Model name
+                        'Camp' => array( // Model name(
                             'res1',
                             'res2',
                             'res3',
@@ -54,19 +53,21 @@
                     ),
                     'camps' => array( // element name
                         'Camps' => array(
-                            'Camp' => array(
-                                'id',
-                                'name',
-                                'unread_reports',
-                            ),
-                            'World' => array(
-                                'id',
-                                'x',
-                                'y',
-                            ),
-                            'A2b' => array(
-                                'id',
-                                'type',
+                            array(
+                                'Camp' => array(
+                                    'id',
+                                    'name',
+                                    'unread_reports',
+                                ),
+                                'World' => array(
+                                    'id',
+                                    'x',
+                                    'y',
+                                ),
+                                'A2b' => array(
+                                    'id',
+                                    'type',
+                                )
                             )
                         )
                     )
@@ -74,7 +75,7 @@
             )
         );
 
-        /*protected $_DATA = array();
+        protected $_DATA = array();
 
 
         // write comme session
@@ -109,7 +110,7 @@
                 return $result;
             }
             return null;
-        }*/
+        }
 
         protected static function _overwrite(&$old, $new) {
             if (!empty($old)) {
@@ -133,12 +134,10 @@
 
                 //checker dans ->_DATA si les tables sont bien chargées, sinon les charger
 
-                debug($this->Session->read());
-                die();
-                /*if(!isset($this->Session->read($tableName))){
-                    $functionName = '_recover'.ucfirst($elementName);
-                    $this->Session->write($tableName,$this->$functionName($controller));
-                }*/
+                if(!isset($this->_DATA[$tableName])){
+                    $functionName = 'recover'.$tableName;
+                    $this->write($tableName,$controller->$functionName());
+                }
 
                 //envoyer les données aux différents éléments*/
                 $controller->set($elementName,$this->Session->read($tableName));
@@ -150,16 +149,6 @@
             $this->_check($controller);
         }
 
-
-        protected function _recoverResources(Controller $controller){
-            $data = ClassRegistry::init('Camp')->recoverResources($controller->Session->read('Camp.current'));
-            return $data['Camp'];
-        }
-
-        protected function _recoverCamps(Controller $controller){
-            $data = ClassRegistry::init('Camp')->recoverCamps($controller->Session->read('User.id'));
-            return $data;
-        }
 
 
 

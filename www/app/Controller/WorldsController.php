@@ -153,28 +153,4 @@ class WorldsController extends AppController {
 			$this->Session->setFlash(__('The world could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-
-
-    public function admin_generate($max_x,$max_y){
-        $nb=0;
-        $values = array();
-        for($i=0-$max_x; $i<$max_x; $i++){
-            for($j=0-$max_y; $j<$max_y; $j++){
-                $values[] = array(
-                    'x' => $i,
-                    'y' => $j,
-                    'type' => 0
-                );
-                /*$sql = 'INSERT INTO `BiskanahV1`.`worlds` (`x`, `y`, `type`) VALUES ('.$i.', '.$j.', 0);';
-                $this->World->($sql);
-                //sleep(1);
-                if($nb%200==0)
-                    echo $nb." ".$sql."\n";
-                $nb++;*/
-            }
-        }
-        $this->World->saveMany($values);
-    }
-
-}
+	}}

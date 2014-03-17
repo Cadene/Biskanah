@@ -47,18 +47,18 @@ class UsersController extends AppController {
  */
 	public function register() {
         if ($this->request->is('post')) {
-            $data['User'] = array(
+            $d['User'] = array(
                 'password' => $this->Auth->password($this->request->data['User']['password']),
                 'username' => $this->request->data['User']['username'],
                 'email' => $this->request->data['User']['email'],
             );
             $this->User->create();
-            if ($this->User->save($data['User'])) {
-                $data['User']['id'] = $this->User->id;
+            if ($this->User->save($d['User'])) {
+                $d['User']['id'] = $this->User->id;
                 $this->loadModel('World');
-                $data['World']['id'] = $this->World->generateFirstCamp();
+                $d['World']['id'] = $this->World->generateFirstCamp();
                 $this->loadModel('Camp');
-                $data['Camp']['id'] = $this->Camp->generate($data);
+                $d['Camp']['id'] = $this->Camp->generate($d);
                //$this->Message->hello($this->User->id);
                 $this->Session->setFlash(__('The user has been saved.'));
                 return $this->redirect(array('controller'=>'pages'));
@@ -122,7 +122,7 @@ class UsersController extends AppController {
                     $this->Session->destroy();
                     $this->Session->write($query);
                     $this->Session->setFlash(__('Le joueur est connecté.'));
-                    return $this->redirect(array('controller'=>'camps','action' => 'view'));
+                    return $this->redirect(array('controller'=>'camps','action' => 'index'));
                 } else {
                     $this->Session->setFlash(__('Le mot de passe est incorrecte.'));
                 }
