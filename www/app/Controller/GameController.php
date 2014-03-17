@@ -33,41 +33,4 @@ App::uses('AppController', 'Controller');
 class GameController extends AppController {
 
 
-    public function recoverCamp(){
-        $this->loadModel('Camp');
-        $data = $this->Camp->find('first',array(
-            'recursive' => -1,
-            'conditions' => array(
-                'Camp.id' => $this->Session->read('Camp.current')
-            ),
-            'limit' => 1
-        ));
-        return $data['Camp'];
-    }
-
-    public function recoverCamps(){
-        $this->loadModel('Camp');
-        $data = $this->Camp->find('all',array(
-            'recursive' => -1,
-            'conditions' => array(
-                'Camp.user_id' => $this->Session->read('User.id')
-            ),
-            'joins' => array(
-                array(
-                    'table' => 'Worlds',
-                    'alias' => 'World',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'World.id = Camp.world_id'
-                    )
-                )
-            ),
-            'fields' => array(
-                'Camp.id','Camp.name','Camp.unread_reports',
-                'World.id','World.x','World.y'
-            )
-        ));
-        return $data;
-    }
-
 }
