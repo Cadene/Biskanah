@@ -1,10 +1,9 @@
 <?php
-
-    App::uses('AppModel', 'Model');
+App::uses('AppModel', 'Model');
 /**
-* Dataunit Model
-*
-*/
+ * Dataunit Model
+ *
+ */
 class Datanode extends AppModel {
 
     public function verify($to_data,&$data){

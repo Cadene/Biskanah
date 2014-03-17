@@ -29,6 +29,7 @@
      */
     class DataComponent extends Component {
 
+
         /*
         protected $user;
         protected $technos;
@@ -41,7 +42,7 @@
             'layout' => array(
                 'default' => array( // layout name
                     'resources' => array( // element name
-                        'Camp' => array( // Model name(
+                        'Camp' => array( // Model name
                             'res1',
                             'res2',
                             'res3',
@@ -53,21 +54,19 @@
                     ),
                     'camps' => array( // element name
                         'Camps' => array(
-                            array(
-                                'Camp' => array(
-                                    'id',
-                                    'name',
-                                    'unread_reports',
-                                ),
-                                'World' => array(
-                                    'id',
-                                    'x',
-                                    'y',
-                                ),
-                                'A2b' => array(
-                                    'id',
-                                    'type',
-                                )
+                            'Camp' => array(
+                                'id',
+                                'name',
+                                'unread_reports',
+                            ),
+                            'World' => array(
+                                'id',
+                                'x',
+                                'y',
+                            ),
+                            'A2b' => array(
+                                'id',
+                                'type',
                             )
                         )
                     )
@@ -133,14 +132,13 @@
                 $tableName = key($elementTables);
 
                 //checker dans ->_DATA si les tables sont bien chargées, sinon les charger
-
                 if(!isset($this->_DATA[$tableName])){
-                    $functionName = 'recover'.$tableName;
-                    $this->write($tableName,$controller->$functionName());
+                    $functionName = '_recover'.ucfirst($elementName);
+                    $this->write($tableName,$this->$functionName($controller));
                 }
 
                 //envoyer les données aux différents éléments*/
-                $controller->set($elementName,$this->Session->read($tableName));
+                $controller->set($elementName,$this->_DATA[$tableName]);
             }
         }
 
@@ -149,6 +147,16 @@
             $this->_check($controller);
         }
 
+
+        protected function _recoverResources(Controller $controller){
+            $data = ClassRegistry::init('Camp')->recoverResources($controller->Session->read('Camp.current'));
+            return $data['Camp'];
+        }
+
+        protected function _recoverCamps(Controller $controller){
+            $data = ClassRegistry::init('Camp')->recoverCamps($controller->Session->read('User.id'));
+            return $data;
+        }
 
 
 
