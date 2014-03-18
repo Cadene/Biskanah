@@ -76,10 +76,12 @@ class BuildingsController extends AppController {
                 }
             }
 
-            // TODO verifier que le joueur a les bons prérequis
-
-//            $this->loadModel('Datanode');
-//            $this->Datanode->verify($query['Building']['databuilding_id'],$data);
+            // vérification des prérequis
+            // TODO à vérifier
+            $this->Datanode = $this->Components->load('Datanode');
+            if(!$this->Datanode->verify($query['Building']['databuilding_id'],1,$data)){
+                throw new NotImplementedException('Les prérequis sont manquants.');
+            }
 
             // récupère dans $data['Databuilding'] les infos du batiment à construire
 
@@ -91,7 +93,6 @@ class BuildingsController extends AppController {
             $data['Databuilding'] = $tmp['Databuilding'];
             unset($tmp);
 
-            debug($data);
 
             if($data['Databuilding']['lvl'] != 1){
                 throw new NotImplementedException('Le batiment demandé est de niveau !=1');
@@ -126,8 +127,9 @@ class BuildingsController extends AppController {
                 );
             }
 
-            debug($data);die();
-
+//            debug($data);die();
+            $this->Session->setFlash(__('Le batiment a bien été créé.'));
+            return $this->redirect(array('controller'=>'camps','action'=>'view'));
         }
 	}
 
