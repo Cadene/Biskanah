@@ -97,7 +97,7 @@ class CampsController extends GameController {
                 array(
                     'table' => 'dtbuildings',
                     'alias' => 'Dtbuilding',
-                    'type' => 'LEFT',
+                    'type' => 'INNER',
                     'conditions' => array(
                         'Dtbuilding.building_id = Building.id'
                     )

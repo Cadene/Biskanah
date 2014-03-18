@@ -10,6 +10,8 @@ App::uses('AppModel', 'Model');
  */
 class Building extends AppModel {
 
+    public $actsAs = array('Data');
+
 /**
  * Validation rules
  *

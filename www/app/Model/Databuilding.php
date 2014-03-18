@@ -6,6 +6,8 @@ App::uses('AppModel', 'Model');
  */
 class Databuilding extends AppModel {
 
+
+    public $actsAs = array('Data');
 /**
  * Validation rules
  *
