@@ -237,6 +237,19 @@ class Camp extends AppModel {
             )
         ));
     }
+
+    public function recover(&$data,$id){
+        $tmp = $this->find('first', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Camp.id' => $id
+            ),
+            'fields' => array('*')
+        ));
+        $data['Camp'] = $tmp['Camp'];
+        unset($tmp);
+    }
+
     /*
     public function recoverDataCamp($id){
         $db = $this->getDataSource();

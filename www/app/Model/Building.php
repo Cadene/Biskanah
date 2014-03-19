@@ -124,4 +124,43 @@ class Building extends AppModel {
 		)
 	);
 
+    public function isBuildingInField(&$data, $camp_id, $field){
+        if(!isset($data['Buildings'])){
+            $data['Buildings'] = $this->find('all', array(
+                'recursive' => -1,
+                'conditions' => array(
+                    'Building.camp_id' => $camp_id
+                ),
+                'fields' => array('*')
+            ));
+        }
+        foreach($data['Buildings'] as $building){
+            $building=current($building);
+            if($building['field'] == $field){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function isBuildingOnCamp(&$data, $camp_id, $id){
+        if(!isset($data['Buildings'])){
+            $data['Buildings'] = $this->find('all', array(
+                'recursive' => -1,
+                'conditions' => array(
+                    'Building.camp_id' => $camp_id
+                ),
+                'fields' => array('*')
+            ));
+        }
+        foreach($data['Buildings'] as $building){
+            $building=current($building);
+            if($building['id'] == $id){
+                $data['Building'] = $building;
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
