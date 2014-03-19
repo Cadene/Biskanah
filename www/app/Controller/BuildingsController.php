@@ -52,6 +52,9 @@ class BuildingsController extends AppController {
 
             // $query tableau de request
 
+            if(!isset($this->request->data['Building']['databuilding_id'])
+                && !isset($this->request->data['Building']['field']))
+                throw new NotImplementedException('Bad arguments in POST');
             $query['Building'] = array(
                 'databuilding_id' => $this->request->data['Building']['databuilding_id'],
                 'field' => $this->request->data['Building']['field']
@@ -62,18 +65,11 @@ class BuildingsController extends AppController {
                 $query['Building']['camp_id'] = $this->Session->read('Camp.current');
             }
 
-            // récupère dans $data['Camp'] les infos du camp courant
+            // récupère dans $data['Buildings'] les infos des buildings
 
-            $this->loadModel('Camp');
-
-            $data = $this->Camp->find('first', array(
-                'conditions' => array('Camp.id' => $query['Building']['camp_id'])
-            ));
-
-            foreach($data['Building'] as $building){
-                if($building['field'] == $query['Building']['field']){
-                    throw new NotImplementedException('Il existe déjà un batiment construit sur le field');
-                }
+            $this->loadModel('Building');
+            if($this->Building->isBuildingInField($data,$query['Building']['camp_id'],$query['Building']['field'])){
+                throw new NotImplementedException('Il existe déjà un batiment construit sur le field');
             }
 
             // vérification des prérequis
@@ -84,20 +80,26 @@ class BuildingsController extends AppController {
             }
 
             // récupère dans $data['Databuilding'] les infos du batiment à construire
-
             $this->loadModel('Databuilding');
-
-            $tmp = $this->Databuilding->find('first', array(
-                'conditions' => array('id' => $query['Building']['databuilding_id'])
-            ));
-            $data['Databuilding'] = $tmp['Databuilding'];
-            unset($tmp);
-
-
+            $this->Databuilding->recover($data,$query['Building']['databuilding_id']);
             if($data['Databuilding']['lvl'] != 1){
                 throw new NotImplementedException('Le batiment demandé est de niveau !=1');
             }
-//            debug($data);die();
+
+            // récupère dans $data['Camp'] les infos du camp courant
+
+            $this->loadModel('Camp');
+
+            $tmp = $this->Camp->find('first', array(
+                'recursive' => -1,
+                'conditions' => array(
+                    'Camp.id' => $query['Building']['camp_id']
+                ),
+                'fields' => array('*')
+            ));
+            $data['Camp'] = $tmp['Camp'];
+            unset($tmp);
+
             if(!$this->_enoughResources($data['Camp'],$data['Databuilding'])){
                 throw new NotImplementedException('Pas assez de ressources dispo');
             }else{
@@ -129,9 +131,10 @@ class BuildingsController extends AppController {
 
 //            debug($data);die();
             $this->Session->setFlash(__('Le batiment a bien été créé.'));
-            return $this->redirect(array('controller'=>'camps','action'=>'view'));
         }
-	}
+        return $this->redirect(array('controller'=>'camps','action'=>'view'));
+    }
+
 
     private function _enoughResources(&$Resource, &$Data){
         if( ($new['res1'] = $Resource['res1'] - $Data['res1']) >= 0)
@@ -158,20 +161,77 @@ class BuildingsController extends AppController {
 
             // $query tableau de request
 
+            if(!isset($this->request->data['Building']['id']))
+                throw new NotImplementedException('Bad arguments in POST');
             $query['Building'] = array(
                 'id' => $this->request->data['Building']['id'],
             );
+            if(isset($this->request->data['Building']['camp_id'])){
+                $query['Building']['camp_id'] = $this->request->data['Building']['camp_id'];
+            }else{
+                $query['Building']['camp_id'] = $this->Session->read('Camp.current');
+            }
 
-            // TODO verifier que le building existe
+            // récupère dans $data['Buildings'] les infos des buildings
+            // met dans $data['Building'] les infos du building
+            $this->loadModel('Building');
+            if(!$this->Building->isBuildingOnCamp($data,$query['Building']['camp_id'],$query['Building']['id'])){
+                throw new NotImplementedException('Construisez d\'abord sur cette case avant de vouloir améliorer.');
+            }
 
-            // TODO récupérer le bon databuilding
+            $this->loadModel('Dtbuilding');
+            $data['Dtbuilding'] = $this->Dtbuilding->find('all',array(
+                'recursive' => -1,
+                'conditions' => array(
+                    'Dtbuilding.building_id' => $query['Building']['id']
+                ),
+                'fields' => array('*')
+            ));
+            $query['Building']['databuilding_id'] = count($data['Dtbuilding']) + $data['Building']['databuilding_id'] + 1;
+            $query['Building']['databuilding_id_lvl'] = count($data['Dtbuilding']) + $data['Building']['databuilding_id_lvl'] + 1;
 
-            // TODO verifier que le joueur a les bons prérequis
+            // récupère dans $data['Databuilding'] les infos du batiment à construire
+            $this->loadModel('Databuilding');
+            $this->Databuilding->recover($data,$query['Building']['databuilding_id']);
+            if($data['Databuilding']['lvl'] <= 1){
+                throw new NotImplementedException('Le batiment demandé est de niveau <=1');
+            }
 
-            // TODO verifier que le joueur a assez de ressources
+            // vérification des prérequis
+            $this->Datanode = $this->Components->load('Datanode');
+            if(!$this->Datanode->verify($query['Building']['databuilding_id'],1,$data)){
+                throw new NotImplementedException('Les prérequis sont manquants.');
+            }
 
-            // TODO créer le batiment dans dtbuilding
+            // récupère dans $data['Camp'] les infos du camp courant
+            $this->loadModel('Camp');
+            $this->Camp->recover($data,$query['Building']['camp_id']);
+
+            if(!$this->_enoughResources($data['Camp'],$data['Databuilding'])){
+                throw new NotImplementedException('Pas assez de ressources dispo');
+            }else{
+
+                $this->loadModel('Dtbuilding');
+                $this->Dtbuilding->save(array(
+                    'building_id' => $query['Building']['id'],
+                    'begin' => time(),
+                    'finish' => (time()+ $data['Databuilding']['time'])
+                ));
+
+                $this->Camp->updateAll(
+                    array(
+                        'res1' => $data['Camp']['res1'],
+                        'res2' => $data['Camp']['res2'],
+                        'res3' => $data['Camp']['res3']
+                    ),
+                    array('Camp.id' => $data['Camp']['id'])
+                );
+            }
+
+//            debug($data);die();
+            $this->Session->setFlash(__('Le batiment a bien été amélioré.'));
         }
+        return $this->redirect(array('controller'=>'camps','action'=>'view'));
 	}
 
 /**
