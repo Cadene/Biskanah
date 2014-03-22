@@ -204,4 +204,68 @@ class Camp extends AppModel {
         return $this->id;
     }
 
+
+    public function recoverResources($id){
+        return $this->find('first',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Camp.id' => $id
+            ),
+            'limit' => 1
+        ));
+    }
+
+    public function recoverCamps($user_id){
+        return $this->find('all',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Camp.user_id' => $user_id
+            ),
+            'joins' => array(
+                array(
+                    'table' => 'Worlds',
+                    'alias' => 'World',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'World.id = Camp.world_id'
+                    )
+                )
+            ),
+            'fields' => array(
+                'Camp.id','Camp.name','Camp.unread_reports',
+                'World.id','World.x','World.y'
+            )
+        ));
+    }
+
+    public function recover(&$data,$id){
+        $tmp = $this->find('first', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Camp.id' => $id
+            ),
+            'fields' => array('*')
+        ));
+        $data['Camp'] = $tmp['Camp'];
+        unset($tmp);
+    }
+
+    /*
+    public function recoverDataCamp($id){
+        $db = $this->getDataSource();
+        $data = $db->fetchAll(
+            'SELECT * '//(SELECT * FROM `BiskanahV1`.`databuildings` AS `Databuilding` WHERE `Databuilding`.`id` = `Building`.`databuilding_id`)'
+            .'FROM `BiskanahV1`.`camps` AS `Camp` '
+            .'LEFT JOIN `BiskanahV1`.`worlds` AS `World` ON '
+                .'(`World`.`id` = `Camp`.`world_id`) '
+            .'LEFT JOIN `BiskanahV1`.`users` AS `User` ON '
+                .'(`User`.`id` = `Camp`.`user_id`) '
+            .'LEFT JOIN `BiskanahV1`.`buildings` AS `Building` ON '
+                .'(`Building`.`camp_id` = `Camp`.`id`) '
+            .'WHERE `Camp`.`id` = ? LIMIT 1',
+            array($id)
+        );
+        return $data;
+    }*/
+
 }

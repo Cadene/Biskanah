@@ -18,32 +18,108 @@ class CampsController extends GameController {
 
 
 /**
-*	index method
+*	view method
 * Vue privée du camp avec les multiples bâtiments
 * 
 * @param int id s:camp_id
 * @return void
 */
-	public function index($id = null){
+	public function view($id = null){
         $this->Data = $this->Components->load('Data');
-        if(!$id){
-            $id = $this->Session->read('Camp.current');
-        }else{
-            $this->Session->write('Camp.current',$id);
-        }
         $user_id = $this->Session->read('User.id');
-		$d = $this->Camp->find('first',array(
-            'recursive' => 2,
+
+        if($id){
+            $data = $this->Camp->recoverCamps($user_id);
+            if($this->_isInCamps($id,$data)){
+                $this->Session->write('Camp.current',$id);
+                $this->Data->write('Camps',$data);
+            }
+            throw new NotFoundException(__('Invalid camp'));
+        }else{
+            $id = $this->Session->read('Camp.current');
+        }
+
+		$data = $this->Camp->find('first',array(
+            'recursive' => -1,
             'conditions' => array(
                 'Camp.id' => $id,
-            ),/*
+            ),
             'joins' => array(
-                'table' => 'Users',
-                'alias' => 'User',
-                'type' => 'left'
-            )*/
+                array(
+                    'table' => 'worlds',
+                    'alias' => 'World',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'World.id = Camp.world_id'
+                    )
+                ),
+                array(
+                    'table' => 'users',
+                    'alias' => 'User',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'User.id = Camp.user_id'
+                    )
+                ),
+            ),
+            'fields' => array(
+                '*'
+            )
         ));
-        $this->set('d',$d);
+
+        $this->loadModel('Building');
+        $data['Buildings'] = $this->Building->find('all', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Building.camp_id' => $id
+            ),
+            'joins' => array(
+                array(
+                    'table' => 'databuildings',
+                    'alias' => 'Databuilding',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Databuilding.id = Building.databuilding_id'
+                    )
+                )
+            ),
+            'fields' => array(
+                '*'
+            )
+        ));
+
+        $data['Dtbuildings'] = $this->Building->find('all', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Building.camp_id' => $id
+            ),
+            'joins' => array(
+                array(
+                    'table' => 'dtbuildings',
+                    'alias' => 'Dtbuilding',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'Dtbuilding.building_id = Building.id'
+                    )
+                )
+            ),
+            'fields' => array(
+                '*'
+            ),
+            'order' => array(
+                'Dtbuilding.finish'
+            )
+        ));
+
+        $this->set('data',$data);
+    }
+
+    private function _isInCamps($id,$data){
+        foreach($data as $camp){
+            if($camp['Camp']['id'] == $id)
+                return true;
+        }
+        return false;
     }
 
 /**
@@ -54,11 +130,26 @@ class CampsController extends GameController {
 * @param string camp_name p:camp_name
 * @return void
 */
-	public function edit($id = null){
+	public function edit(){
         if($this->request->is('post')){
-            if(!$id){
-                $id = $this->Session->read('Camp.current');
-            }
+
+            // $query tableau de request
+
+            if(!isset($this->request->data['Camp']['name']))
+                throw new NotImplementedException('Bad arguments in POST');
+            $query['Camp'] = array(
+                'name' => $this->request->data['Camp']['name']
+            );
+            /*if(isset($this->request->data['Camp']['id'])){
+                $query['Camp']['id'] = $this->request->data['Camp']['id'];
+            }else{*/
+                $query['Camp']['id'] = $this->Session->read('Camp.current');
+            //}
+
+            // TODO vérifier que c'est bien son camp
+
+            $this->Camp->id = $query['Camp']['id'];
+            $this->Camp->save($query);
         }
 	}
 

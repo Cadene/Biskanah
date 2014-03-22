@@ -6,6 +6,8 @@ App::uses('AppModel', 'Model');
  */
 class Databuilding extends AppModel {
 
+
+    public $actsAs = array('Data');
 /**
  * Validation rules
  *
@@ -83,4 +85,14 @@ class Databuilding extends AppModel {
 			),
 		),
 	);
+
+
+    public function recover(&$data,$id){
+        $tmp = $this->find('first', array(
+            'conditions' => array('id' => $id)
+        ));
+        $data['Databuilding'] = $tmp['Databuilding'];
+        unset($tmp);
+        return true;
+    }
 }
