@@ -1,6 +1,7 @@
 <?php
 
 namespace logout {
+    //test
     function update_server_ressources($user_id)
     {
         $sql = 'SELECT prod1,prod2,prod3,res1,res2,res3 FROM camps WHERE user_id='.$user_id;
