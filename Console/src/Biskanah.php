@@ -97,7 +97,10 @@ class Biskanah {
         var_dump($values);
         $this->bdd->insertAll($table,$key,$values);
     }
-    public function generatebuildings
+    public function generatebuildings()
+    {
+
+    }
 
 }
 
