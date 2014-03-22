@@ -124,9 +124,15 @@
             }
         }
 
-
+        /**
+         * Vérifie si les elements sont chargés si le layout en a besoin
+         *
+         * @param Controller $controller
+         */
         protected function _check(Controller $controller)
         {
+            if(!isset($this->config['layout'][$controller->layout]))
+                return;
             foreach($this->config['layout'][$controller->layout] as $elementName => $elementTables)
             {
                 $tableName = key($elementTables);

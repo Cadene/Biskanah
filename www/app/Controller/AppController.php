@@ -71,6 +71,7 @@ class AppController extends Controller {
 
     public function beforeFilter (){
         parent::beforeFilter();
+        $this->Components->load('Data');
         $this->disableCache();
 
         if($this->request->controller == 'pages')
