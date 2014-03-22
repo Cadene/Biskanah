@@ -33,6 +33,13 @@ class BuildingsController extends AppController {
                 'Building.id' => $id
             )
         ));
+        $this->loadModel('Dtbuilding');
+        $data['Dtbuildings'] = $this->Dtbuilding->find('all',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Dtbuilding.building_id' => $id
+            )
+        ));
         $this->set('data',$data);
 	}
 
@@ -47,7 +54,7 @@ class BuildingsController extends AppController {
 * @param int $_POST['level']
 * @return void
 */
-	public function create() {
+	public function create($field = null) {
         if($this->request->is('post')){
 
             // $query tableau de request
@@ -131,8 +138,12 @@ class BuildingsController extends AppController {
 
 //            debug($data);die();
             $this->Session->setFlash(__('Le batiment a bien été créé.'));
+        }else{
+            $this->Datanode = $this->Components->load('Datanode');
+            $buildingsVerified = $this->Datanode->buildingsVerified();
+            $this->set('buildingsVerified',$buildingsVerified);
+            $this->set('field',$field);
         }
-        return $this->redirect(array('controller'=>'camps','action'=>'view'));
     }
 
 

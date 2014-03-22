@@ -44,7 +44,16 @@
                 'building' => array(
                     'nb' => 1,
                     'id' => 'databuilding_id',
-                    'table' => 'Buildings'
+                    'table' => 'Buildings',
+                    'type' => array(
+                        'min' => 0,
+                        'max' => 19
+                    ),
+                    'lvl' => array(
+                        'min' => 0,
+                        'max' => 99
+                    ),
+                    'init' => array(2,4)
                 ),
                 'techno' => array(
                     'nb' => 2,
@@ -115,7 +124,7 @@
         }
 
 
-        protected function hasBuildingLvl($data,$node){
+        protected function hasBuildingLvl(&$data,$node){
             foreach($data['Buildings'] as $building){
                 $building = current($building);
                 if($building['databuilding_id_type'] == $node['from_data_type']
@@ -125,7 +134,7 @@
             return false;
         }
 
-        protected function hasTechnoLvl($data,$node){
+        protected function hasTechnoLvl(&$data,$node){
             foreach($data['Technos'] as $techno){
                 $techno = current($techno);
                 if($techno['datatechno_id_type'] == $node['from_data_type']
@@ -135,6 +144,98 @@
             return false;
         }
 
+
+        public function buildingsVerified(&$data = array())
+        {
+            if(!isset($data['User']))
+                $user_id = $this->Session->read('User.id');
+            if(!isset($data['Camp']))
+                $camp_id = $this->Session->read('Camp.current');
+
+            // Récupération des prérequis
+            $datanodes = ClassRegistry::init('Datanode')->find('all',array(
+                'conditions' => array(
+                    'to_kind' => $this->config['kind']['building']['nb']
+                ),
+                'fields' => array(
+                    'from_data', 'from_kind', 'to_data'
+                )
+            ));
+
+            if(!isset($data['Buildings'])){
+                $databuildings = ClassRegistry::init('Building')->find('all',array(
+                    'recursive' => -1,
+                    'conditions' => array(
+                        'Building.camp_id' => $camp_id
+                    )
+                ));
+            }
+
+
+            debug($databuildings);
+            $databuildings = $this->indexingBuildings($databuildings);
+            debug($databuildings);
+            debug($datanodes);
+            $datanodes = $this->indexingDatanodes($datanodes);
+            debug($datanodes);
+
+
+            foreach($datanodes as $datanode){
+                foreach($datanode as $node){
+                    debug($databuildings[$node['from_data_type']]);
+                    if(isset($databuildings[$node['from_data_type']])
+                        && $databuildings[$node['from_data_type']]['databuilding_id_lvl'] >= $node['from_data_lvl'])
+                        $buildingsVerified[] = $node['to_data_type'];
+                }
+            }
+
+            $buildingsVerified = array_merge($this->config['kind']['building']['init'],$buildingsVerified);
+
+
+            debug($buildingsVerified);
+
+            /*if(!isset($data['Technos'])){
+                $data['Technos'] = ClassRegistry::init('Techno')->find('all',array(
+                    'recursive' => -1,
+                    'conditions' => array(
+                        'Techno.user_id' => $user_id
+                    )
+                ));
+            }*/
+            return $buildingsVerified;
+        }
+
+        public function indexingBuildings(&$buildings){
+            $indexedBuildings = array();
+            foreach($buildings as $building){
+                $building = current($building);
+                if(!isset($indexedBuildings[$building['databuilding_id_type']])){
+                    $indexedBuildings[$building['databuilding_id_type']] = $building;
+                }else{
+                    if($indexedBuildings[$building['databuilding_id_type']]['databuilding_id_lvl']
+                       < $building['databuilding_id_lvl']){
+                        $indexedBuildings[$building['databuilding_id_type']] = $building;
+                    }
+                }
+            }
+            return $indexedBuildings;
+        }
+
+        public function indexingDatanodes(&$datanodes){
+            $indexedDatanodes = array();
+            // pour chaque noeud
+            foreach($datanodes as $datanode){
+                $datanode = current($datanode);
+                // si le noeud existe pas le créer
+                if(!isset($indexedDatanodes[$datanode['to_data_type']])){
+                    $indexedDatanodes[$datanode['to_data_type']] = array($datanode);
+                // sinon le rajouter
+                }else{
+                    $indexedDatanodes[$datanode['to_data_type']][] = $datanode;
+                }
+            }
+            return $indexedDatanodes;
+        }
 
 
 
