@@ -130,11 +130,26 @@ class CampsController extends GameController {
 * @param string camp_name p:camp_name
 * @return void
 */
-	public function edit($id = null){
+	public function edit(){
         if($this->request->is('post')){
-            if(!$id){
-                $id = $this->Session->read('Camp.current');
-            }
+
+            // $query tableau de request
+
+            if(!isset($this->request->data['Camp']['name']))
+                throw new NotImplementedException('Bad arguments in POST');
+            $query['Camp'] = array(
+                'name' => $this->request->data['Camp']['name']
+            );
+            /*if(isset($this->request->data['Camp']['id'])){
+                $query['Camp']['id'] = $this->request->data['Camp']['id'];
+            }else{*/
+                $query['Camp']['id'] = $this->Session->read('Camp.current');
+            //}
+
+            // TODO vérifier que c'est bien son camp
+
+            $this->Camp->id = $query['Camp']['id'];
+            $this->Camp->save($query);
         }
 	}
 

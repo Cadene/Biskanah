@@ -75,7 +75,7 @@ class BuildingsController extends AppController {
             // vérification des prérequis
             // TODO à vérifier
             $this->Datanode = $this->Components->load('Datanode');
-            if(!$this->Datanode->verify($query['Building']['databuilding_id'],1,$data)){
+            if(!$this->Datanode->verify($data,$query['Building']['databuilding_id'],1)){
                 throw new NotImplementedException('Les prérequis sont manquants.');
             }
 
@@ -199,7 +199,7 @@ class BuildingsController extends AppController {
 
             // vérification des prérequis
             $this->Datanode = $this->Components->load('Datanode');
-            if(!$this->Datanode->verify($query['Building']['databuilding_id'],1,$data)){
+            if(!$this->Datanode->verify($data,$query['Building']['databuilding_id'],1)){
                 throw new NotImplementedException('Les prérequis sont manquants.');
             }
 

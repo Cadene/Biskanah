@@ -62,7 +62,7 @@
          * @param $to_kind
          * @param $data
          */
-        public function verify($to_data,$to_kind,&$data)
+        public function verify(&$data,$to_data,$to_kind)
         {
             // Récupération des prérequis
             $datanode = ClassRegistry::init('Datanode')->find('all',array(
@@ -96,7 +96,6 @@
                 }
                 if($node['from_kind'] == $this->config['kind']['techno']['nb']){
                     if(!isset($data['Technos'])){
-                        // TODO verifier
                         if(!isset($data['Technos'])){
                             $data['Technos'] = ClassRegistry::init('Techno')->find('all',array(
                                 'recursive' => -1,
@@ -119,7 +118,6 @@
         protected function hasBuildingLvl($data,$node){
             foreach($data['Buildings'] as $building){
                 $building = current($building);
-                // TODO if
                 if($building['databuilding_id_type'] == $node['from_data_type']
                     && $building['databuilding_id_lvl'] >= $node['from_data_lvl'])
                     return true;
@@ -130,7 +128,6 @@
         protected function hasTechnoLvl($data,$node){
             foreach($data['Technos'] as $techno){
                 $techno = current($techno);
-                // TODO if
                 if($techno['datatechno_id_type'] == $node['from_data_type']
                     && $techno['datatechno_id_lvl'] >= $node['from_data_lvl'])
                     return true;
