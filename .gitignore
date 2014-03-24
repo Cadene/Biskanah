@@ -1,12 +1,12 @@
 
-# exclude everything except directory SQL, Controller, Model, View
-
 /*
 !/www
 !/SQL
-!/Console
 
-/Console/config/database.php
+/Console/*
+!/Console/lib
+!/Console/src
+!/Console/main.php
 
 /www/*
 !/www/app

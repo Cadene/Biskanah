@@ -163,7 +163,7 @@
                 $this->write($name,ClassRegistry::init('Building')->findByCampId($this->Session->read('Camp.current')));
             }
         }
-   
+
         /**
          * Vérifie si les elements sont chargés si le layout en a besoin
          *
