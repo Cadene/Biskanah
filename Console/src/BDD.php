@@ -43,6 +43,7 @@ class BDD{
         foreach($key as $k)
         {
             if(!$firstKey){ $sql.=', '; }else{ $firstKey=false; }
+
             $sql .= '`'.$k.'`';
         }
 
@@ -61,6 +62,7 @@ class BDD{
             }
             $sql .= ')';
         }
+        var_dump($sql);
 
         return $this->bdd->query($sql);
     }

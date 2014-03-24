@@ -3,11 +3,13 @@
 
 /*
 !/www
+!/SQL
+!/Console
+
+/Console/config/database.php
 
 /www/*
 !/www/app
-!/SQL
-!/Console
 
 /www/app/*
 !/www/app/Controller

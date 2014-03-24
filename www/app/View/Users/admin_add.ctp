@@ -20,6 +20,7 @@
 		echo $this->Form->input('unread_msg');
 	?>
 	</fieldset>
+
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
 <div class="actions">

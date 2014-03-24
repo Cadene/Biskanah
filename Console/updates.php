@@ -1,6 +1,7 @@
 <?php
 
 namespace logout {
+    //test
     function update_server_ressources($user_id)
     {
         $sql = 'SELECT prod1,prod2,prod3,res1,res2,res3 FROM camps WHERE user_id='.$user_id;
@@ -39,24 +40,26 @@ namespace {
     mysql_select_db("biskanahv1");
 
 
-beforeAction\update_server_ressources(3);
+//beforeAction\update_server_ressources(3);
 
-function A2Bs_notification($id)
+function A2Bs_notification($id = null)
 {
-    $sql = 'SELECT id,finish FROM A2Bs WHERE finish >= NOW()';
+    $sql = 'SELECT id,finish FROM A2Bs WHERE accepted=0';
     // TODO remplacer accepted par arrivée (ou laisser accepted si elle n'est pas utilisée
     $results = mysql_query($sql);
     while( $result = mysql_fetch_assoc($results))
     {
-        if($result['finish'] >= time())
-            sqlite_query('UPDATE A2Bs SET accepted=1 WHERE id='.$result['id']);
+        if($result['finish'] <= time())
+        {    mysql_query('UPDATE A2Bs SET accepted=1 WHERE id='.$result['id']);
+            echo "updated";
+        }
     }
     // TODO affecter l'unité au camps.id = a2bs.to
-
 }
 
 function Dtbuilding_notification()
 {
+
     $sql = 'SELECT id,finish FROM Dtbuildings';// TODO ajouter la comparaison avec NOW()
     $results = mysql_query($sql);
     while( $result = mysql_fetch_assoc($results))
@@ -71,7 +74,7 @@ function Dtbuilding_notification()
     }
 }
 
-function Dttechno_notification($id)
+function Dttechno_notification($id = null)
 {
     $sql = 'SELECT id,finish FROM Dttechnos';// TODO ajouter la comparaison avec NOW()
     $results = mysql_query($sql);
@@ -96,6 +99,10 @@ function update_team_rank($id)
 {
     // TODO update team rank
 }
+
+A2Bs_notification();
+//Dtbuilding_notification();
+//Dttechno_notification();
 
 }
 ?>
