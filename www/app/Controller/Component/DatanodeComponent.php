@@ -29,7 +29,7 @@
      */
     class DatanodeComponent extends Component {
 
-        public $components = array('Session');
+        public $components = array('Session','Data');
 
         /*
         protected $user;
@@ -63,136 +63,40 @@
             )
         );
 
+
+        // TODO verify Techno
+        // TODO verify Unit
+
         /**
-         * Vérifie que le data_id d'un type spécial est créable
-         * Récupère tous les buildings du camps et/ou les technos du joueur en fonction des prérequis de Datanode
+         * Le camp et le joueur ont ils les prérequis nécessaire pour create/upgrade le batiment ?
          *
-         * @param $to_data
-         * @param $to_kind
-         * @param $data
+         * @param $type
+         *
+         * @return bool
          */
-        public function verify(&$data,$to_data,$to_kind)
+        public function isBuildingAllowed($type)
         {
-            // Récupération des prérequis
-            $datanode = ClassRegistry::init('Datanode')->find('all',array(
-                'conditions' => array(
-                    'to_data' => $to_data,
-                    'to_kind' => $to_kind
-                ),
-                'fields' => array(
-                    'from_data', 'from_kind'
-                )
-            ));
+            // Vérifie si c'est un batiment initial
+            if(in_array($type, $this->config['kind']['building']['init']))
+                return true;
 
-            foreach($datanode as $node)
-            {
-                $node = current($node);
-                if($node['from_kind'] == $this->config['kind']['building']['nb'])
-                {
-                    // Si on possède pas la liste des buildings du camp la récupérer
-                    if(!isset($data['Buildings'])){
-                        $data['Buildings'] = ClassRegistry::init('Building')->find('all',array(
-                            'recursive' => -1,
-                            'conditions' => array(
-                                'Building.camp_id' => $this->Session->read('Camp.current')
-                            )
-                        ));
-                    }
-                    // Vérification de la validité du prérequis séléctionné
-                    if(!$this->hasBuildingLvl($data,$node))
-                        return false;
+            // Récupération des prérequis pour le building
+            $datanodes = ClassRegistry::init('Datanode')->findByData(
+                $this->Data->toDataId($type),
+                $this->config['kind']['building']['nb']
+            );
+            // Vérifier si il y a besoin de prérequis
+            if(empty($datanodes))
+                return true;
 
-                }
-                if($node['from_kind'] == $this->config['kind']['techno']['nb']){
-                    if(!isset($data['Technos'])){
-                        if(!isset($data['Technos'])){
-                            $data['Technos'] = ClassRegistry::init('Techno')->find('all',array(
-                                'recursive' => -1,
-                                'conditions' => array(
-                                    'Techno.user_id' => $this->Session->read('User.id')
-                                )
-                            ));
-                        }
-                        // Vérification de la validité du prérequis séléctionné
-                        if(!$this->hasTechnoLvl($data,$node))
-                            return false;
-                    }
-                }
-            }
+            // TODO finir
 
-            return true;
-        }
+            // Indexation par to_data_type
+            $indexedDatanodes = $this->indexingDatanodes($datanodes);
+            // Indexation par databuilding_id_type si non null
+            $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));
 
-
-        protected function hasBuildingLvl(&$data,$node){
-            foreach($data['Buildings'] as $building){
-                $building = current($building);
-                if($building['databuilding_id_type'] == $node['from_data_type']
-                    && $building['databuilding_id_lvl'] >= $node['from_data_lvl'])
-                    return true;
-            }
-            return false;
-        }
-
-        protected function hasTechnoLvl(&$data,$node){
-            foreach($data['Technos'] as $techno){
-                $techno = current($techno);
-                if($techno['datatechno_id_type'] == $node['from_data_type']
-                    && $techno['datatechno_id_lvl'] >= $node['from_data_lvl'])
-                    return true;
-            }
-            return false;
-        }
-
-
-        public function buildingsVerified(&$data = array())
-        {
-            if(!isset($data['User']))
-                $user_id = $this->Session->read('User.id');
-            if(!isset($data['Camp']))
-                $camp_id = $this->Session->read('Camp.current');
-
-            // Récupération des prérequis
-            $datanodes = ClassRegistry::init('Datanode')->find('all',array(
-                'conditions' => array(
-                    'to_kind' => $this->config['kind']['building']['nb']
-                ),
-                'fields' => array(
-                    'from_data', 'from_kind', 'to_data'
-                )
-            ));
-
-            if(!isset($data['Buildings'])){
-                $databuildings = ClassRegistry::init('Building')->find('all',array(
-                    'recursive' => -1,
-                    'conditions' => array(
-                        'Building.camp_id' => $camp_id
-                    )
-                ));
-            }
-
-
-            debug($databuildings);
-            $databuildings = $this->indexingBuildings($databuildings);
-            debug($databuildings);
-            debug($datanodes);
-            $datanodes = $this->indexingDatanodes($datanodes);
-            debug($datanodes);
-
-
-            foreach($datanodes as $datanode){
-                foreach($datanode as $node){
-                    debug($databuildings[$node['from_data_type']]);
-                    if(isset($databuildings[$node['from_data_type']])
-                        && $databuildings[$node['from_data_type']]['databuilding_id_lvl'] >= $node['from_data_lvl'])
-                        $buildingsVerified[] = $node['to_data_type'];
-                }
-            }
-
-            $buildingsVerified = array_merge($this->config['kind']['building']['init'],$buildingsVerified);
-
-
-            debug($buildingsVerified);
+            return in_array($type, $this->verifiedBuildings($indexedDatanodes,$indexedBuildings));
 
             /*if(!isset($data['Technos'])){
                 $data['Technos'] = ClassRegistry::init('Techno')->find('all',array(
@@ -202,10 +106,70 @@
                     )
                 ));
             }*/
-            return $buildingsVerified;
         }
 
-        public function indexingBuildings(&$buildings){
+        /**
+         * Retourne tous les buildings que le joueur peut créer sur son camp
+         *
+         * @param array $data
+         *
+         * @return array
+         */
+        // TODO ajouter les technologies
+        public function allowedBuildings(&$data = array())
+        {
+            if(!isset($data['User']))
+                $user_id = $this->Session->read('User.id');
+            if(!isset($data['Camp']))
+                $camp_id = $this->Session->read('Camp.current');
+
+            // Récupération des prérequis pour les buildings
+            $datanodes = ClassRegistry::init('Datanode')->findByKind($this->config['kind']['building']['nb']);
+            // Indexation par to_data_type
+            $indexedDatanodes = $this->indexingDatanodes($datanodes);
+
+            // Indexation par databuilding_id_type des batiments
+            $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));
+
+            // Mélange les buildings initiaux aux autorisés par les prérequis
+            $allowedBuildings = array_merge(
+                $this->config['kind']['building']['init'],
+                $this->verifiedBuildings($indexedDatanodes,$indexedBuildings)
+            );
+
+            /*if(!isset($data['Technos'])){
+                $data['Technos'] = ClassRegistry::init('Techno')->find('all',array(
+                    'recursive' => -1,
+                    'conditions' => array(
+                        'Techno.user_id' => $user_id
+                    )
+                ));
+            }*/
+            return $allowedBuildings;
+        }
+
+        /**
+         * Rend les buildings autorisés par les prérequis
+         *
+         * @param $datanodes indexé par type de batiments
+         * @param $databuildings
+         *
+         * @return array
+         */
+        public function verifiedbuildings($indexedDatanodes,$indexedBuildings){
+            $verifiedbuildings = array();
+            foreach($indexedDatanodes as $datanode){
+                foreach($datanode as $node){
+                    if(isset($indexedBuildings[$node['from_data_type']])
+                        && $indexedBuildings[$node['from_data_type']]['databuilding_id_lvl'] >= $node['from_data_lvl']){
+                        $verifiedbuildings[] = $node['to_data_type'];
+                    }
+                }
+            }
+            return $verifiedbuildings;
+        }
+
+        public function indexingBuildings($buildings){
             $indexedBuildings = array();
             foreach($buildings as $building){
                 $building = current($building);
@@ -221,7 +185,7 @@
             return $indexedBuildings;
         }
 
-        public function indexingDatanodes(&$datanodes){
+        public function indexingDatanodes($datanodes){
             $indexedDatanodes = array();
             // pour chaque noeud
             foreach($datanodes as $datanode){

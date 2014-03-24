@@ -250,6 +250,17 @@ class Camp extends AppModel {
         unset($tmp);
     }
 
+    public function findById($id){
+        $tmp = $this->find('first', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Camp.id' => $id
+            ),
+            'fields' => array('*')
+        ));
+        return $tmp['Camp'];
+    }
+
     /*
     public function recoverDataCamp($id){
         $db = $this->getDataSource();

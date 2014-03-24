@@ -86,13 +86,10 @@ class Databuilding extends AppModel {
 		),
 	);
 
-
-    public function recover(&$data,$id){
+    public function findById($id){
         $tmp = $this->find('first', array(
             'conditions' => array('id' => $id)
         ));
-        $data['Databuilding'] = $tmp['Databuilding'];
-        unset($tmp);
-        return true;
+        return $tmp['Databuilding'];
     }
 }

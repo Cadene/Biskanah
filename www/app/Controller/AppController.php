@@ -69,9 +69,10 @@ class AppController extends Controller {
         return true;
     }*/
 
+    // TODO enlever load DataComponent par défaut
     public function beforeFilter (){
         parent::beforeFilter();
-        $this->Components->load('Data');
+        $this->Data = $this->Components->load('Data');
         $this->disableCache();
 
         if($this->request->controller == 'pages')

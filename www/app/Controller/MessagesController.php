@@ -25,7 +25,8 @@ class MessagesController extends AppController {
  * @return void
  */
 	public function index() {
-
+        $this->Message->recursive = 0;
+        $this->set('messages', $this->Paginator->paginate());
 	}
 
 /**
@@ -115,7 +116,7 @@ class MessagesController extends AppController {
 		}
 
         $this->Message->updateAll(array('read'=>"NOW()" ),array('id'=>$id, 'read' => NULL));
-		$this->loadModel('User');œ
+		$this->loadModel('User');
         $this->User->DowngradeUnreadMsg($this->Message->getReceiver($id));
         $options = array('conditions' => array('Message.' . $this->Message->primaryKey => $id));
 		$this->set('message', $this->Message->find('first', $options));
@@ -127,7 +128,7 @@ class MessagesController extends AppController {
  *
  * @return void
  */
-	public function admin_add() {
+	public function add() {
 		if ($this->request->is('post')) {
 
             debug($this->request->data);

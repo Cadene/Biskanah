@@ -29,6 +29,7 @@
      */
     class DataComponent extends Component {
 
+        public $components = array('Session');
 
         /*
         protected $user;
@@ -76,6 +77,11 @@
 
         protected $_DATA = array();
 
+        public function writeIfNot($name, $value = array()){
+            if(!$this->read($name)){
+                return $this->write($name,$value);
+            }
+        }
 
         // write comme session
         public function write($name, $value = array()) {
@@ -95,13 +101,23 @@
             return true;
         }
 
-        // read come session
+        /**
+         * Comme SessionComponent::read($name), mais vérifie si les données associés à $name sont chargées
+         * Si oui les récupères avec _recoverData()
+         *
+         * @param null $name
+         *
+         * @return array|bool|mixed|null
+         */
         public function read($name=null){
             if ($name === null) {
                 return $this->_DATA;
             }
             if (empty($name)) {
                 return false;
+            }
+            if(!isset($this->_DATA[$name])){
+                $this->_recoverData($name);
             }
             $result = Hash::get($this->_DATA, $name);
 
@@ -125,11 +141,34 @@
         }
 
         /**
+         * Vérifie si les données sont chargées, sinon les charge
+         *
+         * @param $name
+         */
+        protected function _recoverData($name){
+            if($name == 'User'){
+                $this->write($name,ClassRegistry::init('User')->findById($this->Session->read('User.id')));
+            }
+            if($name == 'Ally'){
+                $this->write($name,ClassRegistry::init('Ally')->findById($this->Session->read('User.id')));
+            }
+            if($name == 'Camps'){
+                $this->write($name,ClassRegistry::init('Camps')->findByUserId($this->Session->read('User.id')));
+            }
+            if($name == 'Camp'){
+                $this->write($name,ClassRegistry::init('Camp')->findById($this->Session->read('Camp.current')));
+            }
+            if($name == 'Buildings'){
+                $this->write($name,ClassRegistry::init('Building')->findByCampId($this->Session->read('Camp.current')));
+            }
+        }
+
+        /**
          * Vérifie si les elements sont chargés si le layout en a besoin
          *
          * @param Controller $controller
          */
-        protected function _check(Controller $controller)
+        protected function _checkElements(Controller $controller)
         {
             if(!isset($this->config['layout'][$controller->layout]))
                 return;
@@ -150,7 +189,7 @@
 
 
         public function beforeRender(Controller $controller){
-            $this->_check($controller);
+            $this->_checkElements($controller);
         }
 
 
@@ -165,7 +204,9 @@
         }
 
 
-
+        public function toDataId($type,$lvl=1){
+            return $type*100+$lvl;
+        }
 
 
 
