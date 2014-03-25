@@ -3,6 +3,7 @@
 !/www
 !/SQL
 !/Doc
+!/Launcher
 
 /Console/*
 !/Console/lib
