@@ -84,4 +84,14 @@ class Techno extends AppModel {
 		)
 	);
 
+
+    public function findByUserId($user_id){
+        return $this->find('all',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Techno.user_id' => $user_id
+            )
+        ));
+    }
+
 }

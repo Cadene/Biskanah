@@ -162,6 +162,9 @@
             if($name == 'Buildings'){
                 $this->write($name,ClassRegistry::init('Building')->findByCampId($this->Session->read('Camp.current')));
             }
+            if($name == 'Technos'){
+                $this->write($name,ClassRegistry::init('Techno')->findByUserId($this->Session->read('User.id')));
+            }
         }
 
         /**

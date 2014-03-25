@@ -1,5 +1,7 @@
 <?php debug($data);?>
 
+<?php echo $this->fetch('specialize'); ?>
+
 <div class="buildings form">
     <?php echo $this->Form->create('Building', array('action' => 'upgrade')); ?>
     <fieldset>

@@ -127,12 +127,24 @@ class Building extends AppModel {
 
 
     public function findByCampId($camp_id){
-        return $this-> find('all',array(
+        return $this->find('all',array(
             'recursive' => -1,
             'conditions' => array(
                 'Building.camp_id' => $camp_id
             )
         ));
+    }
+
+    public function findById($id){
+        $tmp = $this->find('first',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Building.id' => $id
+            )
+        ));
+        if(empty($tmp))
+            return $tmp;
+        return $tmp['Building'];
     }
 
 }
