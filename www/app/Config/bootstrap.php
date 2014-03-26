@@ -69,7 +69,20 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
+    /**
+     * Enable DebugKit plugin
+     */
     CakePlugin::load('DebugKit');
+
+    /**
+     * Enable Acl plugin
+     */
+    CakePlugin::load('Acl', array('bootstrap' => true));
+
+    /**
+     * Import custom exception
+     */
+    App::uses('ForbiddenActionException', 'Lib/Error');
 
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter. By default CakePHP bundles two filters:

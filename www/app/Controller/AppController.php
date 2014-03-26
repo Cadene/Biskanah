@@ -37,7 +37,9 @@ class AppController extends Controller {
      *
      * @var array
      */
-    public $components = array('Session',
+    public $components = array(
+        'Acl',
+        'Session',
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'camps',
@@ -70,15 +72,54 @@ class AppController extends Controller {
     }*/
 
     // TODO enlever load DataComponent par défaut
-    public function beforeFilter (){
+    public function beforeFilter ()
+    {
         parent::beforeFilter();
         $this->Data = $this->Components->load('Data');
-        $this->disableCache();
 
-        if($this->request->controller == 'pages')
-        {
-            $this->Auth->allow();
-        }
+        // If there is an error like missing controller then do not check permission
+        if($this instanceof CakeErrorController)
+            return;
+
+        //Configure AuthComponent
+        /*$options = ['admin' => false, 'plugin' => false];
+        $this->Auth->loginAction = ['controller' => 'users','action' => 'login'] + $options;
+        $this->Auth->logoutRedirect = ['controller' => 'users','action' => 'login'] + $options;
+        $this->Auth->loginRedirect = ['controller' => 'users','action' => 'index'] + $options;*/
         $this->Auth->allow();
+
+        // If user is not loggin then get anonymous group id
+        if(!$this->Auth->user('id'))
+        {
+            $this->loadModel('Group');
+            $group = $this->Group->find('first',
+                [
+                    'fields'     => 'id,name',
+                    'conditions' => ['name' => 'Anonymous']
+                ]
+            );
+            $group_id = $group ? $group['Group']['id'] : (-1);
+        }
+        // else get the current group id
+        else
+            $group_id = $this->Auth->user('group_id');
+
+        // get the controller and action from the request and check permission
+        $controller =  ucfirst($this->request->controller);
+        $action = $this->request->action;
+        if(!$this->Acl->check(
+            ['model' => 'Group', 'foreign_key' => $group_id],
+            $controller.'/'.$action)
+        )
+        {
+            $this->Session->setFlash('You are not allowed to see this page...');
+            // if the user's group is anonymous we ask him to loggin
+            if(isset($group))
+                $this->redirect($this->Auth->loginAction);
+            else
+                // if the user is not allowed to see this page throw a new exception ...
+                throw new ForbiddenActionException('', 403);
+        }
     }
+
 }
