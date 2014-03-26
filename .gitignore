@@ -10,10 +10,4 @@
 !/Console/src
 !/Console/main.php
 
-/www/*
-!/www/app
 
-/www/app/*
-!/www/app/Controller
-!/www/app/Model
-!/www/app/View
