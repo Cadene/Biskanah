@@ -6,6 +6,7 @@
     <title>Orizon - The Gaming template</title>
     <link href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" rel="stylesheet" type="text/css" />
     <!-- Included CSS Files -->
+    <?php echo $this->Html->css('Home/header'); ?>
     <?php echo $this->Html->css('Home/main'); ?>
     <?php echo $this->Html->css('Home/devices'); ?>
     <?php echo $this->Html->css('Home/paralax_slider'); ?>
@@ -23,6 +24,39 @@
 </head>
 
 <body>
+
+<!--********************************************* Header Start *********************************************-->
+
+<div id="switcher">
+    <div class="users form login">
+        <form action="/users/login" controller="users" id="UserLoginForm" method="post" accept-charset="utf-8">
+            <div style="display:none;">
+                <input type="hidden" name="_method" value="POST"/>
+            </div>
+            <div class="center">
+                <ul>
+                    <li class="username">
+                        <div class="input text required">
+                            <input name="data[User][username]" maxlength="45" type="text" id="UserUsername" placeholder="Username" required="required"/>
+                        </div>
+                    </li>
+                    <li class="password">
+                        <div class="input password required">
+                            <input name="data[User][password]" type="password" id="UserPassword" placeholder="************" required="required"/>
+                        </div>
+                    </li>
+                    <li class="submit">
+                        <div class="submit">
+                            <input  type="submit" value="Login"/>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--********************************************* Header Stop *********************************************-->
 
 <!--********************************************* Main wrapper Start *********************************************-->
 <div id="footer_image">
@@ -104,6 +138,18 @@
 <!--********************************************* Banner end *********************************************-->
 
 <div class="top_shadow"></div>
+
+<!--********************************************* Content start *********************************************-->
+
+<div id="content" style="text-align:center;">
+<?php echo $this->fetch('content'); ?>
+</div>
+
+<!--*********************************************  Content end  *********************************************-->
+
+
+<div class="top_shadow"></div>
+
 
 <!--********************************************* Hot news start *********************************************-->
 <div id="hot_news">

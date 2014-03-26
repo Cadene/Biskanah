@@ -14,15 +14,3 @@
     </fieldset>
     <?php echo $this->Form->end(__('Submit')); ?>
 </div>
-
-<div class="users form login">
-    <?php echo $this->Form->create('User', array('controller'=>'users','action'=>'login')); ?>
-    <fieldset>
-        <legend><?php echo __('Se connecter'); ?></legend>
-        <?php
-        echo $this->Form->input('username');
-        echo $this->Form->input('password');
-        ?>
-    </fieldset>
-    <?php echo $this->Form->end(__('Submit')); ?>
-</div>
