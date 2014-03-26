@@ -58,7 +58,8 @@
                 'techno' => array(
                     'nb' => 2,
                     'id' => 'datatechno_id',
-                    'table' => 'Technos'
+                    'table' => 'Technos',
+                    'init' => array(0)
                 )
             )
         );
@@ -115,14 +116,8 @@
          *
          * @return array
          */
-        // TODO ajouter les technologies
-        public function allowedBuildings(&$data = array())
+        public function allowedBuildings()
         {
-            if(!isset($data['User']))
-                $user_id = $this->Session->read('User.id');
-            if(!isset($data['Camp']))
-                $camp_id = $this->Session->read('Camp.current');
-
             // Récupération des prérequis pour les buildings
             $datanodes = ClassRegistry::init('Datanode')->findByKind($this->config['kind']['building']['nb']);
             // Indexation par to_data_type
@@ -131,21 +126,45 @@
             // Indexation par databuilding_id_type des batiments
             $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));
 
+            // Indexation par datatechno_id_type des technos
+            $indexedTechnos = $this->indexingTechnos($this->Data->read('Technos'));
+
             // Mélange les buildings initiaux aux autorisés par les prérequis
             $allowedBuildings = array_merge(
                 $this->config['kind']['building']['init'],
-                $this->verifiedBuildings($indexedDatanodes,$indexedBuildings)
+                $this->verifiedDatanodes($indexedDatanodes,$indexedBuildings,$indexedTechnos)
             );
 
-            /*if(!isset($data['Technos'])){
-                $data['Technos'] = ClassRegistry::init('Techno')->find('all',array(
-                    'recursive' => -1,
-                    'conditions' => array(
-                        'Techno.user_id' => $user_id
-                    )
-                ));
-            }*/
             return $allowedBuildings;
+        }
+
+        /**
+         * Retourne tous les buildings que le joueur peut créer sur son camp
+         *
+         * @param array $data
+         *
+         * @return array
+         */
+        public function allowedTechnos()
+        {
+            // Récupération des prérequis pour les technos
+            $datanodes = ClassRegistry::init('Datanode')->findByKind($this->config['kind']['techno']['nb']);
+            // Indexation par to_data_type
+            $indexedDatanodes = $this->indexingDatanodes($datanodes);
+
+            // Indexation par databuilding_id_type des batiments
+            $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));
+
+            // Indexation par datatechno_id_type des technos
+            $indexedTechnos = $this->indexingTechnos($this->Data->read('Technos'));
+
+            // Mélange les buildings initiaux aux autorisés par les prérequis
+            $allowedTechnos = array_merge(
+                $this->config['kind']['techno']['init'],
+                $this->verifiedDatanodes($indexedDatanodes,$indexedBuildings,$indexedTechnos)
+            );
+
+            return $allowedTechnos;
         }
 
         /**
@@ -156,18 +175,34 @@
          *
          * @return array
          */
-        public function verifiedbuildings($indexedDatanodes,$indexedBuildings){
+        public function verifiedDatanodes($indexedDatanodes,$indexedBuildings,$indexedTechnos){
             $verifiedbuildings = array();
-            foreach($indexedDatanodes as $datanode){
-                foreach($datanode as $node){
-                    if(isset($indexedBuildings[$node['from_data_type']])
-                        && $indexedBuildings[$node['from_data_type']]['databuilding_id_lvl'] >= $node['from_data_lvl']){
-                        $verifiedbuildings[] = $node['to_data_type'];
-                    }
-                }
+            // pour chaque type de noeuds indexés
+            foreach($indexedDatanodes as $to_data_type => $datanode){
+                if($this->isDatanodeVerified($datanode,$indexedBuildings,$indexedTechnos))
+                    $verifiedbuildings[] = $to_data_type;
             }
             return $verifiedbuildings;
         }
+
+        public function isDatanodeVerified($datanode,$indexedBuildings,$indexedTechnos){
+            foreach($datanode as $node){
+                if($node['from_kind'] == $this->config['kind']['building']['nb']){
+                    if(!isset($indexedBuildings[$node['from_data_type']])
+                        || $indexedBuildings[$node['from_data_type']]['databuilding_id_lvl'] < $node['from_data_lvl']){
+                        return false;
+                    }
+                }
+                if($node['from_kind'] == $this->config['kind']['techno']['nb']){
+                    if(!isset($indexedTechnos[$node['from_data_type']])
+                        && $indexedTechnos[$node['from_data_type']]['datatechno_id_lvl'] < $node['from_data_lvl']){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
 
         public function indexingBuildings($buildings){
             $indexedBuildings = array();
@@ -177,8 +212,24 @@
                     $indexedBuildings[$building['databuilding_id_type']] = $building;
                 }else{
                     if($indexedBuildings[$building['databuilding_id_type']]['databuilding_id_lvl']
-                       < $building['databuilding_id_lvl']){
+                        < $building['databuilding_id_lvl']){
                         $indexedBuildings[$building['databuilding_id_type']] = $building;
+                    }
+                }
+            }
+            return $indexedBuildings;
+        }
+
+        public function indexingTechnos($buildings){
+            $indexedBuildings = array();
+            foreach($buildings as $building){
+                $building = current($building);
+                if(!isset($indexedBuildings[$building['datatechno_id_type']])){
+                    $indexedBuildings[$building['datatechno_id_type']] = $building;
+                }else{
+                    if($indexedBuildings[$building['datatechno_id_type']]['datatechno_id_lvl']
+                        < $building['datatechno_id_lvl']){
+                        $indexedBuildings[$building['datatechno_id_type']] = $building;
                     }
                 }
             }

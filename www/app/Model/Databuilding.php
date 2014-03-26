@@ -92,4 +92,13 @@ class Databuilding extends AppModel {
         ));
         return $tmp['Databuilding'];
     }
+
+    public function findByIdBetween($firstId,$lastId){
+        if($firstId%100==0)
+            $firstId+=1;$lastId+=1;
+        return $this->find('all', array(
+            'conditions' => array(
+                'id BETWEEN ? AND ?' => array($firstId,$lastId)
+        )));
+    }
 }

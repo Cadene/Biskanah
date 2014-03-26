@@ -34,7 +34,7 @@ class DataBehavior extends ModelBehavior {
     {
         foreach($results as $nb => $node)
         {
-            foreach(array('to_data','from_data','databuilding_id') as $direction){
+            foreach(array('to_data','from_data','databuilding_id','datatechno_id') as $direction){
                 if(isset($results[$nb][$Model->name][$direction])){
                     $results[$nb][$Model->name][$direction.'_lvl'] = $this->toLvl($results[$nb][$Model->name][$direction]);
                     $results[$nb][$Model->name][$direction.'_type'] = $this->toType($results[$nb][$Model->name][$direction]);

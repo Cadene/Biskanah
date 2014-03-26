@@ -24,23 +24,65 @@ class BuildingsController extends AppController {
 * @return void
 */
 	public function view($id=null) {
-        $this->Data = $this->Components->load('Data');
         if($id === null)
             throw new  NotFoundException(__('Invalid building'));
-        $data = $this->Building->find('first',array(
-            'recursive' => -1,
-            'conditions' => array(
-                'Building.id' => $id
-            )
-        ));
+
+        if(!$this->_isBuildingOnCamp($id))
+            throw new NotFoundException(__('This building isn\'t a part of your current camp.'));
+
+        $this->Data->write('Building', $this->Building->findById($id));
+
+        $databuilding_id = $this->Data->read('Building.databuilding_id');
+        $this->loadModel('Databuilding');
+        $this->Data->write('Databuilding', $this->Databuilding->findByIdBetween($databuilding_id,$databuilding_id+4));
+
         $this->loadModel('Dtbuilding');
-        $data['Dtbuildings'] = $this->Dtbuilding->find('all',array(
-            'recursive' => -1,
-            'conditions' => array(
-                'Dtbuilding.building_id' => $id
-            )
-        ));
-        $this->set('data',$data);
+        $this->Data->write('Dtbuilding', $this->Dtbuilding->findByBuildingId($id));
+
+        $type = $this->Data->read('Building.databuilding_id_type');
+
+        $this->view = $type;
+
+        if($type==0){
+
+        }
+        if($type==11){
+            $this->Datanode = $this->Components->load('Datanode');
+            $allowedTechnos = $this->Datanode->allowedTechnos();
+            $this->Data->writeIfNot('Dttechnos',
+                $this->loadModel('Dttechno')->findByBuildingId($this->Data->read('Building.id'))
+            );
+            $this->set('allowedTechnos', $allowedTechnos);
+        }
+        if($type==2){
+
+        }
+        if($type==0){
+
+        }
+        if($type==0){
+
+        }
+        if($type==0){
+
+        }
+        if($type==0){
+
+        }
+        if($type==0){
+
+        }
+        if($type==0){
+
+        }
+        if($type==0){
+
+        }
+        if($type==0){
+
+        }
+
+        $this->set('data',$this->Data->read());
 	}
 
 /**
