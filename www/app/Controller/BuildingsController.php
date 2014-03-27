@@ -15,14 +15,14 @@ class BuildingsController extends AppController {
  */
 	public $components = array('Paginator');
 
-    /**
-     * view method
-     * Affiche un bâtiment
-     *
-     * @param int $_POST['building_id']
-     * @param int $_SESSION['camp_id']
-     * @return void
-     */
+/**
+ * view method
+ * Affiche un bâtiment
+ *
+ * @param int $_POST['building_id']
+ * @param int $_SESSION['camp_id']
+ * @return void
+ */
     public function display($id=null){
         if($id === null)
             throw new  NotFoundException(__('Invalid building'));
@@ -30,7 +30,7 @@ class BuildingsController extends AppController {
         if(!$this->_isBuildingOnCamp($id))
             throw new NotFoundException(__('This building isn\'t a part of your current camp.'));
 
-        $this->Data->write('Building', $this->Building->findById($id));
+        $this->Data->writeIfNot('Building', $this->Building->findById($id));
 
         $databuilding_id = $this->Data->read('Building.databuilding_id');
         $this->loadModel('Databuilding');
@@ -41,78 +41,27 @@ class BuildingsController extends AppController {
 
         $type = $this->Data->read('Building.databuilding_id_type');
 
-        
+        $func = 'view' . $type;
+        $this->$func();
     }
 
 /**
-* view method
-* Affiche un bâtiment
-*
-* @param int $_POST['building_id']
-* @param int $_SESSION['camp_id']
-* @return void
-*/
-	public function view($id=null) {
-        if($id === null)
-            throw new  NotFoundException(__('Invalid building'));
-
-        if(!$this->_isBuildingOnCamp($id))
-            throw new NotFoundException(__('This building isn\'t a part of your current camp.'));
-
-        $this->Data->write('Building', $this->Building->findById($id));
-
-        $databuilding_id = $this->Data->read('Building.databuilding_id');
-        $this->loadModel('Databuilding');
-        $this->Data->write('Databuilding', $this->Databuilding->findByIdBetween($databuilding_id,$databuilding_id+4));
-
-        $this->loadModel('Dtbuilding');
-        $this->Data->write('Dtbuilding', $this->Dtbuilding->findByBuildingId($id));
-
-        $type = $this->Data->read('Building.databuilding_id_type');
-
-        $this->view = $type;
-
-        if($type==0){
-
-        }
-        if($type==11){
-            $this->Datanode = $this->Components->load('Datanode');
-            $allowedTechnos = $this->Datanode->allowedTechnos();
-            $this->Data->writeIfNot('Dttechnos',
-                $this->loadModel('Dttechno')->findByBuildingId($this->Data->read('Building.id'))
-            );
-            $this->set('allowedTechnos', $allowedTechnos);
-        }
-        if($type==2){
-
-        }
-        if($type==0){
-
-        }
-        if($type==0){
-
-        }
-        if($type==0){
-
-        }
-        if($type==0){
-
-        }
-        if($type==0){
-
-        }
-        if($type==0){
-
-        }
-        if($type==0){
-
-        }
-        if($type==0){
-
-        }
-
-        $this->set('data',$this->Data->read());
-	}
+ * view11 method
+ * view laboratory building
+ */
+    private function view11()
+    {
+        $this->Datanode = $this->Components->load('Datanode');
+        $allowedTechnos = $this->Datanode->allowedTechnos();
+        $this->loadModel('Dttechno');
+        $this->Data->writeIfNot(
+            'Dttechnos', 
+            $this->Dttechno->findByBuildingId($this->Data->read('Building.id'))
+        );
+        $data = $this->Data->read();
+        $this->set(compact('allowedTechnos', 'data'));
+        $this->view = 'view11';
+    }
 
 /**
 * create method
@@ -139,7 +88,6 @@ class BuildingsController extends AppController {
                 'camp_id' => $this->Session->read('Camp.current')
             );
 
-            // récupère dans $data['Buildings'] les infos des buildings
             $this->loadModel('Building');
             if($this->_isBuildingInField($query['Building']['field'])){
                 throw new NotImplementedException('Il existe déjà un batiment construit sur le field');
@@ -162,7 +110,6 @@ class BuildingsController extends AppController {
             if(!$this->_enoughResources($this->Data->read('Camp'),$this->Data->read('Databuilding'))){
                 throw new NotImplementedException('Pas assez de ressources dispo');
             }else{
-                $this->loadModel('Building');
                 $this->Building->save(array(
                     'camp_id' => $this->Session->read('Camp.current'),
                     'field' => $query['Building']['field'],

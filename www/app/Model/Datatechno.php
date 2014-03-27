@@ -73,4 +73,21 @@ class Datatechno extends AppModel {
 			),
 		),
 	);
+
+	public function findByLvlType($type, $lvl)
+	{
+		return $this->findById($type * 100 + $lvl);
+	}
+
+    public function findById($id){
+        $tmp = $this->find('first',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Datatechno.id' => $id
+            )
+        ));
+        if(empty($tmp))
+            return $tmp;
+        return $tmp['Datatechno'];
+    }
 }

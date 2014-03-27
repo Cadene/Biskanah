@@ -53,7 +53,7 @@
                         'min' => 0,
                         'max' => 99
                     ),
-                    'init' => array(2,4)
+                    'init' => array(2,4,11)
                 ),
                 'techno' => array(
                     'nb' => 2,
@@ -65,7 +65,6 @@
         );
 
 
-        // TODO verify Techno
         // TODO verify Unit
 
         /**
@@ -92,21 +91,47 @@
 
             // TODO finir
 
+
             // Indexation par to_data_type
             $indexedDatanodes = $this->indexingDatanodes($datanodes);
             // Indexation par databuilding_id_type si non null
             $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));
+            $indexedTechnos = $this->indexingTechnos($this->Data->read('Technos'));
 
-            return in_array($type, $this->verifiedBuildings($indexedDatanodes,$indexedBuildings));
+            return in_array($type, $this->verifiedDatanodes($indexedDatanodes,$indexedBuildings, $indexedTechnos));
+        }
 
-            /*if(!isset($data['Technos'])){
-                $data['Technos'] = ClassRegistry::init('Techno')->find('all',array(
-                    'recursive' => -1,
-                    'conditions' => array(
-                        'Techno.user_id' => $user_id
-                    )
-                ));
-            }*/
+        /**
+         * isTechnoAllowed method
+         *
+         * @param $type
+         *
+         * @return bool
+         */
+        public function isTechnoAllowed($type)
+        {
+            // check if it's a basic techno
+            if(in_array($type, $this->config['kind']['techno']['init']))
+                return true;
+
+            // get datanodes
+            $datanodes = ClassRegistry::init('Datanode')->findByData(
+                $this->Data->toDataId($type),
+                $this->config['kind']['techno']['nb']
+            );
+            // Vérifier si il y a besoin de prérequis
+            if(empty($datanodes))
+                return true;
+
+            // TODO FAIRE DES PERFS
+
+            // Indexation par to_data_type
+            $indexedDatanodes = $this->indexingDatanodes($datanodes);
+            // Indexation par databuilding_id_type si non null
+            $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));
+            $indexedTechnos = $this->indexingTechnos($this->Data->read('Technos'));
+
+            return in_array($type, $this->verifiedDatanodes($indexedDatanodes,$indexedBuildings, $indexedTechnos));
         }
 
         /**
