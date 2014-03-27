@@ -15,6 +15,35 @@ class BuildingsController extends AppController {
  */
 	public $components = array('Paginator');
 
+    /**
+     * view method
+     * Affiche un bâtiment
+     *
+     * @param int $_POST['building_id']
+     * @param int $_SESSION['camp_id']
+     * @return void
+     */
+    public function display($id=null){
+        if($id === null)
+            throw new  NotFoundException(__('Invalid building'));
+
+        if(!$this->_isBuildingOnCamp($id))
+            throw new NotFoundException(__('This building isn\'t a part of your current camp.'));
+
+        $this->Data->write('Building', $this->Building->findById($id));
+
+        $databuilding_id = $this->Data->read('Building.databuilding_id');
+        $this->loadModel('Databuilding');
+        $this->Data->write('Databuilding', $this->Databuilding->findByIdBetween($databuilding_id,$databuilding_id+4));
+
+        $this->loadModel('Dtbuilding');
+        $this->Data->write('Dtbuilding', $this->Dtbuilding->findByBuildingId($id));
+
+        $type = $this->Data->read('Building.databuilding_id_type');
+
+        
+    }
+
 /**
 * view method
 * Affiche un bâtiment
