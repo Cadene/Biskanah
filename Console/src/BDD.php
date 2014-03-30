@@ -37,7 +37,7 @@ class BDD{
 
     public function insertAll($table,&$key,&$values)
     {
-        $sql = 'INSERT INTO `BiskanahV1`.`'.$table.'` (';
+        $sql = 'INSERT INTO `'.$table.'` (';
 
         $firstKey=true;
         foreach($key as $k)
@@ -62,7 +62,6 @@ class BDD{
             }
             $sql .= ')';
         }
-        var_dump($sql);
 
         return $this->bdd->query($sql);
     }

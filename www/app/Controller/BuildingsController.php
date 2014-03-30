@@ -39,10 +39,26 @@ class BuildingsController extends AppController {
         $this->loadModel('Dtbuilding');
         $this->Data->write('Dtbuilding', $this->Dtbuilding->findByBuildingId($id));
 
-        $type = $this->Data->read('Building.databuilding_id_type');
+        $this->loadModel('Typebuilding');
+        $this->Data->write('Typebuilding', $this->Typebuilding->findById( $this->Data->read('Building.databuilding_id_type') ));
 
-        $func = 'view' . $type;
-        $this->$func();
+        if($this->Data->read('Databuilding_id_lvl') <= 0){
+            $this->level0();
+        }else{
+            $type = $this->Data->read('Building.databuilding_id_type');
+            $func = 'view' . $type;
+            $this->$func();
+        }
+    }
+
+/**
+ * level0 method
+ * view all buildings under level1
+ */
+    private function level0(){
+        $data = $this->Data->read();
+        $this->set(compact('data'));
+        $this->view = 'level0';
     }
 
 /**
@@ -107,7 +123,7 @@ class BuildingsController extends AppController {
             }
 
             // vérifie les ressources
-            if(!$this->_enoughResources($this->Data->read('Camp'),$this->Data->read('Databuilding'))){
+            if(!$this->_enoughResources($this->Data->read('Databuilding'))){
                 throw new NotImplementedException('Pas assez de ressources dispo');
             }else{
                 $this->Building->save(array(
@@ -126,9 +142,9 @@ class BuildingsController extends AppController {
                 $this->loadModel('Camp');
                 $this->Camp->updateAll(
                     array(
-                        'res1' => $this->Data->read('Camp.res1'),
-                        'res2' => $this->Data->read('Camp.res2'),
-                        'res3' => $this->Data->read('Camp.res3')
+                        'res1' => $this->Data->read('Camp.currentres1'),
+                        'res2' => $this->Data->read('Camp.currentres2'),
+                        'res3' => $this->Data->read('Camp.currentres3')
                     ),
                     array('Camp.id' => $this->Session->read('Camp.current'))
                 );
@@ -147,14 +163,14 @@ class BuildingsController extends AppController {
 
 
     // TODO où mettre la fonction enoughRessources ?
-    private function _enoughResources($Resource, $Data){
-        if( ($new['res1'] = $Resource['res1'] - $Data['res1']) >= 0)
-            if( ($new['res2'] = $Resource['res2'] - $Data['res2']) >= 0)
-                if( ($new['res3'] = $Resource['res3'] - $Data['res3']) >= 0){
-                  $Resource['res1'] = $new['res1'];
-                  $Resource['res2'] = $new['res2'];
-                  $Resource['res3'] = $new['res3'];
-                  return true;
+    private function _enoughResources($Data){
+        $Camp = $this->Data->read('Camp');
+        if( ($new['res1'] = $Camp['currentres1'] - $Data['res1']) >= 0)
+            if( ($new['res2'] = $Camp['currentres2'] - $Data['res2']) >= 0)
+                if( ($new['res3'] = $Camp['currentres3'] - $Data['res3']) >= 0){
+                    foreach(array(1,2,3) as $i)
+                    $this->Data->write('Camp.currentres'.$i, $new['res'.$i]);
+                    return true;
                 }
         return false;
     }
@@ -195,15 +211,6 @@ class BuildingsController extends AppController {
             // récupère les infos du batiment à construire
             $this->loadModel('Databuilding');
             $this->Data->writeIfNot('Databuilding',$this->Databuilding->findById($query['Building']['databuilding_id']));
-            if($this->Data->read('Databuilding.lvl') <= 1){
-                throw new NotImplementedException('Le batiment demandé est de niveau <=1');
-            }
-
-            // vérification des prérequis
-            $this->Datanode = $this->Components->load('Datanode');
-            if(!$this->Datanode->isBuildingAllowed($query['Building']['databuilding_id'])){
-                throw new NotImplementedException('Les prérequis sont manquants.');
-            }
 
             // vérifie les ressources
             if(!$this->_enoughResources($this->Data->read('Camp'),$this->Data->read('Databuilding'))){

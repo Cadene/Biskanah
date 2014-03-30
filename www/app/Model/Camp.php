@@ -195,10 +195,12 @@ class Camp extends AppModel {
         $d['Camp']['prod2'] = 10;
         $d['Camp']['prod3'] = 0;
         $d['Camp']['unread_reports'] = 0;
-
         $d['Camp']['res1'] = 500;
         $d['Camp']['res2'] = 300;
         $d['Camp']['res3'] = 50;
+        $d['Camp']['maxres1'] = 1000;
+        $d['Camp']['maxres2'] = 1000;
+        $d['Camp']['maxres3'] = 1000;
 
         $this->save($d['Camp']);
         return $this->id;
@@ -261,6 +263,25 @@ class Camp extends AppModel {
         return $tmp['Camp'];
     }
 
+    public function afterFind($results, $primary=false){
+        foreach($results as $key => $val){
+            $camp = $val['Camp'];
+            if(isset($camp['last_update'])){
+                foreach(array(1,2,3) as $i){
+                    if(isset($camp['res'.$i]) && isset($camp['prod'.$i])
+                        && isset($camp['maxres'.$i]))
+                    {
+                        $results[$key]['Camp']['currentres'.$i] = ((time() - $camp['last_update']) / 3600)
+                                                                    * $camp['prod'.$i] + $camp['res'.$i];
+                        if($results[$key]['Camp']['currentres'.$i] >= $camp['maxres'.$i])
+                            $results[$key]['Camp']['currentres'.$i] = $camp['maxres'.$i];
+                    }
+                }
+
+            }
+        }
+        return $results;
+    }
     /*
     public function recoverDataCamp($id){
         $db = $this->getDataSource();

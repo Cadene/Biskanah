@@ -87,10 +87,7 @@
             );
             // Vérifier si il y a besoin de prérequis
             if(empty($datanodes))
-                return true;
-
-            // TODO finir
-
+                return false;
 
             // Indexation par to_data_type
             $indexedDatanodes = $this->indexingDatanodes($datanodes);
@@ -121,9 +118,7 @@
             );
             // Vérifier si il y a besoin de prérequis
             if(empty($datanodes))
-                return true;
-
-            // TODO FAIRE DES PERFS
+                return false;
 
             // Indexation par to_data_type
             $indexedDatanodes = $this->indexingDatanodes($datanodes);

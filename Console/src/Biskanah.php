@@ -11,13 +11,19 @@ class Biskanah {
 	}
 
 
-    public function generateAll(){
+    public function generateAll()
+    {
         $this->generateWorlds(100,100);
+
+        $this->generateTypebuildings();
+        $this->generateTypetechnos();
+
         $this->generateDatabuildings();
+        $this->generateDatatechnos();
     }
 
     public function generateWorlds($max_x,$max_y){
-        $table = 'Worlds';
+        $table = 'worlds';
         $key = array('x','y','type');
         $values = array();
         $nb=0;
@@ -34,7 +40,7 @@ class Biskanah {
     }
 
     public function generateDatabuildings(){
-        $table = 'Databuildings';
+        $table = 'databuildings';
         $key = array('id','lvl','type','res1','res2','res3','struct','conso','time');
         $values = array();
         for($type=0; $type<20; $type++){
@@ -54,6 +60,58 @@ class Biskanah {
         }
         $this->bdd->insertAll($table,$key,$values);
     }
+
+    public function generateTypebuildings(){
+        $table = 'typebuildings';
+        $key = array('id','name','desc');
+        $values = array();
+        for($type=0; $type<20; $type++){
+            $values[] = array(
+                'id' => $type,
+                'name' => 'Building_'.$type,
+                'desc' => 'Je suis le building de type '.$type
+            );
+
+        }
+        $this->bdd->insertAll($table,$key,$values);
+    }
+
+    public function generateDatatechnos(){
+        $table = 'datatechnos';
+        $key = array('id','lvl','type','kind','res1','res2','res3','time');
+        $values = array();
+        for($type=0; $type<20; $type++){
+            for($lvl=0; $lvl<100; $lvl++){
+                $values[] = array(
+                    'id' => ($type*100)+$lvl,
+                    'lvl' => $lvl,
+                    'type' => $type,
+                    'kind' => 0,
+                    'res1' => 3*$lvl,
+                    'res2' => 2*$lvl,
+                    'res3' => 1*$lvl,
+                    'time' => 5*$lvl
+                );
+            }
+        }
+        $this->bdd->insertAll($table,$key,$values);
+    }
+
+    public function generateTypetechnos(){
+        $table = 'typetechnos';
+        $key = array('id','name','desc');
+        $values = array();
+        for($type=0; $type<20; $type++){
+            $values[] = array(
+                'id' => $type,
+                'name' => 'Techno_'.$type,
+                'desc' => 'Je suis le techno de type '.$type
+            );
+
+        }
+        $this->bdd->insertAll($table,$key,$values);
+    }
+
     public function generateA2Bs()
     {
         $table = 'a2bs';
@@ -82,7 +140,7 @@ class Biskanah {
 
     public function generateDtbuilding()
     {
-        $table = 'Dtbuildings';
+        $table = 'dtbuildings';
         $key = array('building_id','begin','finish');
         $values = array();
         for($type=0; $type<10; $type++)
