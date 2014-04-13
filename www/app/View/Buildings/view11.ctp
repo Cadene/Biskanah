@@ -1,5 +1,5 @@
 
-<?php $this->extend('view');
+<?php $this->extend('display');
 
 $this->start('specialize');?>
 

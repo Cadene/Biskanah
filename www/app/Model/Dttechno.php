@@ -89,4 +89,30 @@ class Dttechno extends AppModel {
 	        'fields' => array('*')
 	    ));
     }
+
+    public function lastByBuildingId($building_id){
+        $tmp = $this->find('first',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Dttechno.building_id' => $building_id
+            ),
+            'order' => array(
+                'Dttechno.id DESC'
+            ),
+            'fields' => array('*')
+        ));
+        if(empty($tmp))
+            return $tmp;
+        return $tmp['Dttechno'];
+    }
+
+    public function findByTechnoId($techno_id){
+        return $this->find('all',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Dttechno.techno_id' => $techno_id
+            ),
+            'fields' => array('*')
+        ));
+    }
 }

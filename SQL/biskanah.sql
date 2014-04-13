@@ -309,10 +309,12 @@ CREATE TABLE `dataunits` (
 CREATE TABLE `dtbuildings` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `building_id` int(10) unsigned NOT NULL,
+  `camp_id` mediumint(9) unsigned NOT NULL,
   `finish` int(10) unsigned NOT NULL,
   `begin` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_DT_FIELDS1_idx` (`building_id`),
+  KEY `fk_DT_FIELDSCAMP1_idx` (`camp_id`),
   KEY `finish` (`finish`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -705,7 +707,8 @@ ALTER TABLE `dataunits`
 -- Constraints for table `dtbuildings`
 --
 ALTER TABLE `dtbuildings`
-  ADD CONSTRAINT `fk_DT_FIELDS1` FOREIGN KEY (`building_id`) REFERENCES `buildings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_DT_FIELDS1` FOREIGN KEY (`building_id`) REFERENCES `buildings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_DT_FIELDSCAMP1` FOREIGN KEY (`camp_id`) REFERENCES `camps` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `dttechnos`

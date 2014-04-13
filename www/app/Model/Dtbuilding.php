@@ -83,4 +83,20 @@ class Dtbuilding extends AppModel {
             'fields' => array('*')
         ));
     }
+
+    public function lastByCampId($camp_id){
+        $tmp = $this->find('first',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Dtbuilding.camp_id' => $camp_id
+            ),
+            'order' => array(
+                'Dtbuilding.id DESC'
+            ),
+            'fields' => array('*')
+        ));
+        if(empty($tmp))
+            return $tmp;
+        return $tmp['Dtbuilding'];
+    }
 }
