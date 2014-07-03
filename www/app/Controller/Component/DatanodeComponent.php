@@ -1,31 +1,8 @@
 <?php
-    /**
-     * SessionComponent. Provides access to Sessions from the Controller layer
-     *
-     * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
-     * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
-     *
-     * Licensed under The MIT License
-     * For full copyright and license information, please see the LICENSE.txt
-     * Redistributions of files must retain the above copyright notice.
-     *
-     * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
-     * @link          http://cakephp.org CakePHP(tm) Project
-     * @package       Cake.Controller.Component
-     * @since         CakePHP(tm) v 0.10.0.1232
-     * @license       http://www.opensource.org/licenses/mit-license.php MIT License
-     */
-
     App::uses('Component', 'Controller');
 
     /**
-     * The CakePHP SessionComponent provides a way to persist client data between
-     * page requests. It acts as a wrapper for the `$_SESSION` as well as providing
-     * convenience methods for several `$_SESSION` related functions.
-     *
-     * @package       Cake.Controller.Component
-     * @link http://book.cakephp.org/2.0/en/core-libraries/components/sessions.html
-     * @link http://book.cakephp.org/2.0/en/development/sessions.html
+     * Sert à vérifier les prérequis pour pouvoir construire les batîments, technologies, unités.
      */
     class DatanodeComponent extends Component {
 

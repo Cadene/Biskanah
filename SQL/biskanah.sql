@@ -3,18 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2014 at 05:42 PM
+-- Generation Time: May 23, 2014 at 07:45 PM
 -- Server version: 5.5.33
 -- PHP Version: 5.5.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `biskanah`
@@ -156,7 +150,7 @@ CREATE TABLE `buildings` (
   PRIMARY KEY (`id`),
   KEY `fk_FIELDS_camps1_idx` (`camp_id`),
   KEY `fk_buildings_databuildings1_idx` (`databuilding_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -192,7 +186,7 @@ CREATE TABLE `camps` (
   PRIMARY KEY (`id`),
   KEY `fk_camps_worlds_id` (`world_id`),
   KEY `fk_camps_users_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -613,10 +607,7 @@ CREATE TABLE `users` (
   KEY `rank_pts` (`rank_pts`),
   KEY `rank_units` (`rank_units`),
   KEY `group_id` (`group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -632,9 +623,11 @@ CREATE TABLE `worlds` (
   `occupied` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `coord` (`x`,`y`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-
+--
+-- Constraints for dumped tables
+--
 
 --
 -- Constraints for table `a2bs`
@@ -684,106 +677,3 @@ ALTER TABLE `camps`
 ALTER TABLE `camps_units`
   ADD CONSTRAINT `fk_camps_units_camps1` FOREIGN KEY (`camp_id`) REFERENCES `camps` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_camps_units_units1` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `databuildings`
---
-ALTER TABLE `databuildings`
-  ADD CONSTRAINT `fk_databuildings_typebuildings` FOREIGN KEY (`type`) REFERENCES `typebuildings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `datatechnos`
---
-ALTER TABLE `datatechnos`
-  ADD CONSTRAINT `fk_datatechnos_typetechnos` FOREIGN KEY (`type`) REFERENCES `typetechnos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `dataunits`
---
-ALTER TABLE `dataunits`
-  ADD CONSTRAINT `fk_dataunits_typeunits` FOREIGN KEY (`type`) REFERENCES `typeunits` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `dtbuildings`
---
-ALTER TABLE `dtbuildings`
-  ADD CONSTRAINT `fk_DT_FIELDS1` FOREIGN KEY (`building_id`) REFERENCES `buildings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_DT_FIELDSCAMP1` FOREIGN KEY (`camp_id`) REFERENCES `camps` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `dttechnos`
---
-ALTER TABLE `dttechnos`
-  ADD CONSTRAINT `fk_DT_buildings1` FOREIGN KEY (`building_id`) REFERENCES `buildings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_DT_RESEARCHS1` FOREIGN KEY (`techno_id`) REFERENCES `technos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `dtunits`
---
-ALTER TABLE `dtunits`
-  ADD CONSTRAINT `fk_dtunits_buildings1` FOREIGN KEY (`building_id`) REFERENCES `buildings` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_dtunits_units1` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `invits`
---
-ALTER TABLE `invits`
-  ADD CONSTRAINT `fk_invits_teams1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_invits_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_invits_users2` FOREIGN KEY (`from_user`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `messages`
---
-ALTER TABLE `messages`
-  ADD CONSTRAINT `fk_messages_users1` FOREIGN KEY (`from`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_messages_users2` FOREIGN KEY (`to`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `rankteams`
---
-ALTER TABLE `rankteams`
-  ADD CONSTRAINT `fk_rankteams_teams1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `rankusers`
---
-ALTER TABLE `rankusers`
-  ADD CONSTRAINT `fk_rankusers_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `reports`
---
-ALTER TABLE `reports`
-  ADD CONSTRAINT `fk_reports_camps1` FOREIGN KEY (`camp_id`) REFERENCES `camps` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `sends`
---
-ALTER TABLE `sends`
-  ADD CONSTRAINT `fk_sends_camps1` FOREIGN KEY (`from`) REFERENCES `camps` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sends_camps2` FOREIGN KEY (`to`) REFERENCES `camps` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `technos`
---
-ALTER TABLE `technos`
-  ADD CONSTRAINT `fk_RESEARCHS_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_technos_datatechnos1` FOREIGN KEY (`datatechno_id`) REFERENCES `datatechnos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `units`
---
-ALTER TABLE `units`
-  ADD CONSTRAINT `fk_units_dataunits1` FOREIGN KEY (`dataunit_id`) REFERENCES `dataunits` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `fk_users_teams1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-/*ADD CONSTRAINT `fk_users_groups` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;*/
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

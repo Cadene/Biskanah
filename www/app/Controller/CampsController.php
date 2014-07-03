@@ -28,6 +28,7 @@ class CampsController extends GameController {
         $this->Data = $this->Components->load('Data');
         $user_id = $this->Session->read('User.id');
 
+       // change de camp
         if($id){
             $data = $this->Camp->recoverCamps($user_id);
             if($this->_isInCamps($id,$data)){

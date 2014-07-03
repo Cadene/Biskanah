@@ -1,34 +1,13 @@
 <?php
-    /**
-     * SessionComponent. Provides access to Sessions from the Controller layer
-     *
-     * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
-     * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
-     *
-     * Licensed under The MIT License
-     * For full copyright and license information, please see the LICENSE.txt
-     * Redistributions of files must retain the above copyright notice.
-     *
-     * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
-     * @link          http://cakephp.org CakePHP(tm) Project
-     * @package       Cake.Controller.Component
-     * @since         CakePHP(tm) v 0.10.0.1232
-     * @license       http://www.opensource.org/licenses/mit-license.php MIT License
-     */
-
     App::uses('Component', 'Controller');
 
     /**
-     * The CakePHP SessionComponent provides a way to persist client data between
-     * page requests. It acts as a wrapper for the `$_SESSION` as well as providing
-     * convenience methods for several `$_SESSION` related functions.
-     *
-     * @package       Cake.Controller.Component
-     * @link http://book.cakephp.org/2.0/en/core-libraries/components/sessions.html
-     * @link http://book.cakephp.org/2.0/en/development/sessions.html
+     * Sert à stocker dans un array (et pas en session)
      */
     class DataComponent extends Component {
 
+
+        // TODO vérifier l'utilité
         public $components = array('Session');
 
         /*
@@ -146,10 +125,11 @@
          *
          * @param $name
          */
-        protected function _recoverData($name){
+        protected function _recoverData($name) {
             if($name == 'User'){
                 $this->write($name,ClassRegistry::init('User')->findById($this->Session->read('User.id')));
             }
+            // TODO vérifier que ce n'est pas Team plutot que Ally
             if($name == 'Ally'){
                 $this->write($name,ClassRegistry::init('Ally')->findById($this->Session->read('User.id')));
             }
@@ -191,7 +171,11 @@
             }
         }
 
-
+        /**
+         * S'execute avant de rendre la vue
+         *
+         * @param Controller $controller
+         */
         public function beforeRender(Controller $controller){
             $this->_checkElements($controller);
         }

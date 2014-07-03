@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/www/app/Controller/BuildingsController.php" line="225" mnemonic="5" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="63e9295c-9c2c-4575-a1c5-5d6441a34be4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SQL/biskanah.mwb" afterPath="$PROJECT_DIR$/SQL/biskanah.mwb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/CampsController.php" afterPath="$PROJECT_DIR$/www/app/Controller/CampsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/Component/DataComponent.php" afterPath="$PROJECT_DIR$/www/app/Controller/Component/DataComponent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/Component/DatanodeComponent.php" afterPath="$PROJECT_DIR$/www/app/Controller/Component/DatanodeComponent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/Component/QueryComponent.php" afterPath="$PROJECT_DIR$/www/app/Controller/Component/QueryComponent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SQL/biskanah.sql" afterPath="$PROJECT_DIR$/SQL/biskanah.sql" />
+    </list>
+    <ignored path="Biskanah.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/Dummy.txt" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403564809861" ignored="false" />
+    <file path="/index.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394917543907" ignored="false" />
+    <file path="/BuildingsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396285017504" ignored="false" />
+    <file path="/DtbuildingsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1393710319650" ignored="false" />
+    <file path="/default.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394898074126" ignored="false" />
+    <file path="$USER_HOME$/Downloads/sharkconfig/app/Config/database.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1393806186742" ignored="false" />
+    <file path="$USER_HOME$/Downloads/sharkconfig/app/Controller/AppController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1393806392393" ignored="false" />
+    <file path="$USER_HOME$/Downloads/sharkconfig/app/View/Layouts/default.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1393806073235" ignored="false" />
+    <file path="$USER_HOME$/Downloads/sharkconfig/app/Config/core.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1393806368193" ignored="false" />
+    <file path="/DataComponent.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395783933091" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Config/database.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394583567651" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Controller/AppController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394652199469" ignored="false" />
+    <file path="/AppController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395607418660" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/build.xml" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394583429642" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Config/database.php.default" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394583494254" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Config/core.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394585590278" ignored="false" />
+    <file path="/core.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394583548781" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Model/AppModel.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394583635456" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Controller/PagesController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394652618880" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Model/LecturesUser.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394583855025" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/bake_compare/Controller/NoHelpersOrComponents.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Core/Object.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/Fixture/sample.xml" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/Fixture/rss.xml" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Controller/CakeErrorController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/Fixture/soap_request.xml" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/test_app/Controller/TestsAppsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Model/Model.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/TestSuite/Fixture/CakeTestModel.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Controller/Controller.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/test_app/Controller/TestConfigsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/Fixture/soap_response.xml" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/test_app/Plugin/TestPlugin/Controller/TestsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Network/CakeRequest.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/Case/TestSuite/ControllerTestCaseTest.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/test_app/View/Elements/test_element.xml" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/bake_compare/Controller/NoActions.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Config/bootstrap.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584580839" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Controller/UsersController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394591984498" ignored="false" />
+    <file path="/UsersController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394992839310" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/login.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584801932" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Controller/UsersWorksController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592493811" ignored="false" />
+    <file path="/PagesController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394917814430" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/tmp/logs/error.log" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394586253422" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Pages/home.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394655576938" ignored="false" />
+    <file path="/home.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395794221652" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/register.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592209507" ignored="false" />
+    <file path="/register.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394587302257" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Model/User.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592169486" ignored="false" />
+    <file path="/User.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394892297452" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/edit.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592181807" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/add.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592189284" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/index.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592200080" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/view.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592221559" ignored="false" />
+    <file path="/UsersWorksController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592483020" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Controller/WorksController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592541798" ignored="false" />
+    <file path="/WorksController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592538376" ignored="false" />
+    <file path="/bootstrap.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394644657400" ignored="false" />
+    <file path="/a.dummy" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403356554288" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Elements/menu.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394654287770" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/webroot/css/style.css" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394656450756" ignored="false" />
+    <file path="/style.css" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394656449499" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Layouts/front.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394653089549" ignored="false" />
+    <file path="/front.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394653075701" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Pages/licence.ctp.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394654038357" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Pages/licence.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394656422849" ignored="false" />
+    <file path="/licence.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394656412106" ignored="false" />
+    <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/webroot/js/custom.js" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394656363751" ignored="false" />
+    <file path="/CakeSession.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394852003607" ignored="false" />
+    <file path="/resources.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394884617095" ignored="false" />
+    <file path="/login.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394891763103" ignored="false" />
+    <file path="/CampsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395264491314" ignored="false" />
+    <file path="/GameController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394899764418" ignored="false" />
+    <file path="/resources.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394900381522" ignored="false" />
+    <file path="/camps.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394898107668" ignored="false" />
+    <file path="/Camp.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396211414083" ignored="false" />
+    <file path="/*.regexp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394930831887" ignored="false" />
+    <file path="/view.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396197006104" ignored="false" />
+    <file path="/Datanode.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395607337572" ignored="false" />
+    <file path="/worldsGenerate.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394991245128" ignored="false" />
+    <file path="/WorldsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394992564780" ignored="false" />
+    <file path="/DatabuildingsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395002515352" ignored="false" />
+    <file path="/DatanodeComponent.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396196589852" ignored="false" />
+    <file path="/DataBehavior.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395099373588" ignored="false" />
+    <file path="/Databuilding.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395779746625" ignored="false" />
+    <file path="/Building.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395777271775" ignored="false" />
+    <file path="/create.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395508277560" ignored="false" />
+    <file path="/QueryComponent.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395608287734" ignored="false" />
+    <file path="/Dtbuilding.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396283146193" ignored="false" />
+    <file path="/0.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395780924446" ignored="false" />
+    <file path="/Techno.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395783987744" ignored="false" />
+    <file path="/11.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395787124135" ignored="false" />
+    <file path="/header.css" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395793682072" ignored="false" />
+    <file path="/Biskanah.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396200129039" ignored="false" />
+    <file path="/BDD.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396195824782" ignored="false" />
+    <file path="/level0.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396197063452" ignored="false" />
+    <file path="/Typebuilding.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396200666804" ignored="false" />
+    <file path="/updates.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396203987670" ignored="false" />
+    <file path="/TechnosController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396282505160" ignored="false" />
+    <file path="/Dttechno.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396281999193" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/index.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484924" ignored="false" />
+    <file path="/index.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396482685695" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/.htaccess" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396482570960" ignored="false" />
+    <file path="/.htaccess" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396482570960" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/NotFound.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484924" ignored="false" />
+    <file path="/NotFound.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396461569150" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/Outils.inc" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484484" ignored="false" />
+    <file path="/Outils.inc" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396481875455" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/AccueilDescriptif.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484924" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/Accueil.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396481303664" ignored="false" />
+    <file path="/AccueilDescriptif.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396468698098" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/IdentificationC.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484924" ignored="false" />
+    <file path="/IdentificationC.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396466742536" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/GESTION/index.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396467057715" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/gestion/index.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484925" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/gestion/Menu.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396469029510" ignored="false" />
+    <file path="/Menu.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396469007437" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/gestion/AccueilRetour.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484925" ignored="false" />
+    <file path="/AccueilRetour.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396468746541" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/BD.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396471667991" ignored="false" />
+    <file path="/BD.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396471647065" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/AccueilRecherche.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396481970365" ignored="false" />
+    <file path="/AccueilRecherche.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396477052806" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/BD.inc" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484925" ignored="false" />
+    <file path="/BD.inc" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396476181086" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/Recherche.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396482157740" ignored="false" />
+    <file path="/Recherche.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396482155765" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/CoreException.inc" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396475306231" ignored="false" />
+    <file path="/CoreException.inc" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396475291401" ignored="false" />
+    <file path="/Accueil.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396481303664" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/Commande.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484924" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/Detenues.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484924" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/IdentificationD.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484924" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/Descriptif.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484924" ignored="false" />
+    <file path="/Battle.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403722881038" ignored="false" />
+    <file path="/IStrategy.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403346486640" ignored="false" />
+    <file path="/main.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403352798439" ignored="false" />
+    <file path="/Tool.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403719365504" ignored="false" />
+    <file path="/UnitArray.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403718386984" ignored="false" />
+    <file path="/main2.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403351839717" ignored="false" />
+    <file path="/Strategy.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403353010715" ignored="false" />
+    <file path="/Unit.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403649467774" ignored="false" />
+    <file path="/UnitFactory.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403649505397" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="Biskanah" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="DataComponent.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/app/Controller/Component/DataComponent.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="174" column="43" selection-start="5879" selection-end="5879" vertical-scroll-proportion="-14.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Battle.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BattleSystem/Battle.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="93" column="25" selection-start="2285" selection-end="2285" vertical-scroll-proportion="1.6027875">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tool.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BattleSystem/Tool.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="64" selection-start="927" selection-end="964" vertical-scroll-proportion="-17.5">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Strategy.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BattleSystem/Strategy.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="24" selection-start="249" selection-end="249" vertical-scroll-proportion="-5.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BattleSystem/main.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="20" selection-start="757" selection-end="757" vertical-scroll-proportion="-22.5">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main2.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BattleSystem/main2.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="31" selection-start="233" selection-end="233" vertical-scroll-proportion="-6.25">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BattleSystem/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UnitFactory.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BattleSystem/UnitFactory.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="18" selection-start="429" selection-end="429" vertical-scroll-proportion="-15.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Unit.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BattleSystem/Unit.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="5" selection-start="489" selection-end="489" vertical-scroll-proportion="-20.625">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UnitArray.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BattleSystem/UnitArray.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="21" selection-start="735" selection-end="735" vertical-scroll-proportion="-25.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/www/app/View/Buildings/view11.ctp" />
+        <option value="$PROJECT_DIR$/www/app/Controller/BuildingsController.php" />
+        <option value="$PROJECT_DIR$/www/lib/Cake/Controller/Controller.php" />
+        <option value="$PROJECT_DIR$/www/app/Controller/Component/DatanodeComponent.php" />
+        <option value="$PROJECT_DIR$/www/app/Controller/Component/QueryComponent.php" />
+        <option value="$PROJECT_DIR$/www/app/Controller/CampsController.php" />
+        <option value="$PROJECT_DIR$/www/app/Controller/Component/DataComponent.php" />
+        <option value="$PROJECT_DIR$/BattleSystem/IStrategy.php" />
+        <option value="$PROJECT_DIR$/BattleSystem/main2.php" />
+        <option value="$PROJECT_DIR$/BattleSystem/Strategy.php" />
+        <option value="$PROJECT_DIR$/BattleSystem/Unit.php" />
+        <option value="$PROJECT_DIR$/BattleSystem/UnitArray.php" />
+        <option value="$PROJECT_DIR$/BattleSystem/Tool.php" />
+        <option value="$PROJECT_DIR$/BattleSystem/UnitFactory.php" />
+        <option value="$PROJECT_DIR$/BattleSystem/Battle.php" />
+        <option value="$PROJECT_DIR$/BattleSystem/main.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="19" />
+    <option name="y" value="112" />
+    <option name="width" value="1212" />
+    <option name="height" value="1054" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents ProjectPane="true" />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Behavior" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BattleSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www" />
+    <property name="FullScreen" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/www/app/View/Buildings" />
+      <recent name="$PROJECT_DIR$/www/app/Lib" />
+      <recent name="$PROJECT_DIR$/www" />
+      <recent name="$PROJECT_DIR$/www/app" />
+      <recent name="$PROJECT_DIR$/www/app/webroot" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/www/app/Model/Behavior" />
+    </key>
+  </component>
+  <component name="RunManager" selected="PHP Script.UsersController.php">
+    <configuration default="false" name="www" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner directory="$PROJECT_DIR$/www" />
+      <RunnerSettings RunnerId="PhpRunner" />
+      <ConfigurationWrapper RunnerId="PhpRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="UsersController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/www/app/Controller/UsersController.php">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="PHPUnit.www" />
+      <item index="1" class="java.lang.String" itemvalue="PHP Script.UsersController.php" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="PHP Script.UsersController.php" />
+        <item index="1" class="java.lang.String" itemvalue="PHPUnit.www" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="63e9295c-9c2c-4575-a1c5-5d6441a34be4" name="Default" comment="" />
+      <created>1393698782595</created>
+      <updated>1393698782595</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="19" y="112" width="1212" height="1054" extended-state="1" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16452992" sideWeight="0.99682945" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19210978" sideWeight="0.8354701" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297491" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22577092" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORISONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/www/app/Model/Behavior/DataBehavior.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/Model/Behavior/MultivalidatableBehavior.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/Model/Behavior/SluggableBehavior.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="5" selection-start="1911" selection-end="1911" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/Controller/CampsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="24" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/Controller/BuildingsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="199" column="56" selection-start="7095" selection-end="7095" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/Controller/AppController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/app/Controller/Component/DataComponent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="43" selection-start="5879" selection-end="5879" vertical-scroll-proportion="-14.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BattleSystem/Strategy.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="24" selection-start="249" selection-end="249" vertical-scroll-proportion="-5.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BattleSystem/main2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="31" selection-start="233" selection-end="233" vertical-scroll-proportion="-6.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BattleSystem/UnitArray.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="21" selection-start="735" selection-end="735" vertical-scroll-proportion="-25.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BattleSystem/UnitFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="18" selection-start="429" selection-end="429" vertical-scroll-proportion="-15.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BattleSystem/Tool.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="64" selection-start="927" selection-end="964" vertical-scroll-proportion="-17.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BattleSystem/Unit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="5" selection-start="489" selection-end="489" vertical-scroll-proportion="-20.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BattleSystem/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="20" selection-start="757" selection-end="757" vertical-scroll-proportion="-22.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BattleSystem/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BattleSystem/Battle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="25" selection-start="2285" selection-end="2285" vertical-scroll-proportion="1.6027875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
