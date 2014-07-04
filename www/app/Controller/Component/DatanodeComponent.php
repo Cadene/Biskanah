@@ -30,7 +30,9 @@
                         'min' => 0,
                         'max' => 99
                     ),
-                    'init' => array(2,4,11)
+                    'init' => array(
+                        2, 4, 11
+                    )
                 ),
                 'techno' => array(
                     'nb' => 2,
@@ -42,6 +44,26 @@
         );
 
 
+        /**
+         * @param      $kind [1:buildings|2:technos|3:units]
+         * @param      $type
+         * @param null $lvl
+         */
+        public function isAllowed($kind,$type)
+        {
+            if (!($kind == 1 || $kind ==2 || $kind ==3))
+                throw new NotFoundException(__('Invalid kind : '.$kind));
+
+            $datanodes = ClassRegistry::init('Datanode')->findBy('to',$kind,$type);
+
+            if (empty($datanodes))
+                return true;
+
+            debug($datanodes);
+        }
+
+
+
         // TODO verify Unit
 
         /**
@@ -51,7 +73,7 @@
          *
          * @return bool
          */
-        public function isBuildingAllowed($type)
+        public function isBuildingAllowed($type, $lvl)
         {
             // Vérifie si c'est un batiment initial
             if(in_array($type, $this->config['kind']['building']['init']))
@@ -116,9 +138,12 @@
         public function allowedBuildings()
         {
             // Récupération des prérequis pour les buildings
-            $datanodes = ClassRegistry::init('Datanode')->findByKind($this->config['kind']['building']['nb']);
+            $datanodes = ClassRegistry::init('Datanode')->findBuildings();
             // Indexation par to_data_type
             $indexedDatanodes = $this->indexingDatanodes($datanodes);
+
+            debug($datanodes);
+            debug($indexedDatanodes);
 
             // Indexation par databuilding_id_type des batiments
             $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));

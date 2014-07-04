@@ -1,29 +1,27 @@
 <?php
 
-date_default_timezone_set('UTC');
 
-include_once('config/database.php');
 
 /*
  * Base de donnée MySQL
  *
  */
 
-class BDD{
+class DB{
 	
-	protected $bdd;
+	protected $db;
 	
 	public function __construct(
-		$hote=DATABASE_hote,
+		$host=DATABASE_host,
 		$port=DATABASE_port,
 		$name=DATABASE_nom_bd,
 		$user=DATABASE_utilisateur,
 		$pass=DATABASE_mot_passe
 	){
 		try {
-			$bdd = new PDO('mysql:host='.$hote.';dbname='.$name, $user, $pass);
-			$bdd->exec("set names utf8");
-			$this->bdd = $bdd;
+			$db = new PDO($host.';dbname='.$name, $user, $pass);
+			$db->exec("set names utf8");
+			$this->db = $db;
 		}
 		catch(Exception $e){
 			echo 'Erreur : '.$e->getMessage().'<br />';
@@ -32,7 +30,7 @@ class BDD{
 	}
 
     public function query($sql){
-        return $this->bdd->query($sql);
+        return $this->db->query($sql);
     }
 
     public function insertAll($table,&$key,&$values)
@@ -49,6 +47,7 @@ class BDD{
 
         $sql .= ') VALUES ';
         $firstValues=true;
+
         foreach($values as $value)
         {
             if(!$firstValues){ $sql.=', '; }else{ $firstValues=false; }
@@ -63,7 +62,7 @@ class BDD{
             $sql .= ')';
         }
 
-        return $this->bdd->query($sql);
+        return $this->db->query($sql);
     }
 
     public function select($table,$keys,$conditions)
@@ -90,7 +89,7 @@ class BDD{
             $sql .= $condition;
         }
 
-        return $this->bdd->query($sql);
+        return $this->db->query($sql);
     }
 
     public function update($table,&$sets,&$conditions)
@@ -112,7 +111,7 @@ class BDD{
             $sql .= $condition;
         }
 
-        return $this->bdd->query($sql);
+        return $this->db->query($sql);
     }
     
 

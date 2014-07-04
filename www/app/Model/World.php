@@ -83,6 +83,7 @@ class World extends AppModel {
  *
  * @var array
  */
+    //TODO don't use rand to choose
     public function generateFirstCamp()
     {
         $d['World']['type'] = 0;

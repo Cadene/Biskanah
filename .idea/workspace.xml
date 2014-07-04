@@ -1,22 +1,407 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/www/app/Controller/BuildingsController.php" line="225" mnemonic="5" />
+    <bookmark url="file://$PROJECT_DIR$/www/app/Controller/BuildingsController.php" line="226" mnemonic="5" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63e9295c-9c2c-4575-a1c5-5d6441a34be4" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Console/src/Building.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Console/src/Buildings.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Console/src/Element.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Console/src/Factory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Console/src/Techno.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Console/src/Technos.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Console/src/Unit.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Console/src/Units.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Console/src/World.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SQL/BiskanahV1_OLD.mwb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SQL/biskanah_old.sql" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Console/src/BDD.php" afterPath="$PROJECT_DIR$/Console/src/DB.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/www/app/View/Camps/view.ctp" afterPath="$PROJECT_DIR$/www/app/View/Camps/actual.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/apple-touch-icon-114x114.png" afterPath="$PROJECT_DIR$/Doc/images/apple-touch-icon-114x114.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/apple-touch-icon-72x72.png" afterPath="$PROJECT_DIR$/Doc/images/apple-touch-icon-72x72.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/apple-touch-icon.png" afterPath="$PROJECT_DIR$/Doc/images/apple-touch-icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SQL/biskanah.mwb.bak" afterPath="$PROJECT_DIR$/SQL/biskanah.mwb.bak" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SQL/biskanah.mwb" afterPath="$PROJECT_DIR$/SQL/biskanah.mwb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SQL/biskanah.png" afterPath="$PROJECT_DIR$/SQL/biskanah.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/favicon.ico" afterPath="$PROJECT_DIR$/Doc/images/favicon.ico" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/iviewer/grab.cur" afterPath="$PROJECT_DIR$/Doc/images/iviewer/grab.cur" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/iviewer/hand.cur" afterPath="$PROJECT_DIR$/Doc/images/iviewer/hand.cur" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/hierarchy-item.png" afterPath="$PROJECT_DIR$/Doc/images/hierarchy-item.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/icon-class-13x13.png" afterPath="$PROJECT_DIR$/Doc/images/icon-class-13x13.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/icon-interface-13x13.png" afterPath="$PROJECT_DIR$/Doc/images/icon-interface-13x13.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/icon-trait-13x13.png" afterPath="$PROJECT_DIR$/Doc/images/icon-trait-13x13.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.rotate_left.png" afterPath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.rotate_left.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.rotate_right.png" afterPath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.rotate_right.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.zoom_fit.png" afterPath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.zoom_fit.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.zoom_in.png" afterPath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.zoom_in.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.zoom_out.png" afterPath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.zoom_out.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.zoom_zero.png" afterPath="$PROJECT_DIR$/Doc/images/iviewer/iviewer.zoom_zero.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Launcher/launcher" afterPath="$PROJECT_DIR$/Launcher/launcher" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/fonts/phpdocumentor-clean-icons.eot" afterPath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/fonts/phpdocumentor-clean-icons.eot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/fonts/phpdocumentor-clean-icons.ttf" afterPath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/fonts/phpdocumentor-clean-icons.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/fonts/phpdocumentor-clean-icons.woff" afterPath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/fonts/phpdocumentor-clean-icons.woff" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/.idea/.name" afterPath="$PROJECT_DIR$/www/.idea/.name" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/A2b.html" afterPath="$PROJECT_DIR$/Doc/classes/A2b.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/A2b.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/A2b.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/A2bsController.html" afterPath="$PROJECT_DIR$/Doc/classes/A2bsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/A2bsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/A2bsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/A2bsUnit.html" afterPath="$PROJECT_DIR$/Doc/classes/A2bsUnit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/A2bsUnit.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/A2bsUnit.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/A2bsUnitsController.html" afterPath="$PROJECT_DIR$/Doc/classes/A2bsUnitsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/A2bsUnitsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/A2bsUnitsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/AppController.html" afterPath="$PROJECT_DIR$/Doc/classes/AppController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/AppController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/AppController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/AppHelper.html" afterPath="$PROJECT_DIR$/Doc/classes/AppHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/View/Helper/AppHelper.php.txt" afterPath="$PROJECT_DIR$/Doc/files/View/Helper/AppHelper.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/AppModel.html" afterPath="$PROJECT_DIR$/Doc/classes/AppModel.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/AppModel.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/AppModel.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Assist.html" afterPath="$PROJECT_DIR$/Doc/classes/Assist.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Assist.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Assist.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/AssistsController.html" afterPath="$PROJECT_DIR$/Doc/classes/AssistsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/AssistsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/AssistsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/AssistsUnit.html" afterPath="$PROJECT_DIR$/Doc/classes/AssistsUnit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/AssistsUnit.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/AssistsUnit.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/AssistsUnitsController.html" afterPath="$PROJECT_DIR$/Doc/classes/AssistsUnitsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/AssistsUnitsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/AssistsUnitsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BattleSystem/Battle.php" afterPath="$PROJECT_DIR$/BattleSystem/Battle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Biskanah.iml" afterPath="$PROJECT_DIR$/.idea/Biskanah.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Console/src/Biskanah.php" afterPath="$PROJECT_DIR$/Console/src/Biskanah.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Building.html" afterPath="$PROJECT_DIR$/Doc/classes/Building.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Building.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Building.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/BuildingsController.html" afterPath="$PROJECT_DIR$/Doc/classes/BuildingsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/BuildingsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/BuildingsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/BuildingsController.php" afterPath="$PROJECT_DIR$/www/app/Controller/BuildingsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Camp.html" afterPath="$PROJECT_DIR$/Doc/classes/Camp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Camp.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Camp.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Model/Camp.php" afterPath="$PROJECT_DIR$/www/app/Model/Camp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/CampsController.html" afterPath="$PROJECT_DIR$/Doc/classes/CampsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/CampsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/CampsController.php.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/CampsController.php" afterPath="$PROJECT_DIR$/www/app/Controller/CampsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/CampsUnit.html" afterPath="$PROJECT_DIR$/Doc/classes/CampsUnit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/CampsUnit.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/CampsUnit.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/CampsUnitsController.html" afterPath="$PROJECT_DIR$/Doc/classes/CampsUnitsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/CampsUnitsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/CampsUnitsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.A2bsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.A2bsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.A2bsUnitsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.A2bsUnitsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.AppController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.AppController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.AssistsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.AssistsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.AssistsUnitsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.AssistsUnitsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.BuildingsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.BuildingsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.CampsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.CampsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.CampsUnitsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.CampsUnitsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.Component.DataComponent.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.Component.DataComponent.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.Component.DatanodeComponent.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.Component.DatanodeComponent.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.Component.QueryComponent.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.Component.QueryComponent.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.DatabuildingsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.DatabuildingsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.DatatechnosController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.DatatechnosController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.DataunitsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.DataunitsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.DtbuildingsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.DtbuildingsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.DttechnosController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.DttechnosController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.DtunitsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.DtunitsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.FieldsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.FieldsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.GameController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.GameController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.InvitsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.InvitsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.MessagesController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.MessagesController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.PagesController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.PagesController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.RankteamsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.RankteamsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.RankusersController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.RankusersController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.ReportsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.ReportsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.ResourcesController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.ResourcesController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.SendsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.SendsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.TeamsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.TeamsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.TechnosController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.TechnosController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.UnitsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.UnitsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.UsersController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.UsersController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller.WorldsController.php.html" afterPath="$PROJECT_DIR$/Doc/files/Controller.WorldsController.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/DataBehavior.html" afterPath="$PROJECT_DIR$/Doc/classes/DataBehavior.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Behavior/DataBehavior.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Behavior/DataBehavior.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/DataComponent.html" afterPath="$PROJECT_DIR$/Doc/classes/DataComponent.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/Component/DataComponent.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/Component/DataComponent.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/input/Controller/Component/DataComponent.php" afterPath="$PROJECT_DIR$/input/Controller/Component/DataComponent.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/Component/DataComponent.php" afterPath="$PROJECT_DIR$/www/app/Controller/Component/DataComponent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Databuilding.html" afterPath="$PROJECT_DIR$/Doc/classes/Databuilding.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Databuilding.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Databuilding.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/DatabuildingsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/DatabuildingsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Datanode.html" afterPath="$PROJECT_DIR$/Doc/classes/Datanode.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Datanode.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Datanode.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Model/Datanode.php" afterPath="$PROJECT_DIR$/www/app/Model/Datanode.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/DatanodeComponent.html" afterPath="$PROJECT_DIR$/Doc/classes/DatanodeComponent.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/Component/DatanodeComponent.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/Component/DatanodeComponent.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/input/Controller/Component/DatanodeComponent.php" afterPath="$PROJECT_DIR$/input/Controller/Component/DatanodeComponent.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/Component/DatanodeComponent.php" afterPath="$PROJECT_DIR$/www/app/Controller/Component/DatanodeComponent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Datatechno.html" afterPath="$PROJECT_DIR$/Doc/classes/Datatechno.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Datatechno.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Datatechno.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/DatatechnosController.html" afterPath="$PROJECT_DIR$/Doc/classes/DatatechnosController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/DatatechnosController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/DatatechnosController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Dataunit.html" afterPath="$PROJECT_DIR$/Doc/classes/Dataunit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Dataunit.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Dataunit.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/DataunitsController.html" afterPath="$PROJECT_DIR$/Doc/classes/DataunitsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/DataunitsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/DataunitsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Dtbuilding.html" afterPath="$PROJECT_DIR$/Doc/classes/Dtbuilding.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Dtbuilding.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Dtbuilding.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/DtbuildingsController.html" afterPath="$PROJECT_DIR$/Doc/classes/DtbuildingsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/DtbuildingsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/DtbuildingsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Dttechno.html" afterPath="$PROJECT_DIR$/Doc/classes/Dttechno.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Dttechno.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Dttechno.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/DttechnosController.html" afterPath="$PROJECT_DIR$/Doc/classes/DttechnosController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/DttechnosController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/DttechnosController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Dtunit.html" afterPath="$PROJECT_DIR$/Doc/classes/Dtunit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Dtunit.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Dtunit.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/DtunitsController.html" afterPath="$PROJECT_DIR$/Doc/classes/DtunitsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/DtunitsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/DtunitsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/FieldsController.html" afterPath="$PROJECT_DIR$/Doc/classes/FieldsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/FieldsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/FieldsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/GameController.html" afterPath="$PROJECT_DIR$/Doc/classes/GameController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/GameController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/GameController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Invit.html" afterPath="$PROJECT_DIR$/Doc/classes/Invit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Invit.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Invit.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/InvitsController.html" afterPath="$PROJECT_DIR$/Doc/classes/InvitsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/InvitsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/InvitsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Message.html" afterPath="$PROJECT_DIR$/Doc/classes/Message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Message.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Message.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/MessagesController.html" afterPath="$PROJECT_DIR$/Doc/classes/MessagesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/MessagesController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/MessagesController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.A2b.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.A2b.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.A2bsUnit.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.A2bsUnit.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.AppModel.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.AppModel.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Assist.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Assist.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.AssistsUnit.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.AssistsUnit.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Behavior.DataBehavior.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Behavior.DataBehavior.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Building.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Building.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Camp.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Camp.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.CampsUnit.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.CampsUnit.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Databuilding.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Databuilding.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Datanode.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Datanode.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Datatechno.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Datatechno.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Dataunit.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Dataunit.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Dtbuilding.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Dtbuilding.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Dttechno.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Dttechno.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Dtunit.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Dtunit.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Invit.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Invit.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Message.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Message.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Rankteam.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Rankteam.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Rankuser.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Rankuser.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Report.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Report.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Resource.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Resource.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Send.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Send.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Team.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Team.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Techno.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Techno.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.Unit.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.Unit.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.User.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.User.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model.World.php.html" afterPath="$PROJECT_DIR$/Doc/files/Model.World.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Model/Behavior/MultivalidatableBehavior.php" afterPath="$PROJECT_DIR$/www/app/Model/Behavior/MultivalidatableBehavior.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/PagesController.html" afterPath="$PROJECT_DIR$/Doc/classes/PagesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/PagesController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/PagesController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/QueryComponent.html" afterPath="$PROJECT_DIR$/Doc/classes/QueryComponent.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/Component/QueryComponent.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/Component/QueryComponent.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/input/Controller/Component/QueryComponent.php" afterPath="$PROJECT_DIR$/input/Controller/Component/QueryComponent.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/Component/QueryComponent.php" afterPath="$PROJECT_DIR$/www/app/Controller/Component/QueryComponent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Rankteam.html" afterPath="$PROJECT_DIR$/Doc/classes/Rankteam.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Rankteam.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Rankteam.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/RankteamsController.html" afterPath="$PROJECT_DIR$/Doc/classes/RankteamsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/RankteamsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/RankteamsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Rankuser.html" afterPath="$PROJECT_DIR$/Doc/classes/Rankuser.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Rankuser.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Rankuser.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/RankusersController.html" afterPath="$PROJECT_DIR$/Doc/classes/RankusersController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/RankusersController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/RankusersController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/Read Me.txt" afterPath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/Read Me.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Report.html" afterPath="$PROJECT_DIR$/Doc/classes/Report.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Report.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Report.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/ReportsController.html" afterPath="$PROJECT_DIR$/Doc/classes/ReportsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/ReportsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/ReportsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Resource.html" afterPath="$PROJECT_DIR$/Doc/classes/Resource.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Resource.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Resource.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/ResourcesController.html" afterPath="$PROJECT_DIR$/Doc/classes/ResourcesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/ResourcesController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/ResourcesController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Send.html" afterPath="$PROJECT_DIR$/Doc/classes/Send.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Send.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Send.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/SendsController.html" afterPath="$PROJECT_DIR$/Doc/classes/SendsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/SendsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/SendsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Model/Behavior/SluggableBehavior.php" afterPath="$PROJECT_DIR$/www/app/Model/Behavior/SluggableBehavior.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BattleSystem/Strategy.php" afterPath="$PROJECT_DIR$/BattleSystem/Strategy.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Team.html" afterPath="$PROJECT_DIR$/Doc/classes/Team.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Team.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Team.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/TeamsController.html" afterPath="$PROJECT_DIR$/Doc/classes/TeamsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/TeamsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/TeamsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Techno.html" afterPath="$PROJECT_DIR$/Doc/classes/Techno.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Techno.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Techno.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/TechnosController.html" afterPath="$PROJECT_DIR$/Doc/classes/TechnosController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/TechnosController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/TechnosController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BattleSystem/Tool.php" afterPath="$PROJECT_DIR$/BattleSystem/Tool.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Model/Typebuilding.php" afterPath="$PROJECT_DIR$/www/app/Model/Typebuilding.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/TypebuildingsController.php" afterPath="$PROJECT_DIR$/www/app/Controller/TypebuildingsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Model/Typetechno.php" afterPath="$PROJECT_DIR$/www/app/Model/Typetechno.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/TypetechnosController.php" afterPath="$PROJECT_DIR$/www/app/Controller/TypetechnosController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Model/Typeunit.php" afterPath="$PROJECT_DIR$/www/app/Model/Typeunit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/TypeunitsController.php" afterPath="$PROJECT_DIR$/www/app/Controller/TypeunitsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Test/Case/Controller/TypeunitsControllerTest.php" afterPath="$PROJECT_DIR$/www/app/Test/Case/Controller/TypeunitsControllerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/Unit.html" afterPath="$PROJECT_DIR$/Doc/classes/Unit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/Unit.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/Unit.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BattleSystem/Unit.php" afterPath="$PROJECT_DIR$/BattleSystem/Unit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BattleSystem/UnitArray.php" afterPath="$PROJECT_DIR$/BattleSystem/UnitArray.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BattleSystem/UnitFactory.php" afterPath="$PROJECT_DIR$/BattleSystem/UnitFactory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/UnitsController.html" afterPath="$PROJECT_DIR$/Doc/classes/UnitsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/UnitsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/UnitsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/User.html" afterPath="$PROJECT_DIR$/Doc/classes/User.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/User.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/User.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Model/User.php" afterPath="$PROJECT_DIR$/www/app/Model/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/UsersController.html" afterPath="$PROJECT_DIR$/Doc/classes/UsersController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/UsersController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/UsersController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Controller/UsersController.php" afterPath="$PROJECT_DIR$/www/app/Controller/UsersController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/View.Helper.AppHelper.php.html" afterPath="$PROJECT_DIR$/Doc/files/View.Helper.AppHelper.php.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/World.html" afterPath="$PROJECT_DIR$/Doc/classes/World.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Model/World.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Model/World.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Model/World.php" afterPath="$PROJECT_DIR$/www/app/Model/World.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/classes/WorldsController.html" afterPath="$PROJECT_DIR$/Doc/classes/WorldsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/files/Controller/WorldsController.php.txt" afterPath="$PROJECT_DIR$/Doc/files/Controller/WorldsController.php.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Launcher/a2bs.c" afterPath="$PROJECT_DIR$/Launcher/a2bs.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typebuildings/add.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typebuildings/add.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typetechnos/add.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typetechnos/add.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typeunits/add.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typeunits/add.ctp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SQL/biskanah.sql" afterPath="$PROJECT_DIR$/SQL/biskanah.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/input/View/Elements/camps.ctp" afterPath="$PROJECT_DIR$/input/View/Elements/camps.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Elements/camps.ctp" afterPath="$PROJECT_DIR$/www/app/View/Elements/camps.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/graphs/class.html" afterPath="$PROJECT_DIR$/Doc/graphs/class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/custom-icons.svg" afterPath="$PROJECT_DIR$/Doc/images/custom-icons.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Console/config/database.php" afterPath="$PROJECT_DIR$/Console/config/database.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Console/models/config/database.php" afterPath="$PROJECT_DIR$/www/app/Console/models/config/database.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Launcher/databuildings.php" afterPath="$PROJECT_DIR$/Launcher/databuildings.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Launcher/datatechnos.php" afterPath="$PROJECT_DIR$/Launcher/datatechnos.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/namespaces/default.html" afterPath="$PROJECT_DIR$/Doc/namespaces/default.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/reports/deprecated.html" afterPath="$PROJECT_DIR$/Doc/reports/deprecated.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Camps/edit.ctp" afterPath="$PROJECT_DIR$/www/app/View/Camps/edit.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typebuildings/edit.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typebuildings/edit.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typetechnos/edit.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typetechnos/edit.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typeunits/edit.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typeunits/edit.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/.idea/encodings.xml" afterPath="$PROJECT_DIR$/www/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/reports/errors.html" afterPath="$PROJECT_DIR$/Doc/reports/errors.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BattleSystem/functions.php" afterPath="$PROJECT_DIR$/BattleSystem/functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Launcher/game state.php" afterPath="$PROJECT_DIR$/Launcher/game state.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/webroot/css/Home/header.css" afterPath="$PROJECT_DIR$/www/app/webroot/css/Home/header.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/Console/models/views/pages/home.ctp" afterPath="$PROJECT_DIR$/www/app/Console/models/views/pages/home.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Layouts/home.ctp" afterPath="$PROJECT_DIR$/www/app/View/Layouts/home.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/icon-class.svg" afterPath="$PROJECT_DIR$/Doc/images/icon-class.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/icon-interface.svg" afterPath="$PROJECT_DIR$/Doc/images/icon-interface.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/images/icon-trait.svg" afterPath="$PROJECT_DIR$/Doc/images/icon-trait.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typebuildings/index.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typebuildings/index.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typetechnos/index.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typetechnos/index.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typeunits/index.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typeunits/index.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/index.html" afterPath="$PROJECT_DIR$/Doc/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/js/jquery.dotdotdot-1.5.9.js" afterPath="$PROJECT_DIR$/Doc/js/jquery.dotdotdot-1.5.9.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/js/jquery.dotdotdot-1.5.9.min.js" afterPath="$PROJECT_DIR$/Doc/js/jquery.dotdotdot-1.5.9.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/jquery.iviewer.css" afterPath="$PROJECT_DIR$/Doc/css/jquery.iviewer.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/js/jquery.iviewer.js" afterPath="$PROJECT_DIR$/Doc/js/jquery.iviewer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/js/jquery.iviewer.min.js" afterPath="$PROJECT_DIR$/Doc/js/jquery.iviewer.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/js/jquery.smooth-scroll.js" afterPath="$PROJECT_DIR$/Doc/js/jquery.smooth-scroll.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Buildings/level0.ctp" afterPath="$PROJECT_DIR$/www/app/View/Buildings/level0.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/lte-ie7.js" afterPath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/lte-ie7.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BattleSystem/main.php" afterPath="$PROJECT_DIR$/BattleSystem/main.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Console/main.php" afterPath="$PROJECT_DIR$/Console/main.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BattleSystem/main2.php" afterPath="$PROJECT_DIR$/BattleSystem/main2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/reports/markers.html" afterPath="$PROJECT_DIR$/Doc/reports/markers.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/.idea/misc.xml" afterPath="$PROJECT_DIR$/www/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/.idea/modules.xml" afterPath="$PROJECT_DIR$/www/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Launcher/myscript.php" afterPath="$PROJECT_DIR$/Launcher/myscript.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Launcher/myscript2.php" afterPath="$PROJECT_DIR$/Launcher/myscript2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-8e/phpdoc-cache-file_0d5361747b0038b37f5ec76a17b259d5.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-8e/phpdoc-cache-file_0d5361747b0038b37f5ec76a17b259d5.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-78/phpdoc-cache-file_0eb01fdecde7c37528c2616a8eeaaa64.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-78/phpdoc-cache-file_0eb01fdecde7c37528c2616a8eeaaa64.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-9f/phpdoc-cache-file_13d8493d92ee7100432ba7fab411c978.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-9f/phpdoc-cache-file_13d8493d92ee7100432ba7fab411c978.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ee/phpdoc-cache-file_1416cb941ad09a0940dcc94c8e597aa4.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ee/phpdoc-cache-file_1416cb941ad09a0940dcc94c8e597aa4.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-cf/phpdoc-cache-file_169c502c8869810024a49d0db5247f32.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-cf/phpdoc-cache-file_169c502c8869810024a49d0db5247f32.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ec/phpdoc-cache-file_19bafc7da67975da6f174e2353739029.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ec/phpdoc-cache-file_19bafc7da67975da6f174e2353739029.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-f4/phpdoc-cache-file_1fcc0656fdc2d84a1d6edd199a0eabbd.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-f4/phpdoc-cache-file_1fcc0656fdc2d84a1d6edd199a0eabbd.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-a0/phpdoc-cache-file_21ffae0fd060dbb83f39376e8b393d28.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-a0/phpdoc-cache-file_21ffae0fd060dbb83f39376e8b393d28.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-b4/phpdoc-cache-file_2ec4e021e3bd09e95a38f58a96428b09.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-b4/phpdoc-cache-file_2ec4e021e3bd09e95a38f58a96428b09.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-5d/phpdoc-cache-file_2fe134413de826e2da8170f9ccbad2e3.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-5d/phpdoc-cache-file_2fe134413de826e2da8170f9ccbad2e3.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-73/phpdoc-cache-file_345b6ad67ae8db62c28bcdeb5474c26b.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-73/phpdoc-cache-file_345b6ad67ae8db62c28bcdeb5474c26b.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-9e/phpdoc-cache-file_397f8b9ab14e9ea52505d81fd704aa74.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-9e/phpdoc-cache-file_397f8b9ab14e9ea52505d81fd704aa74.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-5d/phpdoc-cache-file_3caba058718b37e5a0f87f40db079865.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-5d/phpdoc-cache-file_3caba058718b37e5a0f87f40db079865.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ee/phpdoc-cache-file_44076fc2a1cadfb45d23c19eb5e5aee9.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ee/phpdoc-cache-file_44076fc2a1cadfb45d23c19eb5e5aee9.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ff/phpdoc-cache-file_46878eec7199405360cdca44aeb7f51e.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ff/phpdoc-cache-file_46878eec7199405360cdca44aeb7f51e.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ef/phpdoc-cache-file_56b5b586c0bc46c393a0f7c4c3a1f373.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ef/phpdoc-cache-file_56b5b586c0bc46c393a0f7c4c3a1f373.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-9c/phpdoc-cache-file_57ec495d71cca4b64912d986258bb5ae.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-9c/phpdoc-cache-file_57ec495d71cca4b64912d986258bb5ae.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-e5/phpdoc-cache-file_5bb71749e8c5c82e215e03ae101e9f97.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-e5/phpdoc-cache-file_5bb71749e8c5c82e215e03ae101e9f97.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-bf/phpdoc-cache-file_60f0d838108389f5332b810cc3a44976.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-bf/phpdoc-cache-file_60f0d838108389f5332b810cc3a44976.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-10/phpdoc-cache-file_69b46681d465d4a7fd1b43501516d755.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-10/phpdoc-cache-file_69b46681d465d4a7fd1b43501516d755.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ee/phpdoc-cache-file_6a878475db7f284eb62d6356d5f66ccf.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ee/phpdoc-cache-file_6a878475db7f284eb62d6356d5f66ccf.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-64/phpdoc-cache-file_6adb643a4c19927293d73a44f552dd01.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-64/phpdoc-cache-file_6adb643a4c19927293d73a44f552dd01.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-a4/phpdoc-cache-file_6d2b7c2e0bafba9bb8dbc313200c9a43.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-a4/phpdoc-cache-file_6d2b7c2e0bafba9bb8dbc313200c9a43.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-9b/phpdoc-cache-file_7163902a122f61718dab497c4a0d3b5e.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-9b/phpdoc-cache-file_7163902a122f61718dab497c4a0d3b5e.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-9f/phpdoc-cache-file_71bc486c2e66e074eb294f69daf38089.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-9f/phpdoc-cache-file_71bc486c2e66e074eb294f69daf38089.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-7f/phpdoc-cache-file_73799c1f45dcee98ae8be55d48bfc666.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-7f/phpdoc-cache-file_73799c1f45dcee98ae8be55d48bfc666.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-59/phpdoc-cache-file_742cb268cbbeeae1286c9f1184ca4982.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-59/phpdoc-cache-file_742cb268cbbeeae1286c9f1184ca4982.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-39/phpdoc-cache-file_79f73d568eafb86a6c93362963b989b7.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-39/phpdoc-cache-file_79f73d568eafb86a6c93362963b989b7.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2e/phpdoc-cache-file_7e2adf3c5b9b8257c8cd8b591de9e5d8.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2e/phpdoc-cache-file_7e2adf3c5b9b8257c8cd8b591de9e5d8.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-d1/phpdoc-cache-file_7eebcbef115876c5f08550ef6c5dea2e.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-d1/phpdoc-cache-file_7eebcbef115876c5f08550ef6c5dea2e.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-32/phpdoc-cache-file_87d5f05567b63d376530e535c63319b6.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-32/phpdoc-cache-file_87d5f05567b63d376530e535c63319b6.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ea/phpdoc-cache-file_8ca0e9b4fb703852ea3965917fdb152d.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ea/phpdoc-cache-file_8ca0e9b4fb703852ea3965917fdb152d.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-b3/phpdoc-cache-file_96439dcfb009e2a57a35e767aedf534d.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-b3/phpdoc-cache-file_96439dcfb009e2a57a35e767aedf534d.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-13/phpdoc-cache-file_9d0a65b364767127c78df4c87787fbad.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-13/phpdoc-cache-file_9d0a65b364767127c78df4c87787fbad.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ed/phpdoc-cache-file_9f257708eff9f3a2e094a869878a437e.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ed/phpdoc-cache-file_9f257708eff9f3a2e094a869878a437e.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-4d/phpdoc-cache-file_a1821a37b4b2e9240f70068f6bdea09e.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-4d/phpdoc-cache-file_a1821a37b4b2e9240f70068f6bdea09e.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-52/phpdoc-cache-file_a2428b782f0170c2eb5ba1547ab2c53f.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-52/phpdoc-cache-file_a2428b782f0170c2eb5ba1547ab2c53f.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-a7/phpdoc-cache-file_a51ea4692120a0fcc499cf0238bbde24.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-a7/phpdoc-cache-file_a51ea4692120a0fcc499cf0238bbde24.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-e3/phpdoc-cache-file_a8f845aea347cd63cdf130fba87333e7.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-e3/phpdoc-cache-file_a8f845aea347cd63cdf130fba87333e7.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-fe/phpdoc-cache-file_ada7da19ade23593b3a4f26aba2b9c41.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-fe/phpdoc-cache-file_ada7da19ade23593b3a4f26aba2b9c41.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2f/phpdoc-cache-file_adf6ca3debdcc204b4e83e40fe5cf477.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2f/phpdoc-cache-file_adf6ca3debdcc204b4e83e40fe5cf477.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-e3/phpdoc-cache-file_b0f14b102c2577f6e0f7c80400d04784.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-e3/phpdoc-cache-file_b0f14b102c2577f6e0f7c80400d04784.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-a3/phpdoc-cache-file_b314e068c365b1810a88ff24385a4f74.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-a3/phpdoc-cache-file_b314e068c365b1810a88ff24385a4f74.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2d/phpdoc-cache-file_b41cb1446241de876645cc158b83a838.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2d/phpdoc-cache-file_b41cb1446241de876645cc158b83a838.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-70/phpdoc-cache-file_b43b5b35829475a778c9a26b23aec393.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-70/phpdoc-cache-file_b43b5b35829475a778c9a26b23aec393.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-b7/phpdoc-cache-file_b98eafa27fbcf187ebe09d186cbe1718.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-b7/phpdoc-cache-file_b98eafa27fbcf187ebe09d186cbe1718.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-a5/phpdoc-cache-file_bb3300dc9c6d05af6c204ea5cf1be186.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-a5/phpdoc-cache-file_bb3300dc9c6d05af6c204ea5cf1be186.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-1f/phpdoc-cache-file_c22ff6117222b16e3936e9da9687300b.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-1f/phpdoc-cache-file_c22ff6117222b16e3936e9da9687300b.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-1f/phpdoc-cache-file_c2b2e289195137cbd638bac4dcf7da0a.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-1f/phpdoc-cache-file_c2b2e289195137cbd638bac4dcf7da0a.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-62/phpdoc-cache-file_c40d08814a6cf8334dc8e7c369ab130d.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-62/phpdoc-cache-file_c40d08814a6cf8334dc8e7c369ab130d.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-5b/phpdoc-cache-file_c9ea1635e993593b92fe488b5d6e7f95.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-5b/phpdoc-cache-file_c9ea1635e993593b92fe488b5d6e7f95.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-f4/phpdoc-cache-file_caf7d8f61e38d25a058774bd56c2614a.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-f4/phpdoc-cache-file_caf7d8f61e38d25a058774bd56c2614a.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-d0/phpdoc-cache-file_ce8be57e442f3ebbb3e353ae7fba454f.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-d0/phpdoc-cache-file_ce8be57e442f3ebbb3e353ae7fba454f.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-1c/phpdoc-cache-file_d08699b3a46ed5a9cb363e8d3f0f0eb9.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-1c/phpdoc-cache-file_d08699b3a46ed5a9cb363e8d3f0f0eb9.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-3d/phpdoc-cache-file_d56d7355ba3ac2f4d0000c5ecc409989.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-3d/phpdoc-cache-file_d56d7355ba3ac2f4d0000c5ecc409989.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-3b/phpdoc-cache-file_d80253634723d6c1f32107b06dfca03d.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-3b/phpdoc-cache-file_d80253634723d6c1f32107b06dfca03d.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2e/phpdoc-cache-file_e271e3b667e6bd3f045dbc3466eef64a.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2e/phpdoc-cache-file_e271e3b667e6bd3f045dbc3466eef64a.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ac/phpdoc-cache-file_e443b855f8d581f2264e45c40c0e2ee4.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-ac/phpdoc-cache-file_e443b855f8d581f2264e45c40c0e2ee4.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2f/phpdoc-cache-file_e6c15e70f3d65dd64be8333cfaa08aba.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2f/phpdoc-cache-file_e6c15e70f3d65dd64be8333cfaa08aba.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-f9/phpdoc-cache-file_eec735c72f799201b37364e8099afe4f.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-f9/phpdoc-cache-file_eec735c72f799201b37364e8099afe4f.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-09/phpdoc-cache-file_f03f85432c229c41192cf77386c6c0fe.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-09/phpdoc-cache-file_f03f85432c229c41192cf77386c6c0fe.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2e/phpdoc-cache-settings.dat" afterPath="$PROJECT_DIR$/Doc/build/phpdoc-cache-2e/phpdoc-cache-settings.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/fonts/phpdocumentor-clean-icons.dev.svg" afterPath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/fonts/phpdocumentor-clean-icons.dev.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/fonts/phpdocumentor-clean-icons.svg" afterPath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/fonts/phpdocumentor-clean-icons.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/prism.css" afterPath="$PROJECT_DIR$/Doc/css/prism.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/js/prism.min.js" afterPath="$PROJECT_DIR$/Doc/js/prism.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/input/View/Elements/resources.ctp" afterPath="$PROJECT_DIR$/input/View/Elements/resources.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Elements/resources.ctp" afterPath="$PROJECT_DIR$/www/app/View/Elements/resources.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/.idea/scopes/scope_settings.xml" afterPath="$PROJECT_DIR$/www/.idea/scopes/scope_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/style.css" afterPath="$PROJECT_DIR$/Doc/css/phpdocumentor-clean-icons/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doc/css/template.css" afterPath="$PROJECT_DIR$/Doc/css/template.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Console/test.php" afterPath="$PROJECT_DIR$/Console/test.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Launcher/test.php" afterPath="$PROJECT_DIR$/Launcher/test.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Console/test" afterPath="$PROJECT_DIR$/Console/test" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Console/updates.php" afterPath="$PROJECT_DIR$/Console/updates.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Launcher/users.php" afterPath="$PROJECT_DIR$/Launcher/users.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/.idea/vcs.xml" afterPath="$PROJECT_DIR$/www/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typebuildings/view.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typebuildings/view.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typetechnos/view.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typetechnos/view.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Typeunits/view.ctp" afterPath="$PROJECT_DIR$/www/app/View/Typeunits/view.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/app/View/Buildings/view11.ctp" afterPath="$PROJECT_DIR$/www/app/View/Buildings/view11.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/.idea/workspace.xml" afterPath="$PROJECT_DIR$/www/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Launcher/worlds.php" afterPath="$PROJECT_DIR$/Launcher/worlds.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/.idea/www.iml" afterPath="$PROJECT_DIR$/www/.idea/www.iml" />
     </list>
     <ignored path="Biskanah.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403564809861" ignored="false" />
+    <file path="/Dummy.txt" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404444846516" ignored="false" />
     <file path="/index.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394917543907" ignored="false" />
-    <file path="/BuildingsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396285017504" ignored="false" />
+    <file path="/BuildingsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404438601912" ignored="false" />
     <file path="/DtbuildingsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1393710319650" ignored="false" />
     <file path="/default.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394898074126" ignored="false" />
     <file path="$USER_HOME$/Downloads/sharkconfig/app/Config/database.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1393806186742" ignored="false" />
@@ -53,7 +438,7 @@
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/lib/Cake/Test/bake_compare/Controller/NoActions.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584370654" ignored="false" />
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Config/bootstrap.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584580839" ignored="false" />
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Controller/UsersController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394591984498" ignored="false" />
-    <file path="/UsersController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394992839310" ignored="false" />
+    <file path="/UsersController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404435037376" ignored="false" />
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/login.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394584801932" ignored="false" />
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Controller/UsersWorksController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592493811" ignored="false" />
     <file path="/PagesController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394917814430" ignored="false" />
@@ -63,7 +448,7 @@
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/register.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592209507" ignored="false" />
     <file path="/register.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394587302257" ignored="false" />
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Model/User.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592169486" ignored="false" />
-    <file path="/User.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394892297452" ignored="false" />
+    <file path="/User.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404435222656" ignored="false" />
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/edit.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592181807" ignored="false" />
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/add.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592189284" ignored="false" />
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Users/index.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592200080" ignored="false" />
@@ -72,7 +457,7 @@
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/Controller/WorksController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592541798" ignored="false" />
     <file path="/WorksController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394592538376" ignored="false" />
     <file path="/bootstrap.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394644657400" ignored="false" />
-    <file path="/a.dummy" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403356554288" ignored="false" />
+    <file path="/a.dummy" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404442061890" ignored="false" />
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/View/Elements/menu.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394654287770" ignored="false" />
     <file path="$PROJECT_DIR$/../../PhilippeCadene/www/app/webroot/css/style.css" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394656450756" ignored="false" />
     <file path="/style.css" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394656449499" ignored="false" />
@@ -85,30 +470,30 @@
     <file path="/CakeSession.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394852003607" ignored="false" />
     <file path="/resources.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394884617095" ignored="false" />
     <file path="/login.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394891763103" ignored="false" />
-    <file path="/CampsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395264491314" ignored="false" />
+    <file path="/CampsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404436943561" ignored="false" />
     <file path="/GameController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394899764418" ignored="false" />
     <file path="/resources.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394900381522" ignored="false" />
     <file path="/camps.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394898107668" ignored="false" />
     <file path="/Camp.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396211414083" ignored="false" />
     <file path="/*.regexp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394930831887" ignored="false" />
     <file path="/view.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396197006104" ignored="false" />
-    <file path="/Datanode.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395607337572" ignored="false" />
+    <file path="/Datanode.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404439788660" ignored="false" />
     <file path="/worldsGenerate.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394991245128" ignored="false" />
     <file path="/WorldsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1394992564780" ignored="false" />
     <file path="/DatabuildingsController.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395002515352" ignored="false" />
-    <file path="/DatanodeComponent.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396196589852" ignored="false" />
+    <file path="/DatanodeComponent.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404439638556" ignored="false" />
     <file path="/DataBehavior.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395099373588" ignored="false" />
     <file path="/Databuilding.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395779746625" ignored="false" />
-    <file path="/Building.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395777271775" ignored="false" />
+    <file path="/Building.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404443394927" ignored="false" />
     <file path="/create.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395508277560" ignored="false" />
     <file path="/QueryComponent.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395608287734" ignored="false" />
     <file path="/Dtbuilding.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396283146193" ignored="false" />
     <file path="/0.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395780924446" ignored="false" />
-    <file path="/Techno.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395783987744" ignored="false" />
+    <file path="/Techno.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404443401046" ignored="false" />
     <file path="/11.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395787124135" ignored="false" />
     <file path="/header.css" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1395793682072" ignored="false" />
-    <file path="/Biskanah.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396200129039" ignored="false" />
-    <file path="/BDD.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396195824782" ignored="false" />
+    <file path="/Biskanah.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404446130691" ignored="false" />
+    <file path="/BDD.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404421930975" ignored="false" />
     <file path="/level0.ctp" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396197063452" ignored="false" />
     <file path="/Typebuilding.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396200666804" ignored="false" />
     <file path="/updates.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396203987670" ignored="false" />
@@ -150,13 +535,23 @@
     <file path="$PROJECT_DIR$/../../../Etudes/MathInfo/Semestre6/LI345 BDWEB/www/Descriptif.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1396555484924" ignored="false" />
     <file path="/Battle.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403722881038" ignored="false" />
     <file path="/IStrategy.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403346486640" ignored="false" />
-    <file path="/main.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403352798439" ignored="false" />
+    <file path="/main.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404446462294" ignored="false" />
     <file path="/Tool.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403719365504" ignored="false" />
     <file path="/UnitArray.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403718386984" ignored="false" />
     <file path="/main2.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403351839717" ignored="false" />
     <file path="/Strategy.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403353010715" ignored="false" />
-    <file path="/Unit.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403649467774" ignored="false" />
+    <file path="/Unit.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404444936960" ignored="false" />
     <file path="/UnitFactory.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1403649505397" ignored="false" />
+    <file path="/database.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404399822575" ignored="false" />
+    <file path="/Worlds.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404441621270" ignored="false" />
+    <file path="/Buildings.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404446754269" ignored="false" />
+    <file path="/Technos.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404447340318" ignored="false" />
+    <file path="/test.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404443550630" ignored="false" />
+    <file path="/Element.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404447166656" ignored="false" />
+    <file path="/World.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404446521734" ignored="false" />
+    <file path="/Units.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404446775671" ignored="false" />
+    <file path="/Factory.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404446213805" ignored="false" />
+    <file path="/DB.php" changelist="63e9295c-9c2c-4575-a1c5-5d6441a34be4" time="1404447216557" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,91 +571,93 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DataComponent.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/app/Controller/Component/DataComponent.php">
+      <file leaf-file-name="World.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Console/src/World.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="174" column="43" selection-start="5879" selection-end="5879" vertical-scroll-proportion="-14.0">
+            <state line="26" column="41" selection-start="475" selection-end="475" vertical-scroll-proportion="-16.25">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Battle.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/BattleSystem/Battle.php">
+      <file leaf-file-name="Units.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Console/src/Units.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="25" selection-start="2285" selection-end="2285" vertical-scroll-proportion="1.6027875">
+            <state line="22" column="0" selection-start="379" selection-end="379" vertical-scroll-proportion="-13.75">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tool.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BattleSystem/Tool.php">
+      <file leaf-file-name="DB.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Console/src/DB.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="64" selection-start="927" selection-end="964" vertical-scroll-proportion="-17.5">
+            <state line="49" column="0" selection-start="878" selection-end="878" vertical-scroll-proportion="-30.625">
+              <folding>
+                <element signature="e#9#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Console/main.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="1" selection-start="121" selection-end="121" vertical-scroll-proportion="0.10703364">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Strategy.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BattleSystem/Strategy.php">
+      <file leaf-file-name="Building.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Console/src/Building.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="24" selection-start="249" selection-end="249" vertical-scroll-proportion="-5.0">
+            <state line="30" column="0" selection-start="599" selection-end="599" vertical-scroll-proportion="-18.75">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BattleSystem/main.php">
+      <file leaf-file-name="Biskanah.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Console/src/Biskanah.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="20" selection-start="757" selection-end="757" vertical-scroll-proportion="-22.5">
+            <state line="31" column="0" selection-start="538" selection-end="538" vertical-scroll-proportion="-19.375">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main2.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BattleSystem/main2.php">
+      <file leaf-file-name="Element.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Console/src/Element.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="31" selection-start="233" selection-end="233" vertical-scroll-proportion="-6.25">
+            <state line="31" column="5" selection-start="607" selection-end="607" vertical-scroll-proportion="-19.375">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BattleSystem/functions.php">
+      <file leaf-file-name="Buildings.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Console/src/Buildings.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="18" column="9" selection-start="345" selection-end="345" vertical-scroll-proportion="-11.25">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnitFactory.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BattleSystem/UnitFactory.php">
+      <file leaf-file-name="Techno.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Console/src/Techno.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="18" selection-start="429" selection-end="429" vertical-scroll-proportion="-15.0">
+            <state line="14" column="44" selection-start="231" selection-end="231" vertical-scroll-proportion="-8.75">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Unit.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BattleSystem/Unit.php">
+      <file leaf-file-name="Technos.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Console/src/Technos.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="5" selection-start="489" selection-end="489" vertical-scroll-proportion="-20.625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UnitArray.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BattleSystem/UnitArray.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="21" selection-start="735" selection-end="735" vertical-scroll-proportion="-25.0">
+            <state line="23" column="1" selection-start="395" selection-end="395" vertical-scroll-proportion="-14.375">
               <folding />
             </state>
           </provider>
@@ -284,31 +681,30 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/www/app/View/Buildings/view11.ctp" />
-        <option value="$PROJECT_DIR$/www/app/Controller/BuildingsController.php" />
-        <option value="$PROJECT_DIR$/www/lib/Cake/Controller/Controller.php" />
-        <option value="$PROJECT_DIR$/www/app/Controller/Component/DatanodeComponent.php" />
-        <option value="$PROJECT_DIR$/www/app/Controller/Component/QueryComponent.php" />
-        <option value="$PROJECT_DIR$/www/app/Controller/CampsController.php" />
-        <option value="$PROJECT_DIR$/www/app/Controller/Component/DataComponent.php" />
-        <option value="$PROJECT_DIR$/BattleSystem/IStrategy.php" />
-        <option value="$PROJECT_DIR$/BattleSystem/main2.php" />
-        <option value="$PROJECT_DIR$/BattleSystem/Strategy.php" />
-        <option value="$PROJECT_DIR$/BattleSystem/Unit.php" />
-        <option value="$PROJECT_DIR$/BattleSystem/UnitArray.php" />
-        <option value="$PROJECT_DIR$/BattleSystem/Tool.php" />
-        <option value="$PROJECT_DIR$/BattleSystem/UnitFactory.php" />
-        <option value="$PROJECT_DIR$/BattleSystem/Battle.php" />
-        <option value="$PROJECT_DIR$/BattleSystem/main.php" />
+        <option value="$PROJECT_DIR$/Console/src/BDD.php" />
+        <option value="$PROJECT_DIR$/Console/config/database.php" />
+        <option value="$PROJECT_DIR$/Console/src/Worlds.php" />
+        <option value="$PROJECT_DIR$/Console/test.php" />
+        <option value="$PROJECT_DIR$/Console/src/Unit.php" />
+        <option value="$PROJECT_DIR$/Console/src/Building.php" />
+        <option value="$PROJECT_DIR$/Console/src/Techno.php" />
+        <option value="$PROJECT_DIR$/Console/src/Biskanah.php" />
+        <option value="$PROJECT_DIR$/Console/src/Factory.php" />
+        <option value="$PROJECT_DIR$/Console/src/World.php" />
+        <option value="$PROJECT_DIR$/Console/src/Buildings.php" />
+        <option value="$PROJECT_DIR$/Console/src/Units.php" />
+        <option value="$PROJECT_DIR$/Console/src/Element.php" />
+        <option value="$PROJECT_DIR$/Console/src/Technos.php" />
+        <option value="$PROJECT_DIR$/Console/src/DB.php" />
+        <option value="$PROJECT_DIR$/Console/main.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
-    <option name="y" value="112" />
-    <option name="width" value="1212" />
-    <option name="height" value="1054" />
+    <option name="y" value="22" />
+    <option name="width" value="1317" />
+    <option name="height" value="1174" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -336,7 +732,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -405,7 +800,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Camps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -428,10 +849,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Behavior" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -493,12 +910,85 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Console" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Console" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Console" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Biskanah" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="BattleSystem" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -509,11 +999,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Console/src" />
       <recent name="$PROJECT_DIR$/www/app/View/Buildings" />
       <recent name="$PROJECT_DIR$/www/app/Lib" />
       <recent name="$PROJECT_DIR$/www" />
       <recent name="$PROJECT_DIR$/www/app" />
-      <recent name="$PROJECT_DIR$/www/app/webroot" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/www/app/Model/Behavior" />
@@ -594,14 +1084,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="112" width="1212" height="1054" extended-state="1" />
+    <frame x="0" y="22" width="1317" height="1174" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16452992" sideWeight="0.99682945" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19210978" sideWeight="0.8354701" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30920535" sideWeight="0.99242425" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297491" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -677,106 +1167,116 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/app/Model/Behavior/DataBehavior.php">
+    <entry file="file://$PROJECT_DIR$/Console/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/Model/Behavior/MultivalidatableBehavior.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/Model/Behavior/SluggableBehavior.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="5" selection-start="1911" selection-end="1911" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/Controller/CampsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="24" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/Controller/BuildingsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="56" selection-start="7095" selection-end="7095" vertical-scroll-proportion="0.0">
+        <state line="1" column="37" selection-start="43" selection-end="43" vertical-scroll-proportion="-0.625">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/Controller/AppController.php">
+    <entry file="file://$PROJECT_DIR$/Console/test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/app/Controller/Component/DataComponent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="43" selection-start="5879" selection-end="5879" vertical-scroll-proportion="-14.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BattleSystem/Strategy.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="24" selection-start="249" selection-end="249" vertical-scroll-proportion="-5.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BattleSystem/main2.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="31" selection-start="233" selection-end="233" vertical-scroll-proportion="-6.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BattleSystem/UnitArray.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="21" selection-start="735" selection-end="735" vertical-scroll-proportion="-25.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BattleSystem/UnitFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="18" selection-start="429" selection-end="429" vertical-scroll-proportion="-15.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BattleSystem/Tool.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="64" selection-start="927" selection-end="964" vertical-scroll-proportion="-17.5">
+        <state line="7" column="31" selection-start="146" selection-end="146" vertical-scroll-proportion="-4.375">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BattleSystem/Unit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="5" selection-start="489" selection-end="489" vertical-scroll-proportion="-20.625">
+        <state line="14" column="4" selection-start="114" selection-end="129" vertical-scroll-proportion="-8.75">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BattleSystem/main.php">
+    <entry file="file://$PROJECT_DIR$/Console/src/Unit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="20" selection-start="757" selection-end="757" vertical-scroll-proportion="-22.5">
+        <state line="33" column="4" selection-start="739" selection-end="813" vertical-scroll-proportion="-20.625">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BattleSystem/functions.php">
+    <entry file="file://$PROJECT_DIR$/Console/src/Factory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="63" selection-start="1421" selection-end="1421" vertical-scroll-proportion="-34.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Console/test">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BattleSystem/Battle.php">
+    <entry file="file://$PROJECT_DIR$/Console/src/Biskanah.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="25" selection-start="2285" selection-end="2285" vertical-scroll-proportion="1.6027875">
+        <state line="31" column="0" selection-start="538" selection-end="538" vertical-scroll-proportion="-19.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Console/src/World.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="41" selection-start="475" selection-end="475" vertical-scroll-proportion="-16.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Console/src/Building.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="0" selection-start="599" selection-end="599" vertical-scroll-proportion="-18.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Console/src/Techno.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="44" selection-start="231" selection-end="231" vertical-scroll-proportion="-8.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Console/src/Units.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="379" selection-end="379" vertical-scroll-proportion="-13.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Console/src/Buildings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="9" selection-start="345" selection-end="345" vertical-scroll-proportion="-11.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Console/src/Element.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="5" selection-start="607" selection-end="607" vertical-scroll-proportion="-19.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Console/src/Technos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="1" selection-start="395" selection-end="395" vertical-scroll-proportion="-14.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Console/src/DB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="0" selection-start="878" selection-end="878" vertical-scroll-proportion="-30.625">
+          <folding>
+            <element signature="e#9#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Console/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="1" selection-start="121" selection-end="121" vertical-scroll-proportion="0.10703364">
           <folding />
         </state>
       </provider>

@@ -1,8 +1,16 @@
 <?php
 
-include_once('src/Biskanah.php');
+require_once('config/database.php');
 
-$biskanah = new Biskanah();
+require_once('src/Element.php');
 
-$biskanah->generateAll();
-//$biskanah->generateDtbuilding();
+foreach (glob('src/*.php') as $filename)
+{
+    require_once $filename;
+}
+
+
+
+$db = new DB();
+$biskanah = Factory::makeBiskanah();
+$biskanah->generateAll($db);

@@ -23,7 +23,8 @@ class BuildingsController extends AppController {
  * @param int $_SESSION['camp_id']
  * @return void
  */
-    public function display($id=null){
+    public function display($id=null)
+    {
         if($id === null)
             throw new  NotFoundException(__('Invalid building'));
 
@@ -96,38 +97,40 @@ class BuildingsController extends AppController {
 * @param int $_POST['level']
 * @return void
 */
-	public function create($field = null) {
-        if($this->request->is('post')){
-
+	public function create()
+    {
+        if ($this->request->is('post'))
+        {
             // $query tableau de request-
-            if(!isset($this->request->data['Building']['type'])
-                && !isset($this->request->data['Building']['field']))
+            if(!isset($this->request->data['Building']['type']))
+            {
                 throw new NotImplementedException('Bad arguments in POST');
+            }
+
             $query = array(
                 'databuilding_id' => $this->Data->toDataId($this->request->data['Building']['type']),
                 'type' => $this->request->data['Building']['type'],
-                'field' => $this->request->data['Building']['field'],
                 'camp_id' => $this->Session->read('Camp.current')
             );
 
-            if($query['field'] <= 0 || $query['field'] >=20){
-                throw new NotImplementedException('Impossible de construire sur ce field.');
-            }
-
             $this->loadModel('Building');
-            if($this->_isBuildingInField($query['field'])){
-                throw new NotImplementedException('Il existe déjà un batiment construit sur le field.');
+            if ($this->_isBuildingType($query['type']))
+            {
+                throw new NotImplementedException('Il existe déjà un batiment de ce type.');
             }
 
             // vérification des prérequis
             $this->Datanode = $this->Components->load('Datanode');
-            if(!$this->Datanode->isBuildingAllowed($query['type'])){
-                throw new NotImplementedException('Les prérequis sont manquants.');
+            $kind = 1; // buildings
+            $type = $query['type'];
+            $lvl = 1;
+            if(!$this->Datanode->isAllowed($kind, $type, $lvl)){
+                throw new NotImplementedException('Les prérequis pour construire ce batiment sont manquants.');
             }
 
             // récupère les infos du batiment à construire
             $this->loadModel('Databuilding');
-            $this->Data->writeIfNot('Databuilding',$this->Databuilding->findById($query['databuilding_id']));
+            $this->Data->writeIfNot('Databuilding', $this->Databuilding->findById($query['databuilding_id']));
             if($this->Data->read('Databuilding.lvl') != 1){
                 throw new NotImplementedException('Le batiment demandé est de niveau !=1');
             }
@@ -138,7 +141,6 @@ class BuildingsController extends AppController {
             }else{
                 $this->Building->save(array(
                     'camp_id' => $this->Session->read('Camp.current'),
-                    'field' => $query['field'],
                     'databuilding_id' => $query['databuilding_id']-1 // id_building level(0) = (id_building level(1) - 1)
                 ));
 
@@ -170,7 +172,6 @@ class BuildingsController extends AppController {
             $this->Datanode = $this->Components->load('Datanode');
             $verifiedBuildings = $this->Datanode->allowedBuildings();
             $this->set('verifiedBuildings', $verifiedBuildings);
-            $this->set('field',$field);
         }
     }
 
@@ -391,17 +392,20 @@ class BuildingsController extends AppController {
 
 
     /**
-     * Vérifie que le champ est libre
+     * Vérifie qu'il existe un batiment de même type sur la vile
      *
      * @param $field
      *
      * @return bool
      */
-    private function _isBuildingInField($field)
+    private function _isBuildingType($type)
     {
-        foreach($this->Data->read('Buildings') as $building){
-            $building=current($building);
-            if($building['field'] == $field){
+        foreach ($this->Data->read('Buildings') as $building)
+        {
+            $building = current($building);
+
+            if ($building['type'] == $type)
+            {
                 return true;
             }
         }
