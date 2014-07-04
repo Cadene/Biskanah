@@ -37,8 +37,62 @@ class TechnosController extends AppController {
  * @return void
  */
 	public function upgrade() {
+        if($this->request->is('post')){
+            $data = current($this->request->data);
+            // $query tableau de request
+            if(!isset($$data['id']) && !isset($data['building_id']))
+                throw new NotImplementedException('Bad arguments in POST');
+            $query = array(
+                'id' => $data['id'],
+                'building_id' => $data['building_id']
+            );
 
+            $this->loadModel('Techno');
+            $this->Data->write('Techno',$this->Techno->findById($query['id']));
+
+            $this->loadModel('Dttechno');
+            $this->Dttechno->write('User_Dttechnos',$this->Dttechno->findByTechnoId($query['id']));
+
+            $lvls_to_add = $this->_lvls_to_add($this->Data->read('User_Dttechnos'));
+
+            $query['type'] = $this->Data->read('Techno.datatechno_id_type');
+            $query['datatechno_id'] = $this->Data->read('Techno.datatechno_id') + $lvls_to_add;
+            $query['lvl'] = $this->Data->read('Techno.datatechno_id_lvl') + $lvls_to_add;
+
+            $this->loadModel('Datatechno');
+            $this->Data->write('Datatechno',$this->Datatechno->findById($query['datatechno_id']));
+
+            // vérifie les ressources
+            if(!$this->_enoughResources($this->Data->read('Datatechno'))){
+                throw new NotImplementedException('Pas assez de ressources dispo');
+            }else{
+
+                $begin = $this->_begin($this->Dttechno->lastByBuildingId($query['building_id']));
+
+                $this->Dttechno->save(array(
+                    'techno_id' => $query['id'],
+                    'building_id' => $query['building_id'],
+                    'begin' => $begin,
+                    'finish' => $begin + $this->Data->read('Datatechno.time'))
+                );
+
+                $this->loadModel('Camp');
+                $this->Camp->updateAll(
+                    array(
+                        'res1' => $this->Data->read('Camp.currentres1'),
+                        'res2' => $this->Data->read('Camp.currentres2'),
+                        'res3' => $this->Data->read('Camp.currentres3'),
+                        'last_update' => time()
+                    ),
+                    array('Camp.id' => $this->Session->read('Camp.current'))
+                );
+            }
+
+            $this->Session->setFlash(__('La technologie a bien été amélioré.'));
+        }
+        return $this->redirect(array('controller'=>'camps','action'=>'view'));
 	}
+
 
 /**
  * create method
@@ -61,8 +115,9 @@ class TechnosController extends AppController {
                 'building_id' => $data['building_id'],
                 'type' => $data['type']
             );
+
             $this->loadModel('Techno');
-            if($this->_isTechnoInUser($query['type'])){
+            if($this->_isInTechnos($query['type'])){
                 throw new NotImplementedException('La technologie existe déjà.');
             }
 
@@ -77,7 +132,7 @@ class TechnosController extends AppController {
             $this->Data->writeIfNot('Datatechno',$this->Datatechno->findByLvlType($query['type'],1));
 
             // vérifie les ressources
-            if(!$this->_enoughResources($this->Data->read('Camp'),$this->Data->read('Datatechno'))){
+            if(!$this->_enoughResources($this->Data->read('Datatechno'))){
                 throw new NotImplementedException('Pas assez de ressources dispo');
             }else{
                 $this->Techno->save(array(
@@ -86,11 +141,14 @@ class TechnosController extends AppController {
                 ));
 
                 $this->loadModel('Dttechno');
+
+                $begin = $this->_begin($this->Dttechno->lastByBuildingId($query['building_id']));
+
                 $this->Dttechno->save(array(
                     'techno_id' => $this->Techno->id,
                     'building_id' => $query['building_id'],
-                    'begin' => time(),
-                    'finish' => (time()+ $this->Data->read('Datatechno.time'))
+                    'begin' => $begin,
+                    'finish' => ($begin + $this->Data->read('Datatechno.time'))
                 ));
 
                 $this->loadModel('Camp');
@@ -98,16 +156,61 @@ class TechnosController extends AppController {
                     array(
                         'res1' => $this->Data->read('Camp.res1'),
                         'res2' => $this->Data->read('Camp.res2'),
-                        'res3' => $this->Data->read('Camp.res3')
+                        'res3' => $this->Data->read('Camp.res3'),
+                        'last_update' => time()
                     ),
                     array('Camp.id' => $this->Session->read('Camp.current'))
                 );
             }
             $this->Session->setFlash(__('La techno a bien été créée.'));
-            return $this->redirect(array('controller'=>'camps','action'=>'view'));
+            return $this->redirect(array('controller'=>'buildings','action'=>'display',$query['building_id']));
 		}
 		$this->redirect($this->referer());
 	}
+
+
+
+
+    private function _isInTechnos($type)
+    {
+        foreach($this->Data->read('Technos') as $techno){
+            $techno = current($techno);
+            if($techno['datatechno_id_type'] == $type)
+                return true;
+        }
+        return false;
+    }
+
+    private function _begin($lastDttechno){
+        if(empty($lastDttechno))
+            return time();
+        else
+            return $lastDttechno['finish'] + 1;
+    }
+
+    private function _lvls_to_add($dttechnos){
+        if(empty($dttechnos)){
+            return 1;
+        }else{
+            return count($dttechnos) + 1;
+        }
+    }
+
+    // TODO où mettre la fonction enoughRessources ?
+    private function _enoughResources($Data){
+        $Camp = $this->Data->read('Camp');
+        if( ($new['res1'] = $Camp['currentres1'] - $Data['res1']) >= 0)
+            if( ($new['res2'] = $Camp['currentres2'] - $Data['res2']) >= 0)
+                if( ($new['res3'] = $Camp['currentres3'] - $Data['res3']) >= 0){
+                    foreach(array(1,2,3) as $i)
+                        $this->Data->write('Camp.currentres'.$i, $new['res'.$i]);
+                    return true;
+                }
+        return false;
+    }
+
+
+
 
 /**
  * index method
@@ -200,22 +303,8 @@ class TechnosController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-	private function _isTechnoInUser($type)
-	{
-		return in_array($this->Data->read('Technos'), ['Techno' => ['datatechno_id_type' => $type]]);	
-	}
 
-    private function _enoughResources($Resource, $Data){
-    if( ($new['res1'] = $Resource['res1'] - $Data['res1']) >= 0)
-        if( ($new['res2'] = $Resource['res2'] - $Data['res2']) >= 0)
-            if( ($new['res3'] = $Resource['res3'] - $Data['res3']) >= 0){
-              $Resource['res1'] = $new['res1'];
-              $Resource['res2'] = $new['res2'];
-              $Resource['res3'] = $new['res3'];
-              return true;
-            }
-    return false;
-    }
+
 }
 
 

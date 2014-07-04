@@ -8,6 +8,7 @@ App::uses('AppModel', 'Model');
  */
 class Techno extends AppModel {
 
+    public $actsAs = array('Data');
 /**
  * Validation rules
  *
@@ -92,6 +93,18 @@ class Techno extends AppModel {
                 'Techno.user_id' => $user_id
             )
         ));
+    }
+
+    public function findById($id){
+        $tmp = $this->find('first',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Techno.id' => $id
+            )
+        ));
+        if(empty($tmp))
+            return $tmp;
+        return $tmp['Techno'];
     }
 
 }

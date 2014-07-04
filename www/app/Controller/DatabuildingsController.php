@@ -21,7 +21,6 @@ class DatabuildingsController extends AppController {
  * @return void
  */
 	public function index() {
-        preg_match_all()
 		$this->Databuilding->recursive = 0;
 		$this->set('databuildings', $this->Paginator->paginate());
 	}

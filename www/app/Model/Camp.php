@@ -181,8 +181,13 @@ class Camp extends AppModel {
 		)
 	);
 
-
-    public function generate($d){
+    /**
+     * @param $d
+     *
+     * @return array|bool|int|mixed|string
+     */
+    public function generate($d)
+    {
         $d['Camp']['user_id'] = $d['User']['id'];
         $d['Camp']['world_id'] = $d['World']['id'];
         $d['Camp']['name'] = 'Default';
@@ -195,7 +200,6 @@ class Camp extends AppModel {
         $d['Camp']['prod2'] = 10;
         $d['Camp']['prod3'] = 0;
         $d['Camp']['unread_reports'] = 0;
-
         $d['Camp']['res1'] = 500;
         $d['Camp']['res2'] = 300;
         $d['Camp']['res3'] = 50;
@@ -205,7 +209,8 @@ class Camp extends AppModel {
     }
 
 
-    public function recoverResources($id){
+    public function recoverResources($id)
+    {
         return $this->find('first',array(
             'recursive' => -1,
             'conditions' => array(
@@ -215,7 +220,8 @@ class Camp extends AppModel {
         ));
     }
 
-    public function recoverCamps($user_id){
+    public function recoverCamps($user_id)
+    {
         return $this->find('all',array(
             'recursive' => -1,
             'conditions' => array(
@@ -238,7 +244,8 @@ class Camp extends AppModel {
         ));
     }
 
-    public function recover(&$data,$id){
+    public function recover(&$data,$id)
+    {
         $tmp = $this->find('first', array(
             'recursive' => -1,
             'conditions' => array(
@@ -261,6 +268,28 @@ class Camp extends AppModel {
         return $tmp['Camp'];
     }
 
+    public function afterFind($results, $primary=false)
+    {
+        foreach($results as $key => $val)
+        {
+            $camp = $val['Camp'];
+            if(isset($camp['last_update']))
+            {
+                foreach(array(1,2,3) as $i){
+                    if(isset($camp['res'.$i]) && isset($camp['prod'.$i])
+                        && isset($camp['maxres'.$i]))
+                    {
+                        $results[$key]['Camp']['currentres'.$i] = ((time() - $camp['last_update']) / 3600)
+                                                                    * $camp['prod'.$i] + $camp['res'.$i];
+                        if($results[$key]['Camp']['currentres'.$i] >= $camp['maxres'.$i])
+                            $results[$key]['Camp']['currentres'.$i] = $camp['maxres'.$i];
+                    }
+                }
+
+            }
+        }
+        return $results;
+    }
     /*
     public function recoverDataCamp($id){
         $db = $this->getDataSource();

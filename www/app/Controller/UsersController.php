@@ -45,7 +45,8 @@ class UsersController extends AppController {
  * @param string $_POST['captcha']
  * @return void
  */
-	public function register() {
+	public function register()
+    {
         if ($this->request->is('post')) {
             $data['User'] = array(
                 'password' => $this->Auth->password($this->request->data['User']['password']),
@@ -110,20 +111,27 @@ class UsersController extends AppController {
  * @param string $_POST['password']
  * @return void
  */
-	public function login() {
-        if ($this->request->is('post')) {
+	public function login()
+    {
+        if ($this->request->is('post'))
+        {
             $data['User'] = array(
                 'password' => $this->Auth->password($this->request->data['User']['password']),
                 'username' => $this->request->data['User']['username']
             );
-            if ($query = $this->User->login($data['User']['username'])) {
-                if($query['User']['password'] == $data['User']['password']){
+
+            if ($query = $this->User->login($data['User']['username']))
+            {
+                if($query['User']['password'] == $data['User']['password'])
+                {
                     unset($query['User']['password']);
                     $this->Session->destroy();
                     $this->Session->write($query);
                     $this->Session->setFlash(__('Le joueur est connecté.'));
-                    return $this->redirect(array('controller'=>'camps','action' => 'view'));
-                } else {
+                    return $this->redirect(array('controller'=>'camps','action' => 'actual'));
+                }
+                else
+                {
                     $this->Session->setFlash(__('Le mot de passe est incorrecte.'));
                 }
             } else {

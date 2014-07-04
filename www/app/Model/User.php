@@ -226,8 +226,13 @@ class User extends AppModel {
 		)
 	);
 
-
-    public function login($username){
+    /**
+     * @param $username
+     *
+     * @return array|bool
+     */
+    public function login($username)
+    {
         $data = $this->find('first',array(
             'conditions' => array('username'=>$username),
             'recursive' => -1,
@@ -248,6 +253,9 @@ class User extends AppModel {
                 'Camp.id'
             )
         ));
+
+        if (empty($data))
+            return false;
 
         $data['User']['username'] = $username;
         $data['Camp']['current'] = $data['Camp']['id'];

@@ -1,31 +1,8 @@
 <?php
-    /**
-     * SessionComponent. Provides access to Sessions from the Controller layer
-     *
-     * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
-     * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
-     *
-     * Licensed under The MIT License
-     * For full copyright and license information, please see the LICENSE.txt
-     * Redistributions of files must retain the above copyright notice.
-     *
-     * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
-     * @link          http://cakephp.org CakePHP(tm) Project
-     * @package       Cake.Controller.Component
-     * @since         CakePHP(tm) v 0.10.0.1232
-     * @license       http://www.opensource.org/licenses/mit-license.php MIT License
-     */
-
     App::uses('Component', 'Controller');
 
     /**
-     * The CakePHP SessionComponent provides a way to persist client data between
-     * page requests. It acts as a wrapper for the `$_SESSION` as well as providing
-     * convenience methods for several `$_SESSION` related functions.
-     *
-     * @package       Cake.Controller.Component
-     * @link http://book.cakephp.org/2.0/en/core-libraries/components/sessions.html
-     * @link http://book.cakephp.org/2.0/en/development/sessions.html
+     * Sert à vérifier les prérequis pour pouvoir construire les batîments, technologies, unités.
      */
     class DatanodeComponent extends Component {
 
@@ -53,7 +30,9 @@
                         'min' => 0,
                         'max' => 99
                     ),
-                    'init' => array(2,4,11)
+                    'init' => array(
+                        2, 4, 11
+                    )
                 ),
                 'techno' => array(
                     'nb' => 2,
@@ -65,6 +44,26 @@
         );
 
 
+        /**
+         * @param      $kind [1:buildings|2:technos|3:units]
+         * @param      $type
+         * @param null $lvl
+         */
+        public function isAllowed($kind,$type)
+        {
+            if (!($kind == 1 || $kind ==2 || $kind ==3))
+                throw new NotFoundException(__('Invalid kind : '.$kind));
+
+            $datanodes = ClassRegistry::init('Datanode')->findBy('to',$kind,$type);
+
+            if (empty($datanodes))
+                return true;
+
+            debug($datanodes);
+        }
+
+
+
         // TODO verify Unit
 
         /**
@@ -74,7 +73,7 @@
          *
          * @return bool
          */
-        public function isBuildingAllowed($type)
+        public function isBuildingAllowed($type, $lvl)
         {
             // Vérifie si c'est un batiment initial
             if(in_array($type, $this->config['kind']['building']['init']))
@@ -87,10 +86,7 @@
             );
             // Vérifier si il y a besoin de prérequis
             if(empty($datanodes))
-                return true;
-
-            // TODO finir
-
+                return false;
 
             // Indexation par to_data_type
             $indexedDatanodes = $this->indexingDatanodes($datanodes);
@@ -121,9 +117,7 @@
             );
             // Vérifier si il y a besoin de prérequis
             if(empty($datanodes))
-                return true;
-
-            // TODO FAIRE DES PERFS
+                return false;
 
             // Indexation par to_data_type
             $indexedDatanodes = $this->indexingDatanodes($datanodes);
@@ -144,9 +138,12 @@
         public function allowedBuildings()
         {
             // Récupération des prérequis pour les buildings
-            $datanodes = ClassRegistry::init('Datanode')->findByKind($this->config['kind']['building']['nb']);
+            $datanodes = ClassRegistry::init('Datanode')->findBuildings();
             // Indexation par to_data_type
             $indexedDatanodes = $this->indexingDatanodes($datanodes);
+
+            debug($datanodes);
+            debug($indexedDatanodes);
 
             // Indexation par databuilding_id_type des batiments
             $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));

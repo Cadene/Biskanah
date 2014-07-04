@@ -36,8 +36,8 @@ namespace beforeAction {
 
 namespace {
 
-    mysql_connect("localhost","root","enaifos");
-    mysql_select_db("biskanahv1");
+    mysql_connect("127.0.0.1","root","root");
+    mysql_select_db("biskanah");
 
 
 //beforeAction\update_server_ressources(3);
@@ -60,17 +60,14 @@ function A2Bs_notification($id = null)
 function Dtbuilding_notification()
 {
 
-    $sql = 'SELECT id,finish FROM Dtbuildings';// TODO ajouter la comparaison avec NOW()
+    $sql = 'SELECT id,building_id FROM Dtbuildings WHERE finish <= '.time();//NOW()';
     $results = mysql_query($sql);
     while( $result = mysql_fetch_assoc($results))
     {
-        if($result['finish'] >= time())
-        {
-            $lvl = $result['id']+1;
-            mysql_query('UPDATE Buildings SET databuilding_id='.$lvl.'WHERE id='.$result['building_id']);
-            // TODO avant le DELETE ,MAJ le log
-            mysql_query('DELETE FROM Dtbuildings WHERE id='.$result['id']);
-        }
+        mysql_query('UPDATE buildings SET databuilding_id=databuilding_id+1 WHERE id='.$result['building_id']);
+        // TODO avant le DELETE ,MAJ le log
+        mysql_query('DELETE FROM Dtbuildings WHERE id='.$result['id']);
+
     }
 }
 
@@ -100,8 +97,8 @@ function update_team_rank($id)
     // TODO update team rank
 }
 
-A2Bs_notification();
-//Dtbuilding_notification();
+//A2Bs_notification();
+Dtbuilding_notification();
 //Dttechno_notification();
 
 }
