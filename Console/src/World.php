@@ -7,7 +7,7 @@ class World {
 
     public function __construct($length)
     {
-        $this->length;
+        $this->length = $length;
     }
 
     public function get($att)

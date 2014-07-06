@@ -30,28 +30,30 @@ App::uses('ModelBehavior', 'Model');
  */
 class DataBehavior extends ModelBehavior {
 
+    /**
+     * Rajoute un champ type au données des tables datas
+     *
+     * @param Model $Model
+     * @param mixed $results
+     * @param bool  $primary
+     *
+     * @return mixed
+     */
     public function afterFind(Model $Model, $results, $primary = false)
     {
         foreach($results as $nb => $node)
         {
-            foreach(array('to_data','from_data','databuilding_id','datatechno_id') as $direction){
-                if(isset($results[$nb][$Model->name][$direction])){
-                    $results[$nb][$Model->name][$direction.'_lvl'] = $this->toLvl($results[$nb][$Model->name][$direction]);
-                    $results[$nb][$Model->name][$direction.'_type'] = $this->toType($results[$nb][$Model->name][$direction]);
+            foreach(array('databuilding_id','datatechno_id') as $value)
+            {
+                if(isset($results[$nb][$Model->name][$value]))
+                {
+                    $results[$nb][$Model->name]['type'] = $results[$nb][$Model->name][$value];
                 }
             }
         }
         return $results;
     }
 
-    private function toLvl($data_id){
-        $data_id /= 100;
-        return ($data_id - floor($data_id)) *100;
-    }
 
-    private function toType($data_id){
-        $data_id /= 100;
-        return floor($data_id);
-    }
 
 }

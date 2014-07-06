@@ -41,83 +41,10 @@ class CampsController extends GameController {
             }
             throw new NotFoundException(__('Invalid camp'));
         }
-        else
-        {
-            $id = $this->Session->read('Camp.current');
-        }
-        //--
 
-		$data = $this->Camp->find('first',array(
-            'recursive' => -1,
-            'conditions' => array(
-                'Camp.id' => $id,
-            ),
-            'joins' => array(
-                array(
-                    'table' => 'worlds',
-                    'alias' => 'World',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'World.id = Camp.world_id'
-                    )
-                ),
-                array(
-                    'table' => 'users',
-                    'alias' => 'User',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'User.id = Camp.user_id'
-                    )
-                ),
-            ),
-            'fields' => array(
-                '*'
-            )
-        ));
-
-        $this->loadModel('Building');
-        $data['Buildings'] = $this->Building->find('all', array(
-            'recursive' => -1,
-            'conditions' => array(
-                'Building.camp_id' => $id
-            ),
-            'joins' => array(
-                array(
-                    'table' => 'databuildings',
-                    'alias' => 'Databuilding',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'Databuilding.id = Building.databuilding_id'
-                    )
-                )
-            ),
-            'fields' => array(
-                '*'
-            )
-        ));
-
-        $data['Dtbuildings'] = $this->Building->find('all', array(
-            'recursive' => -1,
-            'conditions' => array(
-                'Building.camp_id' => $id
-            ),
-            'joins' => array(
-                array(
-                    'table' => 'dtbuildings',
-                    'alias' => 'Dtbuilding',
-                    'type' => 'INNER',
-                    'conditions' => array(
-                        'Dtbuilding.building_id = Building.id'
-                    )
-                )
-            ),
-            'fields' => array(
-                '*'
-            ),
-            'order' => array(
-                'Dtbuilding.finish'
-            )
-        ));
+        $data['Camp'] = $this->Data->read('Camp');
+        $data['Buildings'] = $this->Data->read('Buildings');
+        $data['Dtbuildings'] = $this->Data->read('Dtbuildings');
 
         $this->set('data',$data);
     }

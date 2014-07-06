@@ -33,7 +33,7 @@ class DB{
         return $this->db->query($sql);
     }
 
-    public function insertAll($table,&$key,&$values)
+    public function insertAll($table,&$key,&$values,$show=false)
     {
         $sql = 'INSERT INTO `'.$table.'` (';
 
@@ -61,6 +61,9 @@ class DB{
             }
             $sql .= ')';
         }
+
+        if ($show)
+            print_r($sql);
 
         return $this->db->query($sql);
     }

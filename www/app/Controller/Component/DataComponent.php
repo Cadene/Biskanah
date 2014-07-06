@@ -125,25 +125,32 @@
          *
          * @param $name
          */
-        protected function _recoverData($name) {
+        protected function _recoverData($name)
+        {
+            $user_id = $this->Session->read('User.id');
+            $camp_id = $this->Session->read('Camp.current');
+
             if($name == 'User'){
-                $this->write($name,ClassRegistry::init('User')->findById($this->Session->read('User.id')));
+                $this->write($name,ClassRegistry::init('User')->findById());
             }
             // TODO vérifier que ce n'est pas Team plutot que Ally
             if($name == 'Ally'){
-                $this->write($name,ClassRegistry::init('Ally')->findById($this->Session->read('User.id')));
+                $this->write($name,ClassRegistry::init('Ally')->findById($user_id));
             }
             if($name == 'Camps'){
-                $this->write($name,ClassRegistry::init('Camps')->findByUserId($this->Session->read('User.id')));
+                $this->write($name,ClassRegistry::init('Camps')->findByUserId($user_id));
             }
             if($name == 'Camp'){
-                $this->write($name,ClassRegistry::init('Camp')->findById($this->Session->read('Camp.current')));
+                $this->write($name,ClassRegistry::init('Camp')->findById($camp_id));
             }
             if($name == 'Buildings'){
-                $this->write($name,ClassRegistry::init('Building')->findByCampId($this->Session->read('Camp.current')));
+                $this->write($name,ClassRegistry::init('Building')->findByCampId($camp_id));
             }
             if($name == 'Technos'){
-                $this->write($name,ClassRegistry::init('Techno')->findByUserId($this->Session->read('User.id')));
+                $this->write($name,ClassRegistry::init('Techno')->findByUserId($user_id));
+            }
+            if($name == 'Dtbuildings'){
+                $this->write($name,ClassRegistry::init('Dtbuilding')->findByCampId($camp_id));
             }
         }
 

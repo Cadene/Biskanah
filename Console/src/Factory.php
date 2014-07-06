@@ -15,9 +15,9 @@ class Factory {
         {
             $units[$id] = new Unit($id);
 
-            if ($id >= 10)
+            if ($id > 10)
                 $units[$id]->set('kind',3);
-            else if ($id >= 5)
+            else if ($id > 5)
                 $units[$id]->set('kind',2);
         }
         return new Units($units);

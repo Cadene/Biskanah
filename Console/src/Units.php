@@ -11,7 +11,7 @@ class Units {
 
     public function generate($db)
     {
-        $table = 'databuildings';
+        $table = 'dataunits';
 
         foreach ($this->units as $units)
         {

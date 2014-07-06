@@ -86,13 +86,33 @@ class Techno extends AppModel {
 	);
 
 
-    public function findByUserId($user_id){
-        return $this->find('all',array(
+    /**
+     * Renvoie une liste de technologies indexés par type
+     *
+     * @param $user_id
+     *
+     * @return mixed
+     */
+    public function findByUserId($user_id)
+    {
+        $tmp = $this->find('all',array(
             'recursive' => -1,
             'conditions' => array(
                 'Techno.user_id' => $user_id
             )
         ));
+
+        if (empty($tmp))
+            return $tmp;
+
+        foreach ($tmp as $k=>$v)
+        {
+            $v = current($v);
+            $type = $v['datatechno_id'];
+            $rslt[$type]['Techno'] = $v;
+        }
+
+        return $rslt;
     }
 
     public function findById($id){

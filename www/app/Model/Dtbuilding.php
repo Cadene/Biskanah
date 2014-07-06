@@ -84,8 +84,9 @@ class Dtbuilding extends AppModel {
         ));
     }
 
-    public function lastByCampId($camp_id){
-        $tmp = $this->find('first',array(
+    public function findByCampId($camp_id)
+    {
+        $tmp = $this->find('all',array(
             'recursive' => -1,
             'conditions' => array(
                 'Dtbuilding.camp_id' => $camp_id
@@ -95,8 +96,9 @@ class Dtbuilding extends AppModel {
             ),
             'fields' => array('*')
         ));
-        if(empty($tmp))
-            return $tmp;
-        return $tmp['Dtbuilding'];
+
+        return $tmp;
     }
+
+
 }

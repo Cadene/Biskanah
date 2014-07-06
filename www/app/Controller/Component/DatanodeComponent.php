@@ -8,40 +8,6 @@
 
         public $components = array('Session','Data');
 
-        /*
-        protected $user;
-        protected $technos;
-        protected $buildings;
-        protected $units;
-        protected $camp;
-        protected $camps;*/
-
-        protected $config = array(
-            'kind' => array(
-                'building' => array(
-                    'nb' => 1,
-                    'id' => 'databuilding_id',
-                    'table' => 'Buildings',
-                    'type' => array(
-                        'min' => 0,
-                        'max' => 19
-                    ),
-                    'lvl' => array(
-                        'min' => 0,
-                        'max' => 99
-                    ),
-                    'init' => array(
-                        2, 4, 11
-                    )
-                ),
-                'techno' => array(
-                    'nb' => 2,
-                    'id' => 'datatechno_id',
-                    'table' => 'Technos',
-                    'init' => array(0)
-                )
-            )
-        );
 
 
         /**
@@ -49,84 +15,111 @@
          * @param      $type
          * @param null $lvl
          */
-        public function isAllowed($kind,$type)
+        public function isAllowed($kind,$type,$lvl=1)
         {
             if (!($kind == 1 || $kind ==2 || $kind ==3))
                 throw new NotFoundException(__('Invalid kind : '.$kind));
 
-            $datanodes = ClassRegistry::init('Datanode')->findBy('to',$kind,$type);
+            if ($lvl == 1)
+            {
+                $datanodes = ClassRegistry::init('Datanode')->findBy('to',$kind,$type);
 
-            if (empty($datanodes))
-                return true;
+                if (empty($datanodes))
+                    return true;
 
-            debug($datanodes);
-        }
+                // on regarde si il a les prérequis
 
+                $needed = $this->_neededDatas($datanodes);
+                $needed['buildings'] = $this->_missingDatas($needed,'buildings');
+                $needed['technos'] = $this->_missingDatas($needed,'technos');
 
+                if (empty($needed['technos']) && empty($needed['buildings']))
+                {
+                    return true;
+                }
+                else
+                {
+                    return $needed;
+                }
+            }
+            else
+            {
+                //regarde si il a le niveau précédent
+                $buildings = $this->Data->read('Buildings');
 
-        // TODO verify Unit
+                // TODO à améliorer peut être : une seule requete au lieu d'une boucle
+                foreach ($buildings as $building)
+                {
+                    $building = $building['Building'];
 
-        /**
-         * Le camp et le joueur ont ils les prérequis nécessaire pour create/upgrade le batiment ?
-         *
-         * @param $type
-         *
-         * @return bool
-         */
-        public function isBuildingAllowed($type, $lvl)
-        {
-            // Vérifie si c'est un batiment initial
-            if(in_array($type, $this->config['kind']['building']['init']))
-                return true;
+                    if ($building['type'] == $type && $building['lvl'] == $lvl - 1)
+                        return true;
+                }
 
-            // Récupération des prérequis pour le building
-            $datanodes = ClassRegistry::init('Datanode')->findByData(
-                $this->Data->toDataId($type),
-                $this->config['kind']['building']['nb']
-            );
-            // Vérifier si il y a besoin de prérequis
-            if(empty($datanodes))
                 return false;
+            }
 
-            // Indexation par to_data_type
-            $indexedDatanodes = $this->indexingDatanodes($datanodes);
-            // Indexation par databuilding_id_type si non null
-            $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));
-            $indexedTechnos = $this->indexingTechnos($this->Data->read('Technos'));
-
-            return in_array($type, $this->verifiedDatanodes($indexedDatanodes,$indexedBuildings, $indexedTechnos));
         }
 
         /**
-         * isTechnoAllowed method
+         * A partir d'une liste de data prérequis, fournis les data manquants
          *
-         * @param $type
+         * @param        $needed
+         * @param string $kind
          *
-         * @return bool
+         * @return mixed
+         * @throws NotImplementedException
          */
-        public function isTechnoAllowed($type)
+        private function _missingDatas($needed,$kind='buildings')
         {
-            // check if it's a basic techno
-            if(in_array($type, $this->config['kind']['techno']['init']))
-                return true;
+            if ($kind != 'buildings' && $kind != 'technos')
+                throw new NotImplementedException('Le Kind est incorrect : '.$kind);
 
-            // get datanodes
-            $datanodes = ClassRegistry::init('Datanode')->findByData(
-                $this->Data->toDataId($type),
-                $this->config['kind']['techno']['nb']
-            );
-            // Vérifier si il y a besoin de prérequis
-            if(empty($datanodes))
-                return false;
+            if (isset($needed[$kind]))
+            {
+                $datas = $this->Data->read(ucfirst($kind));
+                $modelName = ucfirst(substr($kind,0,-1));
 
-            // Indexation par to_data_type
-            $indexedDatanodes = $this->indexingDatanodes($datanodes);
-            // Indexation par databuilding_id_type si non null
-            $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));
-            $indexedTechnos = $this->indexingTechnos($this->Data->read('Technos'));
-
-            return in_array($type, $this->verifiedDatanodes($indexedDatanodes,$indexedBuildings, $indexedTechnos));
+                foreach($needed[$kind] as $type)
+                {
+                    if (isset($datas[$type]) && $datas[$type][$modelName]['lvl'] !=0)
+                    {
+                        $needed[$kind] = array_diff($needed[$kind],array($type));
+                    }
+                }
+                return $needed[$kind];
+            }
+            return array();
         }
+
+        /**
+         * Crée un array de buildings et de technos prérequis
+         *
+         * @param $datanodes
+         *
+         * @return mixed
+         */
+        private function _neededDatas($datanodes)
+        {
+            foreach ($datanodes as $key=>$value)
+            {
+                $value = $value['Datanode'];
+
+                if ($value['from_kind'] == 1)
+                {
+                    $needed['buildings'][] = $value['from_type'];
+                }
+                else
+                {
+                    $needed['technos'][] = $value['from_type'];
+                }
+            }
+            return $needed;
+        }
+
+
+
+
 
         /**
          * Retourne tous les buildings que le joueur peut créer sur son camp
@@ -135,144 +128,44 @@
          *
          * @return array
          */
+        // TODO à optimiser
         public function allowedBuildings()
         {
-            // Récupération des prérequis pour les buildings
-            $datanodes = ClassRegistry::init('Datanode')->findBuildings();
-            // Indexation par to_data_type
-            $indexedDatanodes = $this->indexingDatanodes($datanodes);
-
-            debug($datanodes);
-            debug($indexedDatanodes);
-
-            // Indexation par databuilding_id_type des batiments
-            $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));
-
-            // Indexation par datatechno_id_type des technos
-            $indexedTechnos = $this->indexingTechnos($this->Data->read('Technos'));
-
-            // Mélange les buildings initiaux aux autorisés par les prérequis
-            $allowedBuildings = array_merge(
-                $this->config['kind']['building']['init'],
-                $this->verifiedDatanodes($indexedDatanodes,$indexedBuildings,$indexedTechnos)
-            );
-
-            return $allowedBuildings;
+            for ($type=1; $type<=18; $type++)
+            {
+                if ($this->isAllowed(1,$type) === true)
+                    $allowed[] = $type;
+            }
+            return $allowed;
         }
 
-        /**
-         * Retourne tous les buildings que le joueur peut créer sur son camp
-         *
-         * @param array $data
-         *
-         * @return array
-         */
-        public function allowedTechnos()
+        public function allowedTechnos($from='laboratory')
         {
-            // Récupération des prérequis pour les technos
-            $datanodes = ClassRegistry::init('Datanode')->findByKind($this->config['kind']['techno']['nb']);
-            // Indexation par to_data_type
-            $indexedDatanodes = $this->indexingDatanodes($datanodes);
-
-            // Indexation par databuilding_id_type des batiments
-            $indexedBuildings = $this->indexingBuildings($this->Data->read('Buildings'));
-
-            // Indexation par datatechno_id_type des technos
-            $indexedTechnos = $this->indexingTechnos($this->Data->read('Technos'));
-
-            // Mélange les buildings initiaux aux autorisés par les prérequis
-            $allowedTechnos = array_merge(
-                $this->config['kind']['techno']['init'],
-                $this->verifiedDatanodes($indexedDatanodes,$indexedBuildings,$indexedTechnos)
-            );
-
-            return $allowedTechnos;
-        }
-
-        /**
-         * Rend les buildings autorisés par les prérequis
-         *
-         * @param $datanodes indexé par type de batiments
-         * @param $databuildings
-         *
-         * @return array
-         */
-        public function verifiedDatanodes($indexedDatanodes,$indexedBuildings,$indexedTechnos){
-            $verifiedbuildings = array();
-            // pour chaque type de noeuds indexés
-            foreach($indexedDatanodes as $to_data_type => $datanode){
-                if($this->isDatanodeVerified($datanode,$indexedBuildings,$indexedTechnos))
-                    $verifiedbuildings[] = $to_data_type;
-            }
-            return $verifiedbuildings;
-        }
-
-        public function isDatanodeVerified($datanode,$indexedBuildings,$indexedTechnos){
-            foreach($datanode as $node){
-                if($node['from_kind'] == $this->config['kind']['building']['nb']){
-                    if(!isset($indexedBuildings[$node['from_data_type']])
-                        || $indexedBuildings[$node['from_data_type']]['databuilding_id_lvl'] < $node['from_data_lvl']){
-                        return false;
-                    }
-                }
-                if($node['from_kind'] == $this->config['kind']['techno']['nb']){
-                    if(!isset($indexedTechnos[$node['from_data_type']])
-                        && $indexedTechnos[$node['from_data_type']]['datatechno_id_lvl'] < $node['from_data_lvl']){
-                        return false;
-                    }
+            if ($from === 'laboratory')
+            {
+                for ($type=1; $type<=11; $type++)
+                {
+                    if ($this->isAllowed(2,$type))
+                        $allowed[] = $type;
                 }
             }
-            return true;
-        }
-
-
-        public function indexingBuildings($buildings){
-            $indexedBuildings = array();
-            foreach($buildings as $building){
-                $building = current($building);
-                if(!isset($indexedBuildings[$building['databuilding_id_type']])){
-                    $indexedBuildings[$building['databuilding_id_type']] = $building;
-                }else{
-                    if($indexedBuildings[$building['databuilding_id_type']]['databuilding_id_lvl']
-                        < $building['databuilding_id_lvl']){
-                        $indexedBuildings[$building['databuilding_id_type']] = $building;
-                    }
+            else if ($from === 'armory')
+            {
+                for ($type=12; $type<=9*3+11; $type++)
+                {
+                    if ($this->isAllowed(2,$type))
+                        $allowed[] = $type;
                 }
             }
-            return $indexedBuildings;
+            else
+                throw new NotImplementedException('Le $from est incorrect : '.$from);
+
+            return $allowed;
         }
 
-        public function indexingTechnos($buildings){
-            $indexedBuildings = array();
-            foreach($buildings as $building){
-                $building = current($building);
-                if(!isset($indexedBuildings[$building['datatechno_id_type']])){
-                    $indexedBuildings[$building['datatechno_id_type']] = $building;
-                }else{
-                    if($indexedBuildings[$building['datatechno_id_type']]['datatechno_id_lvl']
-                        < $building['datatechno_id_lvl']){
-                        $indexedBuildings[$building['datatechno_id_type']] = $building;
-                    }
-                }
-            }
-            return $indexedBuildings;
-        }
 
-        public function indexingDatanodes($datanodes){
-            $indexedDatanodes = array();
-            // pour chaque noeud
-            foreach($datanodes as $datanode){
-                $datanode = current($datanode);
-                // si le noeud existe pas le créer
-                if(!isset($indexedDatanodes[$datanode['to_data_type']])){
-                    $indexedDatanodes[$datanode['to_data_type']] = array($datanode);
-                // sinon le rajouter
-                }else{
-                    $indexedDatanodes[$datanode['to_data_type']][] = $datanode;
-                }
-            }
-            return $indexedDatanodes;
-        }
+
+
 
 
 
