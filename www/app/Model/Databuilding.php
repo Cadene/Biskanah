@@ -121,7 +121,6 @@ class Databuilding extends AppModel {
         else
             $tech8 = 0;
 
-
         $data['time'] = $this->_consTime($res[1],$res[2],$res[3],$bat10,$tech8);
 
         // hangars
@@ -179,7 +178,7 @@ class Databuilding extends AppModel {
     private function _consTime($res1,$res2,$res3,$bat10,$tech8)
     {
         // TODO 0.5 peut être trop abusé
-        return ($res1 + $res2 + $res3) / 5.000 * (2 / (1 + $bat10)) * pow(0.5, $tech8);
+        return ($res1 + $res2 + $res3) / 5000 * (2 / (1 + $bat10)) * pow(0.5, $tech8);
     }
 
     private function _costInRes($id, $lvl, Array $data)

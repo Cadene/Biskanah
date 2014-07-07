@@ -3,6 +3,8 @@
 
     /**
      * Sert à stocker dans un array (et pas en session)
+     *
+     * Contient toutes les informations importantes de l'utilisateur
      */
     class DataComponent extends Component {
 
@@ -151,6 +153,9 @@
             }
             if($name == 'Dtbuildings'){
                 $this->write($name,ClassRegistry::init('Dtbuilding')->findByCampId($camp_id));
+            }
+            if($name == 'Dttechnos'){
+                $this->write($name,ClassRegistry::init('Dttechno')->findByUserId($user_id));
             }
         }
 

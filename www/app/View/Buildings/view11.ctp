@@ -3,7 +3,7 @@
 
 $this->start('specialize');?>
 
-<?php debug($allowedTechnos); ?>
+<?php debug($allowedTechnos); debug($data); debug($dttechnos); ?>
 
 <div class="technos form">
     <?php echo $this->Form->create('Techno', array('action' => 'upgrade')); ?>

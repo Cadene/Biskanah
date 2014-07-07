@@ -13,30 +13,159 @@ class TechnosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator','Nodeable');
+
+    /**
+     * display method
+     * Affiche un bâtiment
+     *
+     * @param int $_POST['building_id']
+     * @param int $_SESSION['camp_id']
+     * @return void
+     */
+    /*public function display($type = null)
+    {
+        if($type === null)
+            throw new  NotFoundException(__('Invalid techno type : '.$type));
+
+        // récupère les infos du joueur et du camp
+        $buildings = $this->Data->read('Buildings');
+        $technos = $this->Data->read('Technos');
+
+        $data['Techno'] = current($this->Data->read('Technos')[$type]);
+
+        $lvl = $data['Techno']['lvl'];
+        $this->loadModel('Datatechno');
+        $tmp = $this->Datatechno->findByIdLvlBetween($type,$lvl,4,$buildings,$technos);
+        $data = array_merge($data,$tmp);
+
+        $this->loadModel('Dttechno');
+        $data['Dttechnos'] = $this->Dttechno->findByTechnoId($data['Techno']['id']);
+
+        $this->set(compact('data'));
+
+        if ($data['Techno']['lvl'] <= 0) {
+            $this->view = 'level0';
+        } else {
+            $type = $data['Techno']['type'];
+            $func = 'view' . $type;
+            $this->view = $func;
+
+            if (method_exists($this,$func)) {
+                $this->$func($data);
+            }
+        }
+    }*/
+
+
 
 /**
- * index method
- *
- * Toutes les technologies du joueur 
- * View: index
- *
- * @param int $_SESSION['user_id']
- * @return void
- */
-	public function index() {
-
-	}
-
-/**
- * upgrade method
+ * create method
  *
  * Ajoute une technologie à la liste des techno en recherche
  *
- * @param int $_POST['dttechno_id']
+ * @param int $_POST['building_id']
+ * @param int $_POST['type'] type
+ * @param int $_SESSION['camp_id']
  * @return void
  */
-	public function upgrade() {
+    public function create()
+    {
+        if ($this->request->is('post'))
+        {
+            if(!isset($this->request->data['Techno']['type']))
+                throw new NotImplementedException('Bad arguments in POST');
+
+            $query = array(
+                'type' => $this->request->data['Techno']['type']
+            );
+            $kind = 2; // is techno
+
+            // Vérifier qu'un labo existe
+            $data['Buildings'] = $this->Data->read('Buildings');
+            if (!isset($data['Buildings'][11]))
+                throw new Exception('Construisez d\'abord un laboratoire.');
+            $data['Building'] = $data['Buildings'][11]['Building'];
+
+            // Vérifier que la techno n'existe pas
+            if ($this->Nodeable->doesNodeExist($kind,$query['type']))
+                throw new NotImplementedException('Il existe déjà une technologie de ce type.');
+
+            // vérification des prérequis
+            $this->Datanode = $this->Components->load('Datanode');
+            $type = $query['type'];
+            if($this->Datanode->isAllowed($kind, $type) !== true)
+            {
+                throw new NotImplementedException('Les prérequis pour construire cette techno sont manquants.');
+            }
+
+            // récupère les infos de la techno à construire
+            $buildings = $this->Data->read('Buildings');
+            $technos = $this->Data->read('Technos');
+            $this->loadModel('Datatechno');
+            $lvl = 1;
+            $data['Datatechno'] = $this->Datatechno->findByIdLvl($query['type'],$lvl,$buildings,$technos);
+
+            // vérifie les ressources
+            if(!$this->Nodeable->isEnoughResources($data['Datatechno'])){
+                throw new NotImplementedException('Pas assez de ressources dispo');
+            }
+
+            // créer la techno
+            $this->loadModel('Techno');
+            $this->Techno->save(array(
+                'user_id' => $this->Session->read('User.id'),
+                'datatechno_id' => $query['type'],
+                'lvl' => 0
+            ));
+
+            // récupérer les temps de création
+            $dttechnos = $this->Data->read('Dttechnos');
+            $times = $this->Nodeable->startFinishTimes($kind,$dttechnos,$data['Databuilding']['time']);
+
+            // créer la file de construction
+            $this->loadModel('Dttechno');
+            $this->Dttechno->save(array(
+                'techno_id' => $this->Techno->id,
+                'begin' => $times['start'],
+                'finish' => $times['finish'],
+                'building_id' => $data['Building']['id']
+            ));
+
+            // Mettre à jour les ressources du camp
+            $this->loadModel('Camp');
+            $this->Camp->updateAll(
+                array(
+                    'res1' => $this->Data->read('Camp.newres1'),
+                    'res2' => $this->Data->read('Camp.newres2'),
+                    'res3' => $this->Data->read('Camp.newres3'),
+                    'last_update' => time()
+                ),
+                array('Camp.id' => $this->Session->read('Camp.current'))
+            );
+
+            $this->Session->setFlash(__('La techno a bien été créé.'));
+            return $this->redirect(array('controller'=>'camps','action'=>'view'));
+        }
+        else
+        {
+            $this->Datanode = $this->Components->load('Datanode');
+            $allowed = $this->Datanode->allowedTechnos();
+            $this->set('allowedTechnos', $allowed);
+        }
+    }
+
+
+    /**
+     * upgrade method
+     *
+     * Ajoute une technologie à la liste des techno en recherche
+     *
+     * @param int $_POST['dttechno_id']
+     * @return void
+     */
+    public function upgrade()
+    {
         if($this->request->is('post')){
             $data = current($this->request->data);
             // $query tableau de request
@@ -70,10 +199,10 @@ class TechnosController extends AppController {
                 $begin = $this->_begin($this->Dttechno->lastByBuildingId($query['building_id']));
 
                 $this->Dttechno->save(array(
-                    'techno_id' => $query['id'],
-                    'building_id' => $query['building_id'],
-                    'begin' => $begin,
-                    'finish' => $begin + $this->Data->read('Datatechno.time'))
+                        'techno_id' => $query['id'],
+                        'building_id' => $query['building_id'],
+                        'begin' => $begin,
+                        'finish' => $begin + $this->Data->read('Datatechno.time'))
                 );
 
                 $this->loadModel('Camp');
@@ -91,125 +220,7 @@ class TechnosController extends AppController {
             $this->Session->setFlash(__('La technologie a bien été amélioré.'));
         }
         return $this->redirect(array('controller'=>'camps','action'=>'view'));
-	}
-
-
-/**
- * create method
- *
- * Ajoute une technologie à la liste des techno en recherche
- *
- * @param int $_POST['building_id']
- * @param int $_POST['type'] type
- * @param int $_SESSION['camp_id']
- * @return void
- */
-	public function create() {
-		if($this->request->is('post'))
-		{			
-			$data = current($this->request->data);
-			// $query tableau de request-
-            if(!isset($data['type']) || !isset($data['building_id']))
-                throw new NotImplementedException('Bad arguments in POST');
-            $query = array(
-                'building_id' => $data['building_id'],
-                'type' => $data['type']
-            );
-
-            $this->loadModel('Techno');
-            if($this->_isInTechnos($query['type'])){
-                throw new NotImplementedException('La technologie existe déjà.');
-            }
-
-            // vérification des prérequis
-            $this->Datanode = $this->Components->load('Datanode');
-            if(!$this->Datanode->isTechnoAllowed($query['type'])){
-                throw new NotImplementedException('Les prérequis sont manquants.');
-            }
-
-            // récupère les infos du batiment à construire
-            $this->loadModel('Datatechno');
-            $this->Data->writeIfNot('Datatechno',$this->Datatechno->findByLvlType($query['type'],1));
-
-            // vérifie les ressources
-            if(!$this->_enoughResources($this->Data->read('Datatechno'))){
-                throw new NotImplementedException('Pas assez de ressources dispo');
-            }else{
-                $this->Techno->save(array(
-                    'user_id' => $this->Session->read('User.id'),
-                    'datatechno_id' => $query['type']*100 // id_building level(0) = (id_building level(1) - 1)
-                ));
-
-                $this->loadModel('Dttechno');
-
-                $begin = $this->_begin($this->Dttechno->lastByBuildingId($query['building_id']));
-
-                $this->Dttechno->save(array(
-                    'techno_id' => $this->Techno->id,
-                    'building_id' => $query['building_id'],
-                    'begin' => $begin,
-                    'finish' => ($begin + $this->Data->read('Datatechno.time'))
-                ));
-
-                $this->loadModel('Camp');
-                $this->Camp->updateAll(
-                    array(
-                        'res1' => $this->Data->read('Camp.res1'),
-                        'res2' => $this->Data->read('Camp.res2'),
-                        'res3' => $this->Data->read('Camp.res3'),
-                        'last_update' => time()
-                    ),
-                    array('Camp.id' => $this->Session->read('Camp.current'))
-                );
-            }
-            $this->Session->setFlash(__('La techno a bien été créée.'));
-            return $this->redirect(array('controller'=>'buildings','action'=>'display',$query['building_id']));
-		}
-		$this->redirect($this->referer());
-	}
-
-
-
-
-    private function _isInTechnos($type)
-    {
-        foreach($this->Data->read('Technos') as $techno){
-            $techno = current($techno);
-            if($techno['datatechno_id_type'] == $type)
-                return true;
-        }
-        return false;
     }
-
-    private function _begin($lastDttechno){
-        if(empty($lastDttechno))
-            return time();
-        else
-            return $lastDttechno['finish'] + 1;
-    }
-
-    private function _lvls_to_add($dttechnos){
-        if(empty($dttechnos)){
-            return 1;
-        }else{
-            return count($dttechnos) + 1;
-        }
-    }
-
-    // TODO où mettre la fonction enoughRessources ?
-    private function _enoughResources($Data){
-        $Camp = $this->Data->read('Camp');
-        if( ($new['res1'] = $Camp['currentres1'] - $Data['res1']) >= 0)
-            if( ($new['res2'] = $Camp['currentres2'] - $Data['res2']) >= 0)
-                if( ($new['res3'] = $Camp['currentres3'] - $Data['res3']) >= 0){
-                    foreach(array(1,2,3) as $i)
-                        $this->Data->write('Camp.currentres'.$i, $new['res'.$i]);
-                    return true;
-                }
-        return false;
-    }
-
-
 
 
 /**

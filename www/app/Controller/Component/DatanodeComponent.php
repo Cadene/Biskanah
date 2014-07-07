@@ -6,9 +6,7 @@
      */
     class DatanodeComponent extends Component {
 
-        public $components = array('Session','Data');
-
-
+        public $components = array('Session','Data','Nodeable');
 
         /**
          * @param      $kind [1:buildings|2:technos|3:units]
@@ -133,8 +131,11 @@
         {
             for ($type=1; $type<=18; $type++)
             {
-                if ($this->isAllowed(1,$type) === true)
-                    $allowed[] = $type;
+                if (!$this->Nodeable->doesNodeExist(1,$type))
+                {
+                    if ($this->isAllowed(1,$type) === true)
+                        $allowed[] = $type;
+                }
             }
             return $allowed;
         }
