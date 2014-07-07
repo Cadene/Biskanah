@@ -90,6 +90,7 @@ class Dttechno extends AppModel {
 	    ));
     }
 
+    // TODO à enlever ?
     public function lastByBuildingId($building_id){
         $tmp = $this->find('first',array(
             'recursive' => -1,
@@ -115,4 +116,8 @@ class Dttechno extends AppModel {
             'fields' => array('*')
         ));
     }
+
+
+
+
 }

@@ -38,7 +38,6 @@
         public function doesNodeExist($kind,$type)
         {
             $nodes = $this->Data->read(ucfirst($this->to_nodes($kind)));
-            debug($nodes);
             return (isset($nodes[$type]) && $nodes[$type][ucfirst($this->to_node($kind))]['lvl'] >= 0);
         }
 
@@ -51,13 +50,14 @@
          */
         public function startFinishTimes($kind,$dtnodes,$timeToDevelop)
         {
-            if(empty($dtnodes))
-                return time();
-
-            //$last = count($dtbuildings)-1;
-            $last = 0;
-            $Dtnode = ucfirst($this->to_dtnode($kind));
-            $time['start'] = $dtnodes[$last][$Dtnode]['finish'] + 1;
+            if(empty($dtnodes)) {
+                $time['start'] = time();
+            }else{
+                //$last = count($dtbuildings)-1;
+                $last = 0;
+                $Dtnode = ucfirst($this->to_dtnode($kind));
+                $time['start'] = $dtnodes[$last][$Dtnode]['finish'] + 1;
+            }
             $time['finish'] = round($time['start'] + $timeToDevelop);
 
             return $time;

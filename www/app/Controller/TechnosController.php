@@ -121,10 +121,11 @@ class TechnosController extends AppController {
 
             // récupérer les temps de création
             $dttechnos = $this->Data->read('Dttechnos');
-            $times = $this->Nodeable->startFinishTimes($kind,$dttechnos,$data['Databuilding']['time']);
+            $times = $this->Nodeable->startFinishTimes($kind,$dttechnos,$data['Datatechno']['time']);
 
             // créer la file de construction
             $this->loadModel('Dttechno');
+
             $this->Dttechno->save(array(
                 'techno_id' => $this->Techno->id,
                 'begin' => $times['start'],
@@ -145,7 +146,7 @@ class TechnosController extends AppController {
             );
 
             $this->Session->setFlash(__('La techno a bien été créé.'));
-            return $this->redirect(array('controller'=>'camps','action'=>'view'));
+            return $this->redirect(array('controller'=>'camps','action'=>'actual'));
         }
         else
         {

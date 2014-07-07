@@ -135,9 +135,8 @@
             if($name == 'User'){
                 $this->write($name,ClassRegistry::init('User')->findById());
             }
-            // TODO vérifier que ce n'est pas Team plutot que Ally
-            if($name == 'Ally'){
-                $this->write($name,ClassRegistry::init('Ally')->findById($user_id));
+            if($name == 'Team'){
+                $this->write($name,ClassRegistry::init('Team')->findById($user_id));
             }
             if($name == 'Camps'){
                 $this->write($name,ClassRegistry::init('Camps')->findByUserId($user_id));
@@ -155,7 +154,14 @@
                 $this->write($name,ClassRegistry::init('Dtbuilding')->findByCampId($camp_id));
             }
             if($name == 'Dttechnos'){
-                $this->write($name,ClassRegistry::init('Dttechno')->findByUserId($user_id));
+                $buildings = $this->read('Buildings');
+                if (isset($buildings[11])) {
+                    $building = current($buildings[11]);
+                    $this->write($name,ClassRegistry::init('Dttechno')->findByBuildingId($building['id']));
+                } else {
+                    $this->write($name,array());
+                }
+
             }
         }
 

@@ -45,6 +45,8 @@ class CampsController extends GameController {
         $data['Camp'] = $this->Data->read('Camp');
         $data['Buildings'] = $this->Data->read('Buildings');
         $data['Dtbuildings'] = $this->Data->read('Dtbuildings');
+        $data['Technos'] = $this->Data->read('Technos');
+        $data['Dttechnos'] = $this->Data->read('Dttechnos');
 
         $this->set('data',$data);
     }
