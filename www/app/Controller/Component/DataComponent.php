@@ -154,14 +154,7 @@
                 $this->write($name,ClassRegistry::init('Dtbuilding')->findByCampId($camp_id));
             }
             if($name == 'Dttechnos'){
-                $buildings = $this->read('Buildings');
-                if (isset($buildings[11])) {
-                    $building = current($buildings[11]);
-                    $this->write($name,ClassRegistry::init('Dttechno')->findByBuildingId($building['id']));
-                } else {
-                    $this->write($name,array());
-                }
-
+                $this->write($name,ClassRegistry::init('Dttechno')->findByUserId($user_id));
             }
         }
 

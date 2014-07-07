@@ -167,60 +167,64 @@ class TechnosController extends AppController {
      */
     public function upgrade()
     {
-        if($this->request->is('post')){
-            $data = current($this->request->data);
-            // $query tableau de request
-            if(!isset($$data['id']) && !isset($data['building_id']))
+        if ($this->request->is('post'))
+        {
+            if(!isset($this->request->data['Techno']['type']))
                 throw new NotImplementedException('Bad arguments in POST');
             $query = array(
-                'id' => $data['id'],
-                'building_id' => $data['building_id']
+                'type' => $this->request->data['Techno']['type'],
+                'camp_id' => $this->Session->read('Camp.current')
             );
+            $kind = 1;
 
+            // Est ce que la techno existe déjà ?
             $this->loadModel('Techno');
-            $this->Data->write('Techno',$this->Techno->findById($query['id']));
+            if (!$this->Nodeable->doesNodeExist(1,$query['type']))
+                throw new NotImplementedException('Recherchez d\'abord le niveau 1.');
 
+            // quel est le prochain niveau ?
             $this->loadModel('Dttechno');
-            $this->Dttechno->write('User_Dttechnos',$this->Dttechno->findByTechnoId($query['id']));
+            $data['Dttechnos'] = $this->Data->read('Dttechnos');
+            $nextLvl = $data['Building']['lvl'] + count($data['Dttechno']) + 1;
 
-            $lvls_to_add = $this->_lvls_to_add($this->Data->read('User_Dttechnos'));
-
-            $query['type'] = $this->Data->read('Techno.datatechno_id_type');
-            $query['datatechno_id'] = $this->Data->read('Techno.datatechno_id') + $lvls_to_add;
-            $query['lvl'] = $this->Data->read('Techno.datatechno_id_lvl') + $lvls_to_add;
-
-            $this->loadModel('Datatechno');
-            $this->Data->write('Datatechno',$this->Datatechno->findById($query['datatechno_id']));
+            // récupère les infos du batiment à construire en fonction du niveau
+            $id = $data['Building']['type'];
+            $buildings = $this->Data->read('Buildings');
+            $technos = $this->Data->read('Technos');
+            $this->loadModel('Databuilding');
+            $data['Databuilding'] = $this->Databuilding->findByIdLvl($id,$nextLvl,$buildings,$technos);
 
             // vérifie les ressources
-            if(!$this->_enoughResources($this->Data->read('Datatechno'))){
+            if(!$this->Nodeable->isEnoughResources($data['Databuilding']))
                 throw new NotImplementedException('Pas assez de ressources dispo');
-            }else{
 
-                $begin = $this->_begin($this->Dttechno->lastByBuildingId($query['building_id']));
+            // récupération des temps de constructions
+            $dtbuildings = $this->Data->read('Dtbuildings');
+            $times = $this->Nodeable->startFinishTimes($kind,$dtbuildings,$data['Databuilding']['time']);
 
-                $this->Dttechno->save(array(
-                        'techno_id' => $query['id'],
-                        'building_id' => $query['building_id'],
-                        'begin' => $begin,
-                        'finish' => $begin + $this->Data->read('Datatechno.time'))
-                );
+            // ajout à la liste d'attente
+            $this->Dtbuilding->save(array(
+                'building_id' => $data['Building']['id'],
+                'begin' => $times['start'],
+                'finish' => $times['finish'],
+                'camp_id' => $query['camp_id']
+            ));
 
-                $this->loadModel('Camp');
-                $this->Camp->updateAll(
-                    array(
-                        'res1' => $this->Data->read('Camp.currentres1'),
-                        'res2' => $this->Data->read('Camp.currentres2'),
-                        'res3' => $this->Data->read('Camp.currentres3'),
-                        'last_update' => time()
-                    ),
-                    array('Camp.id' => $this->Session->read('Camp.current'))
-                );
-            }
+            // Mise à jour des ressources
+            $this->loadModel('Camp');
+            $this->Camp->updateAll(
+                array(
+                    'res1' => $this->Data->read('Camp.newres1'),
+                    'res2' => $this->Data->read('Camp.newres2'),
+                    'res3' => $this->Data->read('Camp.newres3'),
+                    'last_update' => time()
+                ),
+                array('Camp.id' => $this->Session->read('Camp.current'))
+            );
 
-            $this->Session->setFlash(__('La technologie a bien été amélioré.'));
+            $this->Session->setFlash(__('Le batiment a bien été amélioré.'));
         }
-        return $this->redirect(array('controller'=>'camps','action'=>'view'));
+        return $this->redirect(array('controller'=>'camps','action'=>'actual'));
     }
 
 

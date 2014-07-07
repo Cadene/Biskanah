@@ -107,15 +107,24 @@ class Dttechno extends AppModel {
         return $tmp['Dttechno'];
     }
 
-    public function findByTechnoId($techno_id){
-        return $this->find('all',array(
+    public function findByUserId($user_id)
+    {
+        $tmp = $this->find('first',array(
             'recursive' => -1,
             'conditions' => array(
-                'Dttechno.techno_id' => $techno_id
+                'Dttechno.user_id' => $user_id
+            ),
+            'order' => array(
+                'Dttechno.id DESC'
             ),
             'fields' => array('*')
         ));
+        if(empty($tmp))
+            return $tmp;
+        return $tmp['Dttechno'];
     }
+
+
 
 
 
