@@ -153,7 +153,7 @@ class BuildingsController extends AppController {
             );
 
             $this->Session->setFlash(__('Le batiment a bien été créé.'));
-            return $this->redirect(array('controller'=>'camps','action'=>'view'));
+            return $this->redirect(array('controller'=>'camps','action'=>'actual'));
         }
         else
         {
