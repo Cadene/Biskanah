@@ -178,7 +178,7 @@ class Databuilding extends AppModel {
     private function _consTime($res1,$res2,$res3,$bat10,$tech8)
     {
         // TODO 0.5 peut être trop abusé
-        return ($res1 + $res2 + $res3) / 5000 * (2 / (1 + $bat10)) * pow(0.5, $tech8);
+        return ($res1 + $res2 + $res3) / 5 * (2 / (1 + $bat10)) * pow(0.5, $tech8);
     }
 
     private function _costInRes($id, $lvl, Array $data)

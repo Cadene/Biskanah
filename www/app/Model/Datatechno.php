@@ -120,7 +120,7 @@ class Datatechno extends AppModel {
 
     private function _consTime($res1,$res2,$res3,$bat10,$tech8)
     {
-        return ($res1 + $res2 + $res3) / 1000 * (1 + $bat10 + $tech8);
+        return ($res1 + $res2 + $res3) / (5 * (1 + $bat10 + $tech8));
     }
 
     private function _costInRes($id, $lvl, Array $data)

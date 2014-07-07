@@ -125,7 +125,6 @@ class TechnosController extends AppController {
 
             // créer la file de construction
             $this->loadModel('Dttechno');
-
             $this->Dttechno->save(array(
                 'techno_id' => $this->Techno->id,
                 'begin' => $times['start'],
@@ -185,29 +184,32 @@ class TechnosController extends AppController {
             // quel est le prochain niveau ?
             $this->loadModel('Dttechno');
             $data['Dttechnos'] = $this->Data->read('Dttechnos');
-            $nextLvl = $data['Building']['lvl'] + count($data['Dttechno']) + 1;
+            $data['Technos'] = $this->Data->read('Technos');
+            $data['Techno'] = current($data['Technos'][$query['type']]);
+            $nextLvl = $data['Techno']['lvl'] + count($data['Dttechno']) + 1;
 
             // récupère les infos du batiment à construire en fonction du niveau
-            $id = $data['Building']['type'];
-            $buildings = $this->Data->read('Buildings');
-            $technos = $this->Data->read('Technos');
+            $data['Buildings'] = $this->Data->read('Buildings');
+            $data['Technos'] = $this->Data->read('Technos');
             $this->loadModel('Databuilding');
-            $data['Databuilding'] = $this->Databuilding->findByIdLvl($id,$nextLvl,$buildings,$technos);
+            $data['Datatechno'] = $this->Databuilding->findByIdLvl(
+                $query['type'],$nextLvl,$data['Buildings'],$data['Technos']
+            );
 
             // vérifie les ressources
-            if(!$this->Nodeable->isEnoughResources($data['Databuilding']))
+            if(!$this->Nodeable->isEnoughResources($data['Datatechno']))
                 throw new NotImplementedException('Pas assez de ressources dispo');
 
             // récupération des temps de constructions
-            $dtbuildings = $this->Data->read('Dtbuildings');
-            $times = $this->Nodeable->startFinishTimes($kind,$dtbuildings,$data['Databuilding']['time']);
+            $times = $this->Nodeable->startFinishTimes($kind,$data['Dtbuildings'],$data['Datatechno']['time']);
 
             // ajout à la liste d'attente
-            $this->Dtbuilding->save(array(
-                'building_id' => $data['Building']['id'],
+            $this->Dttechno->save(array(
+                'techno_id' => $this->Techno->id,
                 'begin' => $times['start'],
                 'finish' => $times['finish'],
-                'camp_id' => $query['camp_id']
+                'building_id' => $data['Building']['id'],
+                'user_id' => $this->Data->read('User.id')
             ));
 
             // Mise à jour des ressources
@@ -222,7 +224,7 @@ class TechnosController extends AppController {
                 array('Camp.id' => $this->Session->read('Camp.current'))
             );
 
-            $this->Session->setFlash(__('Le batiment a bien été amélioré.'));
+            $this->Session->setFlash(__('La techno a bien été amélioré.'));
         }
         return $this->redirect(array('controller'=>'camps','action'=>'actual'));
     }
