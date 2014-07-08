@@ -26,17 +26,42 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
-	<?php
-		echo $this->Html->meta('icon');
+    <link rel="shortcut icon" href="/img/favicon.ico">
 
-		echo $this->Html->css('cake.generic');
+    <!-- Menu -->
 
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
-	?>
+    <?php echo $this->Html->css('Game/leftmenu');?>
+    <?php echo $this->Html->css('Game/rightmenu');?>
+    <script type="text/javascript"
+            language="javascript" src="http://static.spaceswars.com/fichiers.1.2/scripts/jquery.js"></script>
+    <script type="text/javascript"
+            language="javascript" src="http://static.spaceswars.com/fichiers.1.2/scripts/lm-1383010249.js"></script>
+
+    <!-- Overview -->
+
+    <?php echo $this->Html->css('Game/middle');?>
+    <script type="text/javascript"
+            language="javascript" src="http://static.spaceswars.com/fichiers.1.2/scripts/overview-1384296989.js"></script>
+    <script language="JavaScript" type="text/javascript"> var orefresh = 0;</script>
+    <script type="text/javascript"
+            language="javascript" src="http://static.spaceswars.com/fichiers.1.2/scripts/tooltips.js"></script>
+    <script type="text/javascript"
+            language="javascript" src="http://static.spaceswars.com/fichiers.1.2/scripts/topnav.js"></script>
+
+
 </head>
 <body>
+
+    <div id="wrapper">
+
+        <?php echo $this->element('leftmenu'); ?>
+
+        <?php echo $this->element('overview'); ?>
+
+        <?php echo $this->element('rightmenu'); ?>
+
+    </div>
+
 	<div id="container">
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
