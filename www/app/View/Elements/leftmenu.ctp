@@ -1,4 +1,4 @@
-<div id="leftmenu">
+<div id="leftmenu" class="column">
 
     <div class="lm_bl"></div>
 <div class="lm_md lm_ctot">

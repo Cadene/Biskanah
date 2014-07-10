@@ -1,3 +1,9 @@
+/* {
+    border: solid;
+    border-width: 1px;
+    color: red;
+}*/
+
 body {
     color : #FFFFFF;
     margin-top : 0px;
@@ -5,8 +11,10 @@ body {
     background-color : #000;
     background: url('../../img/Game/background3.jpg') no-repeat fixed top left;
     background-color:#000;
+    background-position: center top;
     font-size : 10px;
     font-family : Tahoma,sans-serif;
+    min-width: 500px;      /* 2x LC width + RC width */
 }
 
 img {
@@ -62,33 +70,54 @@ input[type="submit"]{
     color:#111;
 }
 
-#wrapper {
-    overflow: hidden;
+#container {
+    margin: 0 auto;
+    width: 1060px;
+    text-align: center;
 }
 
-#default_main {
-    overflow: hidden;
-    width:600px;
-    font-weight:bold;
-    padding-top:4px;
-    text-align:center;
-    position: absolute;
-    left: 42%;
-    margin-left: -200px;
+#container .column {
+    position: relative;
+    float: left;
+}
+
+
+#leftmenu {
+    float:left;
+    width:170px;
+    margin-right: 60px;
 }
 
 #main {
-    width:600px;
     background-color:#000000;
     filter: alpha(opacity=70);
     b-moz-opacity: 0.7;
     -khtml-opacity: 0.7;
     opacity: 0.7;
     font-weight:bold;
-    padding:4px;
-    text-align:center;
-    overflow:auto;
+
+    display: inline-block;
+    margin: 0 auto;
+    width: 600px;
 }
+
+#rightmenu {
+    float:right;
+    width:170px;
+    margin-left: 60px;
+    /*padding-left: 2px;
+    padding-right: 3px;*/
+}
+
+#footer {
+    clear: both;
+}
+
+
+
+
+
+
 
 div {
     word-wrap: break-word;
@@ -262,7 +291,7 @@ div {
 }
 
 .default_1c1 {
-    width:370px;
+    width:122px;
     color:#B0B0B0;
     overflow:auto;
 }
@@ -281,13 +310,13 @@ div {
 }
 
 .default_1c2 {
-    width:370px;
+    width:122px;
     color:#C1C1C1;
     overflow:auto;
 }
 
 .default_1c3 {
-    width:370px;
+    width:122px;
     color:#D2D2D2;
     overflow:auto;
 }
