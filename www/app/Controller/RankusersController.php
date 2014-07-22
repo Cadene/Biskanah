@@ -20,9 +20,11 @@ class RankusersController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Rankuser->recursive = 0;
-		$this->set('rankusers', $this->Paginator->paginate());
+	public function index()
+    {
+        $this->loadModel('User');
+        $datas = $this->User->findByRanks(1,100);
+        $this->set('datas',$datas);
 	}
 
 /**

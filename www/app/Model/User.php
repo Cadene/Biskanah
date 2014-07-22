@@ -288,6 +288,49 @@ class User extends AppModel {
         return $d;
     }
 
+    public function findByRanks($begin,$count)
+    {
+        $sql = 'SELECT  uo.*,
+                        (
+                        SELECT  COUNT(*)
+                        FROM    users ui
+                        WHERE   (ui.rank_pts, ui.id) >= (uo.rank_pts, uo.id)
+                        ) AS rank
+                FROM    users uo
+                ORDER BY rank DESC';
+        $rslt = $this->query($sql);
+        return $rslt;
+    }
+
+    public function findById($id)
+    {
+        $tmp = $this->find('first', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'User.id' => $id
+            ),
+            'fields' => array('*')
+        ));
+        if(empty($tmp))
+            return $tmp;
+        return $tmp['User'];
+    }
+
+    public function findByUsername($username)
+    {
+        $tmp = $this->find('first', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'User.username' => $username
+            ),
+            'fields' => array('id')
+        ));
+        if(empty($tmp))
+            return $tmp;
+        return $tmp['User'];
+    }
+
+
 /**
  * MAJ de team_id dans la table Users
  * @param user_id
@@ -311,5 +354,35 @@ class User extends AppModel {
         if($unread_msg > 0 ) $unread_msg--;
         $this->query('UPDATE `Users`SET `unread_msg`=\''.$unread_msg.'\' WHERE `id`='.$user_id);
 
+    }
+
+    /**
+     *
+     *
+     * @param mixed $results
+     * @param bool  $primary
+     *
+     * @return mixed
+     */
+    public function afterFind($results, $primary=false)
+    {
+        foreach ($results as $key => $val)
+        {
+            $val = current($val);
+            if (isset($val['rank_pts']))
+            {
+                $results[$key]['User']['rank_pts_pos'] = $this->_getRankPtsPos($val['rank_pts']);
+                $results[$key]['User']['rank_pts'] = floor($results[$key]['User']['rank_pts']/1000);
+            }
+        }
+
+        return $results;
+    }
+
+    private function _getRankPtsPos($rank_pts)
+    {
+        $sql = 'SELECT COUNT(id)+1 AS pos FROM users WHERE rank_pts > '.$rank_pts;
+        $rslt = $this->query($sql);
+        return $rslt[0][0]['pos'];
     }
 }

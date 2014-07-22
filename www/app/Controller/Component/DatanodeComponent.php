@@ -13,12 +13,12 @@
          * @param      $type
          * @param null $lvl
          */
-        public function isAllowed($kind,$type,$lvl=1)
+        public function isAllowed($kind, $type, $lvl=1)
         {
             if (!($kind == 1 || $kind ==2 || $kind ==3))
                 throw new NotFoundException(__('Invalid kind : '.$kind));
 
-            if ($lvl == 1)
+            if ($lvl === 1)
             {
                 $datanodes = ClassRegistry::init('Datanode')->findBy('to',$kind,$type);
 
@@ -28,33 +28,37 @@
                 // on regarde si il a les prérequis
 
                 $needed = $this->_neededDatas($datanodes);
-                $needed['buildings'] = $this->_missingDatas($needed,'buildings');
-                $needed['technos'] = $this->_missingDatas($needed,'technos');
+                $missed['buildings'] = $this->_missingDatas($needed,'buildings',$type);
+                $missed['technos'] = $this->_missingDatas($needed,'technos');
 
-                if (empty($needed['technos']) && empty($needed['buildings']))
+                if (empty($missed['technos']) && empty($missed['buildings']))
                 {
                     return true;
                 }
                 else
                 {
-                    return $needed;
+                    return $missed;
                 }
             }
             else
             {
-                //regarde si il a le niveau précédent
-                $buildings = $this->Data->read('Buildings');
-
-                // TODO à améliorer peut être : une seule requete au lieu d'une boucle
-                foreach ($buildings as $building)
+                if ($kind == 1)
                 {
-                    $building = $building['Building'];
+                    //regarde si il a le niveau précédent
+                    $buildings = $this->Data->read('Buildings');
 
-                    if ($building['type'] == $type && $building['lvl'] == $lvl - 1)
-                        return true;
+                    // TODO à améliorer peut être : une seule requete au lieu d'une boucle
+                    foreach ($buildings as $building)
+                    {
+                        $building = $building['Building'];
+
+                        if ($building['type'] == $type && $building['lvl'] == $lvl - 1)
+                            return true;
+                    }
+
+                    return false;
                 }
-
-                return false;
+                // TODO
             }
 
         }
@@ -68,7 +72,7 @@
          * @return mixed
          * @throws NotImplementedException
          */
-        private function _missingDatas($needed,$kind='buildings')
+        private function _missingDatas($needed,$kind='buildings',$type=0)
         {
             if ($kind != 'buildings' && $kind != 'technos')
                 throw new NotImplementedException('Le Kind est incorrect : '.$kind);
@@ -76,22 +80,24 @@
             if (isset($needed[$kind]))
             {
                 $datas = $this->Data->read(ucfirst($kind));
-                $modelName = ucfirst(substr($kind,0,-1));
 
-                foreach($needed[$kind] as $type)
+                $missed = array( $kind => array() );
+                foreach($needed[$kind] as $type=>$lvl)
                 {
-                    if (isset($datas[$type]) && $datas[$type][$modelName]['lvl'] !=0)
+                    // si on a pas le batiment ou qu'il est d'un niveau insuffisant
+                    if (!isset($datas[$type]) || $needed[$kind][$type] > current($datas[$type])['lvl'])
                     {
-                        $needed[$kind] = array_diff($needed[$kind],array($type));
+                        $missed[$kind][] = $type;
                     }
                 }
-                return $needed[$kind];
+                return $missed[$kind];
             }
             return array();
         }
 
         /**
          * Crée un array de buildings et de technos prérequis
+         * ex: array( 'buildings' => array( 'type' => 'lvl' ) )
          *
          * @param $datanodes
          *
@@ -101,15 +107,15 @@
         {
             foreach ($datanodes as $key=>$value)
             {
-                $value = $value['Datanode'];
+                $value = current($value);
 
                 if ($value['from_kind'] == 1)
                 {
-                    $needed['buildings'][] = $value['from_type'];
+                    $needed['buildings'][$value['from_type']] = $value['from_lvl'];
                 }
                 else
                 {
-                    $needed['technos'][] = $value['from_type'];
+                    $needed['technos'][$value['from_type']] = $value['from_lvl'];
                 }
             }
             return $needed;
@@ -117,52 +123,58 @@
 
 
 
-
-
         /**
-         * Retourne tous les buildings que le joueur peut créer sur son camp
+         * Retourne tous les noeuds que le joueurs est autorisé à construire,
+         * moins ceux qu'il a déjà
          *
          * @param array $data
          *
          * @return array
          */
-        // TODO à optimiser
-        public function allowedBuildings()
+        public function allowed($nodes='buildings',$databuilding_id='')
         {
-            for ($type=1; $type<=18; $type++)
+            if ($nodes === 'buildings') {
+                $from = 1;
+                $to = 19;
+                $kind = 1;
+            } else if ($nodes === 'technos') {
+                $kind = 2;
+                if ($databuilding_id == 11) {
+                    $from = 1;
+                    $to = 11;
+                } else { // 12
+                    $from = 12;
+                    $to = 9*3+11;
+                }
+            } else { // 'units'
+                $kind = 3;
+                if ($databuilding_id == 7) {
+                    $from = 1;
+                    $to = 5;
+                } else if ($databuilding_id == 8) {
+                    $from = 6;
+                    $to = 10;
+                } else {
+                    $from = 11;
+                    $to = 15;
+                }
+            }
+
+            $allowed = array();
+            for ($type = $from; $type <= $to; $type++)
             {
-                if (!$this->Nodeable->doesNodeExist(1,$type))
+                if ($kind == 3 || !$this->Nodeable->doesNodeExist($kind,$type))
                 {
-                    if ($this->isAllowed(1,$type) === true)
+                    if ($this->isAllowed($kind,$type) === true)
+                    {
                         $allowed[] = $type;
+                    }
                 }
             }
             return $allowed;
         }
 
-        public function allowedTechnos($from='laboratory')
-        {
-            if ($from === 'laboratory')
-            {
-                for ($type=1; $type<=11; $type++)
-                {
-                    if ($this->isAllowed(2,$type))
-                        $allowed[] = $type;
-                }
-            }
-            else if ($from === 'armory')
-            {
-                for ($type=12; $type<=9*3+11; $type++)
-                {
-                    if ($this->isAllowed(2,$type))
-                        $allowed[] = $type;
-                }
-            }
-            else
-                throw new NotImplementedException('Le $from est incorrect : '.$from);
 
-            return $allowed;
-        }
 
 
 

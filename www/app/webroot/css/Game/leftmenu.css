@@ -1,21 +1,4 @@
-body {
-    background: url('../../img/background1.jpg') no-repeat fixed top right;
-    background-color:#000;
-    color: #FFFFFF;
-    font-size: 10px;
-    font-family: Tahoma,sans-serif;
-}
 
-a {
-    color                : #FFFFFF;
-    text-decoration      : none;
-    font-weight          : bold;
-}
-
-a:hover {
-    color:lime;
-    text-decoration:underline;
-}
 
 .lm_lang {
     overflow:auto;
@@ -67,12 +50,12 @@ a:hover {
     background-color:#212121;
     border:2px solid #D7D7D7;
 }
-
+/*
 #leftmenu {
-    position: relative;/* TODO fixed */
+    position: relative;/* TODO fixed
     float:left;
 }
-
+*/
 #lm_dh {
     color:lime;
     cursor:pointer;

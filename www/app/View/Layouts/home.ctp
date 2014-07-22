@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Orizon - The Gaming template</title>
+    <title>Biskanah - The Best MMO STR</title>
     <link href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" rel="stylesheet" type="text/css" />
     <!-- Included CSS Files -->
     <?php echo $this->Html->css('Home/header'); ?>
@@ -25,7 +25,7 @@
 
 <body>
 
-<!--********************************************* Header Start *********************************************-->
+<!--********************************************* Header Start *********************************************--
 
 <div id="switcher">
     <div class="users form login">
@@ -88,135 +88,21 @@
 <div id="menu_wrapper">
     <div id="menu_left"></div>
     <ul id="menu">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./banner2.html">Second banner</a></li>
-        <li><a>Dropdown</a>
-            <ul>
-                <li><a href="#">Submenu example 1</a></li>
-                <li><a href="#">Submenu example 2</a></li>
-                <li><a href="#">Submenu example 3</a></li>
-                <li class="drop_last"><a href="#" >Submenu example 4</a></li>
-            </ul>
-        </li>
-        <li><a href="./post_list.html">post list</a></li>
-        <li><a href="./post.html">Post</a></li>
-        <li><a href="./post_game.html">Post with game</a></li>
-        <li><a href="./full_page.html">Full page</a></li>
-        <li><a href="./gallery.html">Gallery</a></li>
-        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./index.html">Accueil</a></li>
+        <li><a href="./banner2.html">Histoire</a></li>
+        <li><a href="./post_list.html">Fonctionnalités</a></li>
+        <li><a href="./post.html">Médias</a></li>
+        <li><a href="./post_game.html">Forum</a></li>
+        <li><a href="./contact.html">Recrutement</a></li>
     </ul>
-    <a href="#" id="pull">Menu</a>
+    <a href="#" id="pull" style="width: 940px;">Menu</a>
     <div id="menu_right"></div>
     <div class="clear"></div>
 </div>
 
 <!--********************************************* Mainmenu end *********************************************-->
 
-<!--********************************************* Banner start *********************************************-->
-<div id="da-slider" class="da-slider">
-    <div class="da-slide">
-        <h2><a href="#" class="da-link">For gamer by gamers</a></h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
-            Ut iaculis lorem vitae arcu elementum pellentesque. <br />
-            Praesent pellentesque ornare neque id lobortis.</p>
-        <div class="da-img"><img alt="alt_example" src="/img/Home/paralax_banner/3.png"  /></div>
-    </div>
-    <div class="da-slide">
-        <h2><a href="#" class="da-link">Blade and Soul</a></h2>
-        <p>Phasellus ac leo turpis. Morbi at pulvinar augue. <br />
-            Aenean rhoncus ultrices volutpat. Vivamus eget enim ut orci iaculis condimentum sed a quam. </p>
-        <div class="da-img"><img alt="alt_example" src="/img/Home/paralax_banner/2.png"  /></div>
-    </div>
-    <div class="da-slide">
-        <h2><a href="#" class="da-link">Final Fantasy XIV</a></h2>
-        <p>Etiam eu massa lectus. Nunc mi velit, commodo ut ullamcorper et, consectetur vel dolor. Etiam tincidunt convallis metus non suscipit.</p>
-        <div class="da-img"><img alt="alt_example" src="/img/Home/paralax_banner/1.png"  /></div>
-    </div>
-    <div class="da-arrows"> <span class="da-arrows-prev"></span> <span class="da-arrows-next"></span> </div>
-</div>
 
-<!--********************************************* Banner end *********************************************-->
-
-<div class="top_shadow"></div>
-
-<!--********************************************* Content start *********************************************-->
-
-<div id="content" style="text-align:center;">
-<?php echo $this->fetch('content'); ?>
-</div>
-
-<!--*********************************************  Content end  *********************************************-->
-
-
-<div class="top_shadow"></div>
-
-
-<!--********************************************* Hot news start *********************************************-->
-<div id="hot_news">
-    <div class="header">
-        <h1><span>ORIZON //</span> HOT NEWS</h1>
-    </div>
-
-    <!-- Previous and next selector -->
-    <a id="prev" class="prev" href="#"><img alt="alt_example" src="/img/Home/blank.gif" width="21" height="33" border="0" /></a> <a id="next" class="next" href="#"><img alt="alt_example" src="/img/Home/blank.gif" width="21" height="33" border="0" /></a>
-    <ul id="hot_news_box">
-        <li>
-            <h2><a href="./post.html">Battlefield 3 expansion!</a></h2>
-            <div class="image"><a href="./post.html"><img alt="alt_example" src="/img/Home/media/full/1.jpg"/></a></div>
-            <div class="content">
-                <p>Nam dignissim nulla mattis justo aliquet luctus. Mauris venenatis eros. Nam in leo libero. In hac habitasse platea dictumst. Phasellus aliquet aliquam sto,dignissi
-                    eistoteles anarequi et son amorites etimo nurli.</p>
-                <div class="info"> <a href="./post.html" class="comments">18 Comments</a> <a href="./post.html" class="read_more">read more</a> </div>
-            </div>
-        </li>
-        <li>
-            <h2><a href="./post.html">Dead space looking good</a></h2>
-            <div class="image"><a href="./post.html"><img alt="alt_example" src="/img/Home/media/full/1.jpg" /></a></div>
-            <div class="content">
-                <p>Nam dignissim nulla mattis justo aliquet luctus. Mauris venenatis eros. Nam in leo libero. In hac habitasse platea dictumst. Phasellus aliquet aliquam sto,dignissi
-                    eistoteles anarequi et son amorites etimo nurli.</p>
-                <div class="info"> <a href="./post.html" class="comments">18 Comments</a> <a href="./post.html" class="read_more">read more</a> </div>
-            </div>
-        </li>
-        <li>
-            <h2><a href="./post.html">Dead space new footage</a></h2>
-            <div class="image"><a href="#"><img alt="alt_example" src="/img/Home/media/full/1.jpg" /></a></div>
-            <div class="content">
-                <p>Nam dignissim nulla mattis justo aliquet luctus. Mauris venenatis eros. Nam in leo libero. In hac habitasse platea dictumst. Phasellus aliquet aliquam sto,dignissi
-                    eistoteles anarequi et son amorites etimo nurli.</p>
-                <div class="info"> <a href="./post.html" class="comments">18 Comments</a> <a href="./post.html" class="read_more">read more</a> </div>
-            </div>
-        </li>
-        <li>
-            <h2><a href="./post.html">Owning at DayZ</a></h2>
-            <div class="image"><a href="#"><img alt="alt_example" src="/img/Home/media/full/1.jpg" /></a></div>
-            <div class="content">
-                <p>Nam dignissim nulla mattis justo aliquet luctus. Mauris venenatis eros. Nam in leo libero. In hac habitasse platea dictumst. Phasellus aliquet aliquam sto,dignissi
-                    eistoteles anarequi et son amorites etimo nurli.</p>
-                <div class="info"> <a href="./post.html" class="comments">18 Comments</a> <a href="./post.html" class="read_more">read more</a> </div>
-            </div>
-        </li>
-        <li>
-            <h2><a href="./post.html">LoL tournament </a></h2>
-            <div class="image"><a href="#"><img alt="alt_example" src="/img/Home/media/full/1.jpg" /></a></div>
-            <div class="content">
-                <p>Nam dignissim nulla mattis justo aliquet luctus. Mauris venenatis eros. Nam in leo libero. In hac habitasse platea dictumst. Phasellus aliquet aliquam sto,dignissi
-                    eistoteles anarequi et son amorites etimo nurli.</p>
-                <div class="info"> <a href="./post.html" class="comments">18 Comments</a> <a href="./post.html" class="read_more">read more</a> </div>
-            </div>
-        </li>
-        <li>
-            <h2><a href="./post.html">MOHW not as good as planned</a></h2>
-            <div class="image"><a href="#"><img alt="alt_example" src="/img/Home/media/full/1.jpg" /></a></div>
-            <div class="content">
-                <p>Nam dignissim nulla mattis justo aliquet luctus. Mauris venenatis eros. Nam in leo libero. In hac habitasse platea dictumst. Phasellus aliquet aliquam sto,dignissi
-                    eistoteles anarequi et son amorites etimo nurli.</p>
-                <div class="info"> <a href="./post.html" class="comments">18 Comments</a> <a href="./post.html" class="read_more">read more</a> </div>
-            </div>
-        </li>
-    </ul>
-</div>
-<!--********************************************* Hot news end *********************************************-->
 
 <!--********************************************* Main start *********************************************-->
 <div id="main_news_wrapper">
@@ -225,63 +111,54 @@
         <!-- Left wrapper Start -->
         <div id="left_wrapper">
             <div class="header">
-                <h2><span>ORIZON //</span> GENERAL NEWS</h2>
+                <h2><span>Biskanah //</span> Version #alpha en cours de développement</h2>
             </div>
             <ul id="general_news">
                 <li>
-                    <div class="image"><a href="./post.html"><img alt="alt_example" src="/img/Home/media/full/1.jpg" /></a></div>
-                    <ul class="social_share">
+                    <div class="image"><a href="./post.html"><img alt="alt_example" src="/img/Home/media/full/biskanah-0_7.png" /></a></div>
+                    <!--<ul class="social_share">
                         <li><a href="#"><img alt="alt_example" src="/img/Home/fbk.png" border="0" /></a></li>
                         <li><a href="#"><img alt="alt_example" src="/img/Home/twitter.png" border="0" /></a></li>
                         <li><a href="#"><img alt="alt_example" src="/img/Home/more.png" border="0" /></a></li>
-                    </ul>
+                    </ul>-->
                     <div class="info">
-                        <div class="comments"> 18 </div>
-                        <h2><a href="./post.html">Blade and Soul - Open beta announced!</a></h2>
-                        <div class="date_n_author">12 July 2012, by Admin</div>
-                        <p>Integer tincidunt tellus ut metus viverra ac sodales odio vulputate. Ut id erat neque, sit amet tristique erat. Vivamus in turpis orci, et volutpat purus. Vestibulum lacinia, arcu id varius eleifend, eros lorem iaculis massa, vitae consequat enim diam eget massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam ultrices viverra consectetur. Sed eget massa augue. Suspendisse urna lectus.</p>
-                        <a href="./post.html" class="read_more2">read more</a> </div>
+                        <!--<div class="comments"> 18 </div>-->
+                        <h2><a href="./post.html">Prochainement dans la version 0.8</a></h2>
+                        <div class="date_n_author">18 juillet 2014, par Remy Tamazy</div>
+                        <p> + Création et améliorations des technologies depuis le laboratoire et l'armurerie.</p>
+                        <p> + Création des unités depuis le caserne, le factory et la base aérienne.</p>
+                        <p> + Liste des constructibles ou non en fonction des prérequis.</p>
+                        <!--<a href="./post.html" class="read_more2">read more</a>--> </div>
                     <div class="clear">
                     </div>
                 </li>
                 <li>
-                    <div class="image"><a href="./post.html"><img alt="alt_example" src="/img/Home/media/full/1.jpg" /></a></div>
-                    <ul class="social_share">
+                    <div class="image"><a href="./post.html"><img alt="alt_example" src="/img/Home/media/full/biskanah-0_7.png" /></a></div>
+                    <!--<ul class="social_share">
                         <li><a href="#"><img alt="alt_example" src="/img/Home/fbk.png" border="0" /></a></li>
                         <li><a href="#"><img alt="alt_example" src="/img/Home/twitter.png" border="0" /></a></li>
                         <li><a href="#"><img alt="alt_example" src="/img/Home/more.png" border="0" /></a></li>
-                    </ul>
+                    </ul>-->
                     <div class="info">
-                        <div class="comments"> 18 </div>
-                        <h2><a href="./post.html">Raiderz item giveaway!</a></h2>
-                        <div class="date_n_author">12 July 2012, by Admin</div>
-                        <p>Integer tincidunt tellus ut metus viverra ac sodales odio vulputate. Ut id erat neque, sit amet tristique erat. Vivamus in turpis orci, et volutpat purus. Vestibulum lacinia, arcu id varius eleifend, eros lorem iaculis massa, vitae consequat enim diam eget massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam ultrices viverra consectetur. Sed eget massa augue. Suspendisse urna lectus.</p>
-                        <a href="./post.html" class="read_more2">read more</a> </div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-                    <div class="image"><a href="./post.html"><img alt="alt_example" src="/img/Home/media/full/1.jpg" /></a></div>
-                    <ul class="social_share">
-                        <li><a href="#"><img alt="alt_example" src="/img/Home/fbk.png" border="0" /></a></li>
-                        <li><a href="#"><img alt="alt_example" src="/img/Home/twitter.png" border="0" /></a></li>
-                        <li><a href="#"><img alt="alt_example" src="/img/Home/more.png" border="0" /></a></li>
-                    </ul>
-                    <div class="info">
-                        <div class="comments"> 18 </div>
-                        <h2><a href="./post.html">Dead Space 3 gameplay</a></h2>
-                        <div class="date_n_author">12 July 2012, by Admin</div>
-                        <p>Integer tincidunt tellus ut metus viverra ac sodales odio vulputate. Ut id erat neque, sit amet tristique erat. Vivamus in turpis orci, et volutpat purus. Vestibulum lacinia, arcu id varius eleifend, eros lorem iaculis massa, vitae consequat enim diam eget massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam ultrices viverra consectetur. Sed eget massa augue. Suspendisse urna lectus.</p>
-                        <a href="./post.html" class="read_more2">read more</a> </div>
-                    <div class="clear"></div>
+                        <!--<div class="comments"> 18 </div>-->
+                        <h2><a href="./post.html">Actuellement dans la version 0.7</a></h2>
+                        <div class="date_n_author">17 juillet 2014, par Remy Tamazy</div>
+                        <p> + Chaque construction rapporte des points en fonction de son coût en ressources.</p>
+                        <p> + Classement des joueurs mis à jour en temps réel.</p>
+                        <p> + Création et améliorations des bâtiments.</p>
+                        <p> + Liste de bâtiments constructibles ou non en fonction des prérequis.</p>
+                        <!--<a href="./post.html" class="read_more2">read more</a>--> </div>
+                    <div class="clear">
+                    </div>
                 </li>
             </ul>
-            <ul id="pager">
+            <!--<ul id="pager">
                 <li><a href="#" ><img alt="alt_example" src="/img/Home/left_pager.jpg" border="0"/></a></li>
                 <li><a href="#" >1</a></li>
                 <li><a href="#">2</a></li>
                 <li><a href="#" class="active">3</a></li>
                 <li><a href="#"><img alt="alt_example" src="/img/Home/right_pager.jpg" border="0"/></a></li>
-            </ul>
+            </ul>-->
 
 
             <div class="clear"></div>
@@ -290,56 +167,34 @@
 
         <!-- Right wrapper Start -->
         <div id="right_wrapper">
-            <div id="search">
-                <input type="text" onblur="if(this.value =='') this.value='search'" onfocus="if (this.value == 'search') this.value=''" value="search" name="s" class="required" id="s" />
-                <input type="button" />
-            </div>
+
             <div class="review">
-                <div class="header"><a href="#">Top games</a></div>
-                <ul>
-                    <li>
-                        <div class="img"><a href="./post_game.html"><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></div>
-                        <div class="info"> <a href="./post_game.html">Dead space 3</a><br/>
-                            <small>05 December 2011, 2 Comments</small><br/>
-                            <img alt="alt_example" src="/img/Home/stars.png" /> </div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="./post_game.html"><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></div>
-                        <div class="info"> <a href="./post_game.html">Battlefield 3</a><br/>
-                            <small>05 December 2011, 2 Comments</small><br/>
-                            <img alt="alt_example" src="/img/Home/stars.png" /> </div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="./post_game.html"><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></div>
-                        <div class="info"> <a href="./post_game.html">DayZ - Arma 2 mod</a><br/>
-                            <small>05 December 2011, 2 Comments</small><br/>
-                            <img alt="alt_example" src="/img/Home/stars.png" /> </div>
-                    </li>
-                    <li>
-                        <div class="img"><a href="./post_game.html"><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></div>
-                        <div class="info"> <a href="./post_game.html">League of legends</a><br/>
-                            <small>05 December 2011, 2 Comments</small><br/>
-                            <img alt="alt_example" src="/img/Home/stars.png" /> </div>
-                    </li>
-                </ul>
+                <form action="/users/register" method="post">
+                    <div class="header"><a href="#">// Inscription au serveur alpha</a></div>
+                    <div id="search">
+                        <input type="text" placeholder="Nom d'utilisateur" name="username" class="required" id="s" />
+                    </div>
+                    <div id="search">
+                        <input type="text" placeholder="Mot de passe" name="password" class="required" id="s" />
+                    </div>
+                    <div id="search">
+                        <input type="text" placeholder="Email" name="email" class="required" id="s" />
+                    </div>
+                    <div class="button-register"><a href="#" onclick="$(this).closest('form').submit()" >Jouez maintenant !</a></div>
+                </form>
             </div>
 
-
-            <div class="advert">
-                <a href="http://themeforest.net/user/Skywarrior" target="_blank"><img alt="alt_example" src="/img/Home/advert_r.jpg" border="0" /></a>
-            </div>
-
-
-            <div class="categories">
-                <div class="header"><a href="#">Categories</a></div>
-                <ul>
-                    <li> <a href="./post_list.html">Action</a> </li>
-                    <li> <a href="./post_list.html">Adventure</a> </li>
-                    <li> <a href="./post_list.html">Strategy</a> </li>
-                    <li> <a href="./post_list.html">RPG</a> </li>
-                    <li> <a href="./post_list.html">Indie</a> </li>
-                    <li> <a href="./post_list.html">Massive Multiplayer</a> </li>
-                </ul>
+            <div class="review">
+                <form action="/users/login" method="post">
+                    <div class="header"><a href="#">// Connexion à l'interface</a></div>
+                    <div id="search">
+                        <input type="text" placeholder="Nom d'utilisateur" name="username" class="required" id="s" />
+                    </div>
+                    <div id="search">
+                        <input type="text" placeholder="Mot de passe" name="password" class="required" id="s" />
+                    </div>
+                    <div class="button-login"><a href="#" onclick="$(this).closest('form').submit()" >Se connecter</a></div>
+                </form>
             </div>
 
 
@@ -362,43 +217,11 @@
 </div>
 <!--********************************************* Main advert end *********************************************-->
 
-<!--********************************************* Footer start *********************************************-->
-<div id="footer">
-    <div class="row">
-        <div class="footer_widget">
-            <div class="header"><a href="#">About ORIZON</a></div>
-            <div class="body">
-                <p><img alt="alt_example" src="/img/Home/about_img.png" align="left" style="margin:0px 15px 5px 0px;"  />Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                <p>Praesent aliquet justo quis lacus mollis molestie pellentesque habitant morbi tristique senectus et e. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque pulvinar urna eget ante pharetra vitae fermentum dui sagittis. Vivamus non ipsum elit, et tincidunt quam.</p>
-                <img alt="alt_example" src="/img/Home/orizon_about.png" style="margin:11px 0px 0px 55px;"/></div>
-        </div>
-        <div class="divider_footer"></div>
-        <div id="latest_media">
-            <div class="header"><a href="#">latest media</a></div>
-            <div class="body">
-                <ul id="l_media_list">
-                    <li><a class="shadowbox" href="/img/Home/media/full/1.jpg" rel="gallery" ><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></li>
-                    <li><a class="shadowbox" href="/img/Home/media/full/1.jpg" rel="gallery" ><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></li>
-                    <li><a class="shadowbox" href="/img/Home/media/full/1.jpg" rel="gallery" ><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></li>
-                    <li><a class="shadowbox" href="/img/Home/media/full/1.jpg" rel="gallery" ><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></li>
-                    <li><a class="shadowbox" href="/img/Home/media/full/1.jpg" rel="gallery" ><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></li>
-                    <li><a class="shadowbox" href="/img/Home/media/full/1.jpg" rel="gallery" ><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></li>
-                    <li><a class="shadowbox" href="/img/Home/media/full/1.jpg" rel="gallery" ><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></li>
-                    <li><a class="shadowbox" href="/img/Home/media/full/1.jpg" rel="gallery" ><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></li>
-                    <li><a class="shadowbox" href="/img/Home/media/full/1.jpg" rel="gallery" ><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></li>
-                    <li><a class="shadowbox" href="/img/Home/media/full/1.jpg" rel="gallery" ><img alt="alt_example" src="/img/Home/media/thumb/1.jpg" /></a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
-</div>
-<!--********************************************* Footer end *********************************************-->
-<div class="clear"></div>
 <!--********************************************* Twitter feed start *********************************************-->
 <div id="twitter_last"> <a id="tr_left" href="#"><img alt="alt_example" src="/img/Home/blank.gif" width="100%" height="30px" border="0" /></a>
     <div id="tr_right">
         <ul id="tw">
+
         </ul>
     </div>
 </div>
@@ -407,7 +230,7 @@
 </div>
 <!--********************************************* Main_in end *********************************************-->
 
-<a id="cop_text" href="http://themeforest.net/user/Skywarrior"> Made by Skywarrior Themes</a>
+<a id="cop_text" href="#"> Powered by Biskanah Games</a>
 </div>
 </div>
 <!--********************************************* Main wrapper end *********************************************-->

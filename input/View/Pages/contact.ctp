@@ -1,2 +1,0 @@
-<?php
-/* Page de contact */

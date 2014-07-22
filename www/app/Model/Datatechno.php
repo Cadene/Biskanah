@@ -74,10 +74,40 @@ class Datatechno extends AppModel {
 		),
 	);
 
+
     public function findByIdLvl($id,$lvl,$buildings,$technos)
     {
         $data = $this->findById($id);
         return $this->_afterFind($id,$lvl,$buildings,$technos,$data);
+    }
+
+    public function findAll()
+    {
+        $tmp = $this->find('all');
+        for ($i=1; $i <= count($tmp); $i++) {
+            $rslt[$i] = $tmp[$i-1];
+        }
+        return $rslt;
+    }
+
+    /**
+     * @param $kind : 1 for labo, or 2 for armo
+     *
+     * @return mixed
+     */
+    public function findAllByDatabuilding($databuilding_id)
+    {
+        $tmp = $this->find('all',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Datatechno.databuilding_id' => $databuilding_id
+            )
+        ));
+        $init = current($tmp[0])['id'];
+        for ($i = $init; $i < count($tmp)+$init; $i++) {
+            $rslt[$i] = $tmp[$i-$init];
+        }
+        return $rslt;
     }
 
     public function _afterFind($id,$lvl,$buildings,$technos,$data)
@@ -143,5 +173,20 @@ class Datatechno extends AppModel {
         if(empty($tmp))
             return $tmp;
         return $tmp['Datatechno'];
+    }
+
+    public function findAllStuffed($buildings,$technos,$lvlGap=0)
+    {
+        $datatechnos = $this->findAll();
+
+        foreach ($technos as $techno)
+        {
+            $techno = current($techno);
+            $id = $techno['datatechno_id'];
+            $lvl = $techno['lvl'] + $lvlGap;
+            $data = current($datatechnos[$id]);
+            $datatechnos[$id]['Datatechno'] = $this->_afterFind($id,$lvl,$buildings,$technos,$data);
+        }
+        return $datatechnos;
     }
 }

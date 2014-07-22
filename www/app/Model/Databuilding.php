@@ -103,6 +103,28 @@ class Databuilding extends AppModel {
         return $this->_afterFind($id,$lvl,$buildings,$technos,$data);
     }
 
+    public function findAll()
+    {
+        $tmp = $this->find('all');
+        for ($i=1; $i <= count($tmp); $i++) {
+            $rslt[$i] = $tmp[$i-1];
+        }
+        return $rslt;
+    }
+
+    public function findByBuildings($buildings,$technos,$lvlGap=0)
+    {
+        $databuildings = $this->findAll();
+        foreach ($buildings as $building) {
+            $building = current($building);
+            $id = $building['databuilding_id'];
+            $lvl = $building['lvl'] + $lvlGap;
+            $data = current($databuildings[$id]);
+            $databuildings[$id]['Databuilding'] = $this->_afterFind($id,$lvl,$buildings,$technos,$data);
+        }
+        return $databuildings;
+    }
+
     public function _afterFind($id,$lvl,$buildings,$technos,$data)
     {
         // TODO rajouter les valeurs de structures, le temps de construction, etc.
@@ -144,7 +166,7 @@ class Databuilding extends AppModel {
         $databuilding = $tmp['Databuilding'];
 
         $data = [];
-        for ($lvl=$firstLvl; $lvl <= $nbLvl; $lvl++)
+        for ($lvl=$firstLvl; $lvl <= $firstLvl+$nbLvl; $lvl++)
         {
             $data['Databuildings'][$lvl] = $this->_afterFind($id,$lvl,$buildings,$technos,$databuilding);
         }
@@ -186,28 +208,33 @@ class Databuilding extends AppModel {
         // Extracteur de métal
         if ($id == 1)
         {
-            $res[1] = 60 * pow(1.5, $lvl-1);
-            $res[2] = 15 * pow(1.5, $lvl-1);
+            $res[1] = pow(1.5, $lvl-1);
+            $res[2] = pow(1.5, $lvl-1);
             $res[3] = 0;
         }
         else if ($id == 2)
         {
-            $res[1] = 48 * pow(1.6, $lvl-1);
-            $res[2] = 24 * pow(1.5, $lvl-1);
+            $res[1] = pow(1.6, $lvl-1);
+            $res[2] = pow(1.5, $lvl-1);
             $res[3] = 0;
         }
         else if ($id == 3)
         {
-            $res[1] = 225 * pow(1.6, $lvl-1);
-            $res[2] = 75 * pow(1.5, $lvl-1);
+            $res[1] = pow(1.6, $lvl-1);
+            $res[2] = pow(1.5, $lvl-1);
             $res[3] = 0;
         }
         else
         {
-            $res[1] = $data['res1'] * pow(2, $lvl-1);
-            $res[2] = $data['res2'] * pow(2, $lvl-1);
-            $res[3] = $data['res3'] * pow(2, $lvl-1);
+            $res[1] = pow(2, $lvl-1);
+            $res[2] = pow(2, $lvl-1);
+            $res[3] = pow(2, $lvl-1);
         }
+
+        $res[1] *= $data['res1'];
+        $res[2] *= $data['res2'];
+        $res[3] *= $data['res3'];
+
         return $res;
     }
 }

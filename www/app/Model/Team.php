@@ -113,4 +113,18 @@ class Team extends AppModel {
 
         return true;
     }
+
+    public function findById($id)
+    {
+        $tmp = $this->find('first', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Team.id' => $id
+            ),
+            'fields' => array('*')
+        ));
+        if (empty($tmp))
+            return $tmp;
+        return $tmp['Team'];
+    }
 }

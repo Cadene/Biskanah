@@ -1,4 +1,4 @@
-<div id="leftmenu">
+<div id="leftmenu" class="column">
 
     <div class="lm_bl"></div>
 <div class="lm_md lm_ctot">
@@ -10,6 +10,7 @@
                id="lm_cla" title="Changelog mis &agrave; jour le : 00/00/2014 00:00:00">Changelog</a>
         </span>
     </div>
+    <!--
     <div class="lm_mes lm_hcu">
         <a href="<?= $this->Html->url(['controller'=>'messages','action' => 'kind','1']);?>" title="Afficher la page : Messages"
            onClick="show('lm_message_cat');">Messages <span  style="color:red;">(3)</span></a>
@@ -37,7 +38,7 @@
     <div id="lm_chm"
          title="Afficher/Cacher les raccourcis vers les diff&eacute;rents types de messages">
         &dArr; <a href="#" onClick="show('lm_mesc');change('lm_chm',true);" id="lm_chma">Cat&eacute;gories</a> &dArr;
-    </div>
+    </div>-->
     <div class="lm_bl"></div>
     <div class="lm_h lm_hcu">
         <a href="#" title="Afficher le contenu de ce menu"onClick="show('lm_navig_cat');"> &dArr;</a>
@@ -46,13 +47,14 @@
     </div>
     <div id="lm_navig_cat" class="lm_hs">
         <div class="lm_smcu">
-            <a href="<?= $this->Html->url(['controller'=>'messages','action' => 'kind','1']);?>"
+            <a href="<?= $this->Html->url(['controller'=>'users','action' => 'news']);?>"
                title="Afficher la page : Vue g&eacute;n&eacute;rale" >
-                    Vue g&eacute;n&eacute;rale
+                    Page d'accueil
             </a>
         </div>
+        <div class="lm_smcu"><?=$this->Html->link('Bâtiments','/buildings/index');?></div>
         <div class="lm_smcu">
-            <a href="" title="Afficher la page : Galaxie" >Map</a>
+            <a href="<?= $this->Html->url(['controller'=>'worlds','action' => 'view']);?>" title="Afficher la map" >Map</a>
         </div>
         <div class="lm_smcu">
             <a href="" title="Afficher la page : Flotte" >Armée</a>
@@ -64,30 +66,30 @@
     <br>
     <div class="lm_h lm_hcu">
         <a href="#" title="Afficher le contenu de ce menu"onClick="show('lm_build_cat');">&dArr;</a>
-            Raccourcies
+            Raccourcis
         <a href="#" title="Cacher le contenu de ce menu" onClick="hide('lm_build_cat');">&uArr;</a>
     </div>
     <div id="lm_build_cat" class="lm_hs">
         <div class="lm_smcu">
-            <a href="" title="Afficher la page : Laboratoire" >Laboratoire</a>
+            <a href="<?= $this->Html->url(['controller'=>'buildings','action' => 'display',11]);?>" title="Afficher la page : Laboratoire" >Laboratoire</a>
         </div>
         <div class="lm_smcu">
-            <a href="" title="Afficher la page : Armurerie" >Armurerie</a>
+            <a href="<?= $this->Html->url(['controller'=>'buildings','action' => 'display',12]);?>" title="Afficher la page : Armurerie" >Armurerie</a>
         </div>
         <div class="lm_smcu">
-            <a href="" title="Afficher la page : Caserne" >Caserne</a>
+            <a href="<?= $this->Html->url(['controller'=>'buildings','action' => 'display',7]);?>" title="Afficher la page : Caserne" >Caserne</a>
         </div>
         <div class="lm_smcu">
-            <a href="" title="Afficher la page : Factory" >Factory</a>
+            <a href="<?= $this->Html->url(['controller'=>'buildings','action' => 'display',8]);?>" title="Afficher la page : Factory" >Factory</a>
         </div>
         <div class="lm_smcu">
-            <a href="" title="Afficher la page : Base Aérienne" >Base Aérienne</a>
+            <a href="<?= $this->Html->url(['controller'=>'buildings','action' => 'display',9]);?>" title="Afficher la page : Base Aérienne" >Base Aérienne</a>
         </div>
         <div class="lm_smcu">
-            <a href="" title="Afficher la page : Téléporteur" >Téléporteur</a>
+            <a href="<?= $this->Html->url(['controller'=>'buildings','action' => 'display',13]);?>" title="Afficher la page : Téléporteur" >Téléporteur</a>
         </div>
         <div class="lm_smcu">
-            <a href="" title="Afficher la page : Relais Marchand" >Relais Marchand</a>
+            <a href="<?= $this->Html->url(['controller'=>'buildings','action' => 'display',14]);?>" title="Afficher la page : Relais Marchand" >Relais Marchand</a>
         </div>
     </div>
     <br>
@@ -98,7 +100,7 @@
     </div>
     <div id="lm_outil_cat" class="lm_hs">
         <div class="lm_smcu">
-            <a href="" title="Afficher la page : Classements" >Classements</a>
+            <a href="<?= $this->Html->url(['controller'=>'rankusers','action' => 'index']);?>" title="Afficher la page : Classements" >Classements</a>
         </div>
         <div class="lm_smcu">
             <a href="" title="Afficher la page : Records" >Records</a>
@@ -116,7 +118,7 @@
     <br>
     <br>
     <div class="lm_lt lm_ctot">
-        <a href="" target="_top"
+        <a href="<?=$this->Html->url('/users/logout');?>" target="_top"
            title="En cliquant sur ce lien, vous serez d&eacute;connect&eacute;">D&eacute;connexion</a>
     </div>
     <br>

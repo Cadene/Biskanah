@@ -1,8 +1,13 @@
 <?php
+    require('config/database.php');
 
-    require_once ('src/Element.php');
-    require_once ('src/Building.php');
+    require('src/DB.php');
 
-$building = new Building(1);
+    $db = new DB();
 
-print_r($building->toValues());
+    $camp = $db->select('camps',
+        array('last_update'),
+        array('id = 1'));
+
+    foreach ($camp as $c)
+        var_dump($c['last_update']);

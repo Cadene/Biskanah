@@ -25,99 +25,245 @@ class DB{
 		}
 		catch(Exception $e){
 			echo 'Erreur : '.$e->getMessage().'<br />';
-			echo 'N�� : '.$e->getCode();
+			echo 'N° : '.$e->getCode();
 		}
 	}
 
-    public function query($sql){
+    /**
+     * Execute la requête $sql et renvoie un objet itérable dans le cas d'un Select
+     *
+     * @param $sql
+     *
+     * @return PDOStatement
+     */
+    public function query($sql)
+    {
         return $this->db->query($sql);
     }
 
-    public function insertAll($table,&$key,&$values,$show=false)
+    /**
+     * @param      $table
+     * @param      $keys
+     * @param      $values
+     * @param bool $toString
+     *
+     * @return PDOStatement|string
+     */
+    public function insertAll($table,$keys,$values,$toString=false)
     {
         $sql = 'INSERT INTO `'.$table.'` (';
 
-        $firstKey=true;
-        foreach($key as $k)
-        {
-            if(!$firstKey){ $sql.=', '; }else{ $firstKey=false; }
-
-            $sql .= '`'.$k.'`';
-        }
+        $sql .= $this->_keys($keys);
 
         $sql .= ') VALUES ';
-        $firstValues=true;
+        $firstValues = true;
 
-        foreach($values as $value)
+        foreach ($values as $value)
         {
-            if(!$firstValues){ $sql.=', '; }else{ $firstValues=false; }
+            if (!$firstValues)
+            {
+                $sql .= ', ';
+            }
+            else
+            {
+                $firstValues = false;
+            }
             
             $sql .= '(';
-            $firstValue=true;
-            foreach($value as $v)
+            $firstValue = true;
+            foreach ($value as $v)
             {
-                if(!$firstValue){ $sql.=', '; }else{ $firstValue=false; }
+                if (!$firstValue)
+                {
+                    $sql .= ', ';
+                }
+                else
+                {
+                    $firstValue = false;
+                }
                 $sql .= '"'.$v.'"';
             }
             $sql .= ')';
         }
 
-        if ($show)
-            print_r($sql);
-
-        return $this->db->query($sql);
+        return $this->_doToString($sql,$toString);
     }
 
-    public function select($table,$keys,$conditions)
+    /**
+     * @param       $table
+     * @param       $keys
+     * @param array $conditions
+     * @param bool  $toString
+     *
+     * @return mixed
+     */
+    public function select($table,$keys,$conditions=[],$toString=false)
     {
         $sql = 'SELECT ';
 
-        $firstKey=true;
-        foreach($keys as $key)
-        {
-            if(!$firstKey){ $sql.=', '; }else{ $firstKey=false; }
-            $sql .= '`'.$key.'`';
-        }
+        $sql .= $this->_keys($keys);
 
-        $sql.= ' FROM '.$table;;
-        $firstCondition=true;
-        foreach($conditions as $condition)
-        {
-            if(!$firstCondition){
-                $sql.=' AND ';
-            }else{
-                $firstCondition=false;
-                $sql.=' WHERE ';
-            }
-            $sql .= $condition;
-        }
+        $sql .= ' FROM '.$table;
 
-        return $this->db->query($sql);
+        $sql .= $this->_conditions($conditions);
+
+        return $this->_doToString($sql,$toString);
     }
 
-    public function update($table,&$sets,&$conditions)
+    /**
+     * @param      $table
+     * @param      $keys
+     * @param      $conditions
+     * @param bool $toString
+     *
+     * @return PDOStatement|string
+     */
+    public function update($table,$keys,$conditions=[],$toString=false)
     {
         $sql = 'UPDATE '.$table.' SET ';
 
-        $firstSet=true;
-        foreach($sets as $set)
+        $sql .= $this->_sets($keys);
+
+        $sql .= $this->_conditions($conditions);
+
+        return $this->_doToString($sql,$toString);
+    }
+
+    /**
+     * @param       $table
+     * @param array $conditions
+     * @param bool  $toString
+     *
+     * @return PDOStatement|string
+     */
+    public function delete($table,$conditions=[],$toString=false)
+    {
+        $sql = 'DELETE FROM '.$table;
+
+        $sql .= $this->_conditions($conditions);
+
+        return $this->_doToString($sql,$toString);
+    }
+
+
+    /**
+     * @param $keys
+     *
+     * @return string
+     */
+    private function _keys($keys)
+    {
+        $sql = '';
+        $firstKey = true;
+        foreach($keys as $key)
         {
-            if(!$firstSet){ $sql.=', '; }else{ $firstSet=false; }
+            if (!$firstKey)
+            {
+                $sql .= ', ';
+            }
+            else
+            {
+                $firstKey=false;
+            }
+
+            if ($key === '*')
+            {
+                $sql .= $key;
+            }
+            else
+            {
+                $sql .= '`'.$key.'`';
+            }
+        }
+        return $sql;
+    }
+
+    /**
+     * @param $keys
+     *
+     * @return string
+     */
+    private function _sets($keys)
+    {
+        $sql = '';
+        $firstSet = true;
+        foreach ($keys as $set)
+        {
+            if (!$firstSet)
+            {
+                $sql .= ', ';
+            }
+            else
+            {
+                $firstSet = false;
+            }
             $sql .= $set;
         }
-
-        $sql.= ' WHERE ';
-        $firstCondition=true;
-        foreach($conditions as $condition)
-        {
-            if(!$firstCondition){ $sql.=' AND '; }else{ $firstCondition=false; }
-            $sql .= $condition;
-        }
-
-        return $this->db->query($sql);
+        return $sql;
     }
-    
 
+    /**
+     * @param array $conditions
+     *
+     * @return string
+     */
+    private function _conditions($conditions)
+    {
+        $sql = '';
+        if (!empty($conditions))
+        {
+            $firstCondition=true;
+            foreach($conditions as $condition)
+            {
+                if(!$firstCondition)
+                {
+                    $sql.=' AND ';
+                }
+                else
+                {
+                    $firstCondition=false;
+                    $sql.=' WHERE ';
+                }
+                $sql .= $condition;
+            }
+        }
+        return $sql;
+    }
+
+    /**
+     * @param $sql
+     * @param $toString
+     *
+     * @return PDOStatement|string
+     */
+    private function _doToString($sql,$toString)
+    {
+        $sql .= ';'."\n";
+
+        if ($toString === true)
+        {
+            return $sql;
+        }
+        else
+        {
+            return $this->db->query($sql);
+        }
+    }
+
+    /**
+     * @param PDOStatement $selectPDO
+     *
+     * @return array
+     */
+    public function pdoToArray(PDOStatement $selectPDO)
+    {
+        $result = [];
+        foreach ($selectPDO as $copy)
+        {
+            $result[] = $copy;
+        }
+        return $result;
+    }
 
 	
 	

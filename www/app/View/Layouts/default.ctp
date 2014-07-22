@@ -28,15 +28,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	</title>
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <!-- Menu -->
-
-    <?php echo $this->Html->css('Game/leftmenu');?>
-    <?php echo $this->Html->css('Game/rightmenu');?>
-    <script type="text/javascript"
-            language="javascript" src="http://static.spaceswars.com/fichiers.1.2/scripts/jquery.js"></script>
-    <script type="text/javascript"
-            language="javascript" src="http://static.spaceswars.com/fichiers.1.2/scripts/lm-1383010249.js"></script>
-
     <!-- Overview -->
 
     <?php echo $this->Html->css('Game/middle');?>
@@ -49,38 +40,57 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             language="javascript" src="http://static.spaceswars.com/fichiers.1.2/scripts/topnav.js"></script>
 
 
+    <!-- Menu -->
+
+    <?php echo $this->Html->css('Game/leftmenu');?>
+    <?php echo $this->Html->css('Game/rightmenu');?>
+    <script type="text/javascript"
+            language="javascript" src="http://static.spaceswars.com/fichiers.1.2/scripts/jquery.js"></script>
+    <script type="text/javascript"
+            language="javascript" src="http://static.spaceswars.com/fichiers.1.2/scripts/lm-1383010249.js"></script>
+
+
+    <?php echo $this->Html->css('Game/map');?>
+
 </head>
 <body>
 
-    <div id="wrapper">
+    <div id="header">
+        <?php echo $this->element('header');?>
+    </div>
+
+    <div id="container"">
+
+        <?php //echo $this->element('overview'); ?>
 
         <?php echo $this->element('leftmenu'); ?>
 
-        <?php echo $this->element('overview'); ?>
+        <div id="main" class="curvedtot column">
+            <?php echo $this->fetch('content'); ?>
+        </div>
 
-        <?php echo $this->element('rightmenu'); ?>
 
+        <?php echo $this->element('rightmenu',array(
+            'camps' => $rightmenu['Camps'],
+            'camp' => $rightmenu['Camp'],
+            'user' => $rightmenu['User'],
+            'team' => $rightmenu['Team']
+        )); ?>
     </div>
 
+
+    <div id="footer"></div>
+
+    <!--
 	<div id="container">
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
 		</div>
 
-        <?php echo $this->element('resources',array(
-            'data' => $resources
-        )); ?>
-
-        <?php echo $this->element('camps',array(
-            'data' => $camps
-        )); ?>
-
-
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
 
-			<?php echo $this->fetch('content'); ?>
 		</div>
 
 
@@ -93,6 +103,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			?>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+
+
+	<?php echo $this->element('sql_dump'); ?>-->
 </body>
 </html>

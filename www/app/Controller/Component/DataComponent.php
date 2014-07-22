@@ -21,40 +21,8 @@
         protected $camps;
         */
 
-        protected $config = array(
-            'layout' => array(
-                'default' => array( // layout name
-                    'resources' => array( // element name
-                        'Camp' => array( // Model name
-                            'res1',
-                            'res2',
-                            'res3',
-                            'prod1',
-                            'prod2',
-                            'prod3',
-                            'datetime'
-                        )
-                    ),
-                    'camps' => array( // element name
-                        'Camps' => array(
-                            'Camp' => array(
-                                'id',
-                                'name',
-                                'unread_reports',
-                            ),
-                            'World' => array(
-                                'id',
-                                'x',
-                                'y',
-                            ),
-                            'A2b' => array(
-                                'id',
-                                'type',
-                            )
-                        )
-                    )
-                )
-            )
+        protected $elements = array(
+            'rightmenu' => array('User','Camp','Camps','Team')
         );
 
         protected $_DATA = array();
@@ -133,28 +101,44 @@
             $camp_id = $this->Session->read('Camp.current');
 
             if($name == 'User'){
-                $this->write($name,ClassRegistry::init('User')->findById());
-            }
+                $this->write($name,ClassRegistry::init('User')->findById($user_id));
+            }else
             if($name == 'Team'){
-                $this->write($name,ClassRegistry::init('Team')->findById($user_id));
-            }
+                $team_id = $this->read('User.team_id');
+                $this->write($name,ClassRegistry::init('Team')->findById($team_id));
+            }else
             if($name == 'Camps'){
-                $this->write($name,ClassRegistry::init('Camps')->findByUserId($user_id));
-            }
+                $this->write($name,ClassRegistry::init('Camp')->findByUserId($user_id));
+            }else
             if($name == 'Camp'){
                 $this->write($name,ClassRegistry::init('Camp')->findById($camp_id));
-            }
+            }else
             if($name == 'Buildings'){
                 $this->write($name,ClassRegistry::init('Building')->findByCampId($camp_id));
-            }
+            }else
             if($name == 'Technos'){
                 $this->write($name,ClassRegistry::init('Techno')->findByUserId($user_id));
-            }
+            }else
+            if($name == 'Technos11'){
+                $this->write($name,ClassRegistry::init('Techno')->findByUserId($user_id,11));
+            }else
+            if($name == 'Technos12'){
+                $this->write($name,ClassRegistry::init('Techno')->findByUserId($user_id,12));
+            }else
             if($name == 'Dtbuildings'){
                 $this->write($name,ClassRegistry::init('Dtbuilding')->findByCampId($camp_id));
-            }
+            }else
             if($name == 'Dttechnos'){
                 $this->write($name,ClassRegistry::init('Dttechno')->findByUserId($user_id));
+            }else
+            if($name == 'Units7'){
+                $this->write($name,ClassRegistry::init('UnitsCamp')->findAllbyCamp($camp_id));
+            }else
+            if($name == 'Dataunits'){
+                $this->write($name,ClassRegistry::init('Dataunit')->findAll());
+            }else
+            if ($name == 'UnitsCamps'){
+                $this->write($name,ClassRegistry::init('UnitsCamp')->findAllByCamp($camp_id));
             }
         }
 
@@ -165,6 +149,16 @@
          */
         protected function _checkElements(Controller $controller)
         {
+            foreach ($this->elements as $element=>$models)
+            {
+                foreach ($models as $model)
+                {
+                    $data[$element][$model] = $this->read($model);
+                }
+                $controller->set($element,$data[$element]);
+            }
+        }/*
+
             if(!isset($this->config['layout'][$controller->layout]))
                 return;
             foreach($this->config['layout'][$controller->layout] as $elementName => $elementTables)
@@ -177,10 +171,10 @@
                     $this->write($tableName,$this->$functionName($controller));
                 }
 
-                //envoyer les données aux différents éléments*/
+                //envoyer les données aux différents éléments
                 $controller->set($elementName,$this->_DATA[$tableName]);
             }
-        }
+        }*/
 
         /**
          * S'execute avant de rendre la vue
@@ -199,6 +193,11 @@
 
         protected function _recoverCamps(Controller $controller){
             $data = ClassRegistry::init('Camp')->recoverCamps($controller->Session->read('User.id'));
+            return $data;
+        }
+
+        protected function _recoverRightmenu(){
+            $data['User'] = $this->read('User');
             return $data;
         }
 

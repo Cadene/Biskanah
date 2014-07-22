@@ -93,12 +93,21 @@ class Techno extends AppModel {
      *
      * @return mixed
      */
-    public function findByUserId($user_id)
+    public function findByUserId($user_id,$databuilding_id=null)
     {
+        $condition = '1 = 1';
+
+        if ($databuilding_id != null)
+        {
+            $condition = 'Techno.datatechno_id ';
+            $condition .= ($databuilding_id == 11 ? '<= 11' : '> 11');
+        }
+
         $tmp = $this->find('all',array(
             'recursive' => -1,
             'conditions' => array(
-                'Techno.user_id' => $user_id
+                'Techno.user_id' => $user_id,
+                $condition
             )
         ));
 

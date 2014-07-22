@@ -84,6 +84,17 @@ class Dtbuilding extends AppModel {
         ));
     }
 
+    public function findByDatabuilding($databuilding_id)
+    {
+        return $this->find('all',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Dtbuilding.databuilding_id' => $databuilding_id
+            ),
+            'fields' => array('*')
+        ));
+    }
+
     public function findByCampId($camp_id)
     {
         $tmp = $this->find('all',array(
@@ -98,6 +109,46 @@ class Dtbuilding extends AppModel {
         ));
 
         return $tmp;
+    }
+
+    /**
+     * Ajoute le niveau
+     *
+     * @param mixed $results
+     * @param bool  $primary
+     *
+     * @return mixed
+     */
+    public function afterFind($results, $primary=false)
+    {
+        App::uses('Data','Controller/Component');
+        $this->Data = new DataComponent(new ComponentCollection());
+        $buildings = $this->Data->read('Buildings');
+
+        for($type=0; $type<=18; $type++)
+        {
+            if (isset($buildings[$type]))
+            {
+                $lvlByTypes[] = current($buildings[$type])['lvl'];
+            }
+            else
+            {
+                $lvlByTypes[] = 0;
+            }
+        }
+
+        for ($i=count($results)-1; $i>=0; $i--)
+        {
+            $dtb = $results[$i]['Dtbuilding'];
+            $type = $dtb['databuilding_id'];
+
+            $lvlByTypes[$type]++;
+
+            $results[$i]['Dtbuilding']['lvl'] = $lvlByTypes[$type];
+        }
+
+
+        return $results;
     }
 
 

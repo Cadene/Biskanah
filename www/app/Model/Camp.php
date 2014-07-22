@@ -265,31 +265,135 @@ class Camp extends AppModel {
             ),
             'fields' => array('*')
         ));
+        if(empty($tmp))
+            return $tmp;
         return $tmp['Camp'];
     }
 
+    public function findByUserId($user_id)
+    {
+        $tmp = $this->find('all', array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Camp.user_id' => $user_id
+            ),
+            'fields' => array('*')
+        ));
+        return $tmp;
+    }
+
+    /**
+     * Update les resources seulement si une ligne est récupérée avec un last_update
+     * Actualisation de res$i
+     * Ajout de maxRes$i
+     * Ajout de boxes
+     *
+     * @param mixed $results
+     * @param bool  $primary
+     *
+     * @return mixed
+     */
     public function afterFind($results, $primary=false)
     {
         foreach($results as $key => $val)
         {
             $camp = $val['Camp'];
-            if(isset($camp['last_update']))
+
+            if (count($results) === 1 && isset($camp['last_update']))
             {
-                foreach(array(1,2,3) as $i){
-                    if(isset($camp['res'.$i]) && isset($camp['prod'.$i])
-                        && isset($camp['maxres'.$i]))
-                    {
-                        $results[$key]['Camp']['currentres'.$i] = ((time() - $camp['last_update']) / 3600)
-                                                                    * $camp['prod'.$i] + $camp['res'.$i];
-                        if($results[$key]['Camp']['currentres'.$i] >= $camp['maxres'.$i])
-                            $results[$key]['Camp']['currentres'.$i] = $camp['maxres'.$i];
-                    }
+                App::uses('Data','Controller/Component');
+                $this->Data = new DataComponent(new ComponentCollection());
+                $buildings = $this->Data->read('Buildings');
+                // /!\ attention on récupère les buildings de la session
+
+                /* Actualisation des resources */
+
+                $res = $this->_getResToAdd($camp,$buildings);
+
+                foreach (array(1,2,3) as $i)
+                {
+                    $results[$key]['Camp']['res'.$i] += $res[$i];
+
+                    $maxRes[$i] = $this->_getMaxRes($i,$buildings);
+
+                    if ($results[$key]['Camp']['res'.$i] > $maxRes[$i])
+                        $results[$key]['Camp']['res'.$i] = $maxRes[$i];
+
+                    $results[$key]['Camp']['maxRes'.$i] = $maxRes[$i];
                 }
 
+                /*  Comptage des cases */
+
+                $results[$key]['Camp']['boxes'] = $this->_getBoxes($buildings);
+                $results[$key]['Camp']['maxBoxes'] = $this->_getMaxBoxes($buildings);
             }
         }
         return $results;
     }
+
+    private function _getMaxBoxes($buildings)
+    {
+        if (isset($buildings[16]))
+            return current($buildings[16])['lvl'] * 10;
+        return 0;
+    }
+
+    private function _getBoxes($buildings)
+    {
+        $boxes = 0;
+        foreach ($buildings as $building)
+        {
+            $building = current($building);
+            $boxes += $building['lvl'];
+        }
+        return $boxes;
+    }
+
+    private function _getProd($i,$buildings)
+    {
+        if (isset($buildings[$i]))
+            $lvl = current($buildings[$i])['lvl'];
+        else
+            $lvl = 0;
+
+        $factor = array(30,20,10);
+        $init = array(20,10,5);
+
+        if ($lvl === 0)
+            return $init[$i-1];
+
+        return $factor[$i-1] * $lvl * pow(1.1,$lvl);
+    }
+
+    private function _getResToAdd($camp,$buildings)
+    {
+        $res = array();
+        $timeBetween = time() - $camp['last_update'];
+        $hoursBetween = $timeBetween / 3600.0;
+
+        foreach (array(1,2,3) as $i)
+        {
+            $res[$i] = $this->_getProd($i,$buildings) * $hoursBetween;
+        }
+
+        return $res;
+    }
+
+    private function _getMaxRes($i,$buildings)
+    {
+        $init = 100000;
+
+        if (isset($buildings[$i+3]))
+            $lvl = current($buildings[$i+3])['lvl'];
+        else
+            $lvl = 0;
+
+        if ($lvl === 0)
+            return $init;
+
+        return $init + 50000 * floor( pow(1.6, $lvl));
+    }
+
     /*
     public function recoverDataCamp($id){
         $db = $this->getDataSource();

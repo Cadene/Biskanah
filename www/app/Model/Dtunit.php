@@ -99,4 +99,16 @@ class Dtunit extends AppModel {
 			'order' => ''
 		)
 	);
+
+    public function findAllByBuilding($building_id)
+    {
+        return $this->find('all',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Dtunit.building_id' => $building_id
+            ),
+            'fields' => array('*')
+        ));
+    }
+
 }

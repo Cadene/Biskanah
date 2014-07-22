@@ -10,13 +10,16 @@ class Biskanah {
 
     protected $units;
 
+    protected $datanodes;
+
 	
-	public function __construct($world, $buildings, $technos, $units)
+	public function __construct($world, $buildings, $technos, $units, $datanodes)
     {
 		$this->world = $world;
         $this->buildings = $buildings;
         $this->technos = $technos;
         $this->units = $units;
+        $this->datanodes = $datanodes;
 	}
 
 
@@ -26,6 +29,7 @@ class Biskanah {
         $this->buildings->generate($db);
         $this->technos->generate($db);
         $this->units->generate($db);
+        $this->datanodes->generate($db);
     }
 
 
