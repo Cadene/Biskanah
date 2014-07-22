@@ -24,31 +24,46 @@ class CampsController extends GameController {
 * @param int id s:camp_id
 * @return void
 */
-	public function actual($id = null)
+	public function actual()
     {
         $this->Data = $this->Components->load('Data');
-        $user_id = $this->Session->read('User.id');
-
-       // change de camp
-        if ($id)
-        {
-            $data = $this->Camp->recoverCamps($user_id);
-
-            if($this->_isInCamps($id,$data))
-            {
-                $this->Session->write('Camp.current',$id);
-                $this->Data->write('Camps',$data);
-            }
-            throw new NotFoundException(__('Invalid camp'));
-        }
 
         $data['Camp'] = $this->Data->read('Camp');
         $data['Buildings'] = $this->Data->read('Buildings');
+        $data['Technos'] = $this->Data->read('Technos');
         $data['Dtbuildings'] = $this->Data->read('Dtbuildings');
+
+        $this->loadModel('Databuilding');
+        $data['Databuildings'] = $this->Databuilding->findByBuildings($data['Buildings'],$data['Technos'],1);
+
         $data['Technos'] = $this->Data->read('Technos');
         $data['Dttechnos'] = $this->Data->read('Dttechnos');
 
         $this->set('data',$data);
+    }
+
+    /**
+     * @param null $id
+     *
+     * @throws NotFoundException
+     */
+    public function change($id = null)
+    {
+        if ($id === null)
+        {
+            throw new Exception('id invalide : '.$id);
+        }
+
+        $user_id = $this->Session->read('User.id');
+        $camp_ids = $this->Camp->recoverCamps($user_id);
+
+        if(!$this->_isInCamps($id,$camp_ids))
+        {
+            throw new Exception('cet id n\'est pas le votre : '.$id);
+        }
+
+        $this->Session->write('Camp.current',$id);
+        return $this->redirect(array('controller'=>'camps','action' => 'actual'));
     }
 
     /**

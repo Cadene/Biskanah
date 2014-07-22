@@ -4,7 +4,8 @@ class Building extends Element {
 
     protected $id;
     protected $name;
-    protected $desc;
+    protected $desc1;
+    protected $desc2;
 
     protected $res1;
     protected $res2;
@@ -13,11 +14,12 @@ class Building extends Element {
     protected $struct;
 
 
-    public function __construct($id, $name='default', $desc='default',$res1=30, $res2=20, $res3=10, $struct=10)
+    public function __construct($id, $name='default', $desc1='default',$desc2='default',$res1=30, $res2=20, $res3=10, $struct=10)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->desc = $desc;
+        $this->desc1 = $desc1;
+        $this->desc2 = $desc2;
         $this->res1 = $res1;
         $this->res2 = $res2;
         $this->res3 = $res3;

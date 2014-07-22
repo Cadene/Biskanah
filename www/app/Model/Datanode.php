@@ -13,12 +13,15 @@ class Datanode extends AppModel {
      *
      * @return array
      */
-    public function findBuildings()
+    public function findNodes($nodes='buildings')
     {
-        $kind = 1;
-        $direction = 'to';
+        if ($nodes === 'buildings') {
+            $kind = 1;
+        } else {
+            $kind = 2;
+        }
 
-        return $this->findByKind($direction,$kind);
+        return $this->findByKind('to',$kind);
     }
 
     public function findByKind($direction,$kind)
@@ -30,8 +33,7 @@ class Datanode extends AppModel {
                 $direction.'_kind' => $kind
             ),
             'fields' => array(
-                $opDir.'_kind',
-                $opDir.'_type',
+                '*'
             )
         ));
 
@@ -55,8 +57,7 @@ class Datanode extends AppModel {
                 $direction.'_type' => $type,
             ),
             'fields' => array(
-                $opDir.'_kind',
-                $opDir.'_type',
+                '*'
             )
         ));
 

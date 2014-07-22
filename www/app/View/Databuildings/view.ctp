@@ -3,57 +3,57 @@
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['id']); ?>
+			<?php echo h($datat['Databuilding']['id']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Lvl'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['lvl']); ?>
+			<?php echo h($datat['Databuilding']['lvl']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Res1'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['res1']); ?>
+			<?php echo h($datat['Databuilding']['res1']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Res2'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['res2']); ?>
+			<?php echo h($datat['Databuilding']['res2']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Res3'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['res3']); ?>
+			<?php echo h($datat['Databuilding']['res3']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Prod1'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['prod1']); ?>
+			<?php echo h($datat['Databuilding']['prod1']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Prod2'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['prod2']); ?>
+			<?php echo h($datat['Databuilding']['prod2']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Prod3'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['prod3']); ?>
+			<?php echo h($datat['Databuilding']['prod3']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Struct'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['struct']); ?>
+			<?php echo h($datat['Databuilding']['struct']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Conso'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['conso']); ?>
+			<?php echo h($datat['Databuilding']['conso']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Time'); ?></dt>
 		<dd>
-			<?php echo h($databuilding['Databuilding']['time']); ?>
+			<?php echo h($datat['Databuilding']['time']); ?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -61,8 +61,8 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Databuilding'), array('action' => 'edit', $databuilding['Databuilding']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Databuilding'), array('action' => 'delete', $databuilding['Databuilding']['id']), null, __('Are you sure you want to delete # %s?', $databuilding['Databuilding']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Databuilding'), array('action' => 'edit', $datat['Databuilding']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Databuilding'), array('action' => 'delete', $datat['Databuilding']['id']), null, __('Are you sure you want to delete # %s?', $datat['Databuilding']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Databuildings'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Databuilding'), array('action' => 'add')); ?> </li>
 	</ul>

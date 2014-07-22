@@ -70,15 +70,27 @@ class AppController extends Controller {
     }*/
 
     // TODO enlever load DataComponent par défaut
-    public function beforeFilter (){
+    public function beforeFilter ()
+    {
         parent::beforeFilter();
         $this->Data = $this->Components->load('Data');
         $this->disableCache();
 
-        if($this->request->controller == 'pages')
+        $controller = $this->request->controller;
+        $action = $this->request->action;
+
+        if ($controller === 'pages'
+            || ($controller === 'users'
+                && ($action === 'login' || $action === 'register')
+            ))
         {
             $this->Auth->allow();
         }
-        $this->Auth->allow();
+
+        if ($this->Session->read('User.id') === null || $this->Session->read('Camp.current') === null)
+            $this->Session->destroy();
+        else
+            $this->Auth->allow();
+
     }
 }

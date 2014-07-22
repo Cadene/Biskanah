@@ -13,10 +13,10 @@ $this->start('specialize');?>
 
     <div class="space0">
 
-        <?php foreach ($data['Technos'] as $tech):
+        <?php foreach ($data['UnitsCamps'] as $in):
             $tech = current($tech);
-            $type = $tech['datatechno_id'];
-            $datat = current($data['Datatechnos'][$type]);
+            $type = $tech['dataunit_id'];
+            $datat = current($data['Dataunits'][$type]);
             ?>
             <div class="space1 curvedtot">
                 <div class="space">
@@ -25,12 +25,11 @@ $this->start('specialize');?>
                         </a>
                     </div>
                     <div>
-                        Coût pour le niveau <?=($tech['lvl']+1);?> : <?=floor($datat['res1']);?> Métal <?=floor($datat['res2']);?> Cristal <?=floor($datat['res3']);?> Uranium
+                        Coût par unité : <?=($tech['lvl']+1);?> : <?=floor($datat['res1']);?> Métal <?=floor($datat['res2']);?> Cristal <?=floor($datat['res3']);?> Uranium
                     </div>
                     <div>
                         Durée de construction : <?=gmdate("H:i:s", round($datat['time']));?>
                     </div>
-                    <div><?= $this->Html->link('Upgrade','/technos/create/'.$type);?></div>
                 </div>
             </div>
         <?php endforeach;?>
@@ -38,19 +37,19 @@ $this->start('specialize');?>
         <br>
 
         <div class="space1 curvedtot">
-            <div class="space"><?= $this->Html->link('Rechercher une nouvelle technologie', '/technos/searchable/12');?></div>
+            <div class="space"><?= $this->Html->link('Entrainer de nouvelles unités', '/units/trainable/7');?></div>
         </div>
     </div>
 
-    <?php if (!empty($data['Dttechnos'])): ?>
+    <?php if (!empty($data['Dtunits'])): ?>
 
         <br>
         <div class="divtop curvedtot">Technologie en cours de recherche</div>
         <div class="space0">
-            <?php for ($i=0; $i < count($data['Dttechnos']); $i++):
-                $dtt = current($data['Dttechnos'][$i]);
-                $type = $dtt['datatechno_id'];
-                $datat = current($data['Datatechnos'][$type]);
+            <?php for ($i=0; $i < count($data['Dtunits']); $i++):
+                $dtt = current($data['Dtunits'][$i]);
+                $type = $dtt['dataunit_id'];
+                $datat = current($data['Dataunits'][$type]);
                 $timeLeft = $dtt['finish'] - time();
                 $datetime = gmdate("H:i:s", $timeLeft);
                 ?>

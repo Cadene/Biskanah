@@ -4,6 +4,7 @@ class Buildings {
 
     protected $buildings;
 
+
     public function __construct($buildings=array())
     {
         $this->buildings = $buildings;
@@ -20,5 +21,6 @@ class Buildings {
 
         $db->insertAll($table,Building::getKeys(),$values);
     }
+
 
 }

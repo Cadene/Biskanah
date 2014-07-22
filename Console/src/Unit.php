@@ -20,10 +20,12 @@ class Unit extends Element{
     protected $conso;
     protected $capacity;
 
+    protected $databuilding_id;
+
     public function __construct(
         $id, $name='default', $desc='default',
         $res1=30, $res2=20, $res3=10, $kind=1, $att1=100, $att2=100, $att3=100, $attbat=100,
-        $armor=100, $spy=0, $speed=6, $conso=1, $capacity=1000
+        $armor=100, $spy=0, $speed=6, $conso=1, $capacity=1000, $databuilding_id=7
     ) {
         foreach ($this->getKeys() as $key=>$value)
         {

@@ -11,6 +11,6 @@ foreach (glob('src/*.php') as $filename)
 }
 
 $db = new DB();
-//$db->drop('Biskanah');
+
 $biskanah = Factory::makeBiskanah();
 $biskanah->generateAll($db);

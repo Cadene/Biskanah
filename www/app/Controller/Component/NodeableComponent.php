@@ -50,13 +50,24 @@
          */
         public function startFinishTimes($kind,$dtnodes,$timeToDevelop)
         {
-            if(empty($dtnodes)) {
+            if(empty($dtnodes))
+            {
                 $time['start'] = time();
-            }else{
-                //$last = count($dtbuildings)-1;
+            }
+            else
+            {
                 $last = 0;
                 $Dtnode = ucfirst($this->to_dtnode($kind));
-                $time['start'] = $dtnodes[$last][$Dtnode]['finish'] + 1;
+                $lastNodeFinish = $dtnodes[$last][$Dtnode]['finish'];
+
+                if ($lastNodeFinish < time())
+                {
+                    $time['start'] = time();
+                }
+                else
+                {
+                    $time['start'] = $dtnodes[$last][$Dtnode]['finish'] + 1;
+                }
             }
             $time['finish'] = round($time['start'] + $timeToDevelop);
 
@@ -64,13 +75,13 @@
         }
 
 
-        public function isEnoughResources($data)
+        public function isEnoughResources($data,$nbUnits=1)
         {
             $camp = $this->Data->read('Camp');
 
-            if( (($new['res1'] = $camp['res1'] - $data['res1']) >= 0)
-                && (($new['res2'] = $camp['res2'] - $data['res2']) >= 0)
-                && (($new['res3'] = $camp['res3'] - $data['res3']) >= 0)
+            if( (($new['res1'] = $camp['res1'] - $data['res1'] * $nbUnits) >= 0)
+                && (($new['res2'] = $camp['res2'] - $data['res2'] * $nbUnits) >= 0)
+                && (($new['res3'] = $camp['res3'] - $data['res3'] * $nbUnits) >= 0)
             ) {
                 foreach (array(1,2,3) as $i)
                     $this->Data->write('Camp.newres'.$i, $new['res'.$i]);
@@ -78,6 +89,70 @@
             }
 
             return false;
+        }
+
+
+        /**
+         * Buildable, Searchable, Trainable
+         *
+         * @param Controller $controller
+         * @param string     $nodes
+         * @param string     $databuilding_id
+         */
+        public function nodeable(Controller $controller, $nodes='buildings',$databuilding_id='')
+        {
+            $Nodes = ucfirst($nodes);
+            $node = substr($nodes,0,-1);
+
+            $this->DatanodeComponent = $controller->Components->load('Datanode');
+            $this->DataComponent = $controller->Components->load('Data');
+
+            $allowedTypes = $this->DatanodeComponent->allowed($nodes,$databuilding_id);
+
+            if ($nodes === 'buildings')
+            {
+                $data['data'.$nodes] = ClassRegistry::init('Data'.$node)->findAll();
+            }
+            else if ($nodes === 'technos')
+            {
+                $data['data'.$nodes] = ClassRegistry::init('Data'.$node)->findAllByDatabuilding($databuilding_id);
+            }
+            else // 'units'
+            {
+                $data['data'.$nodes] = ClassRegistry::init('Data'.$node)->findAllByDatabuilding($databuilding_id);
+            }
+
+            $data[$nodes] = $this->DataComponent->read($Nodes.$databuilding_id);
+            $datanodes = ClassRegistry::init('Datanode')->findNodes($nodes);
+
+            // les nodes qu'on possède
+            $nodesTypes = [];
+            foreach ($data[$nodes] as $b) {
+                $nodesTypes[] = current($b)['type'];
+            }
+
+            $datanodesTypes = [];
+            foreach ($data['data'.$nodes] as $d) {
+                $datanodesTypes[] = current($d)['id'];
+            }
+
+            $refusedTypes = array_diff($datanodesTypes,$nodesTypes,$allowedTypes);
+
+            $requiredTypes = [];
+            foreach ($datanodes as $d) {
+                $d = current($d);
+                $requiredTypes[$d['to_type']][$d['from_type']] = $d['from_lvl'];
+            }
+
+            if ($nodes !== 'units')
+                $controller->view = $controller->view.$databuilding_id;
+
+            /*debug($datanodesTypes);
+            debug($nodesTypes);
+            debug($allowedTypes);*/
+
+            $controller->set(compact('allowedTypes','refusedTypes','requiredTypes','datanodesTypes'));
+            $controller->set('data'.$nodes,$data['data'.$nodes]);
         }
 
 

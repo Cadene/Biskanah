@@ -28,50 +28,101 @@ class BuildingsController extends AppController {
         if($type === null)
             throw new  NotFoundException(__('Invalid building type : '.$type));
 
-        if(!$this->Nodeable->doesNodeExist(1,$type))
-            throw new NotFoundException(__('Vous devez d\'abord créer le building.'));
-
         // récupère les infos du joueur et du camp
         $buildings = $this->Data->read('Buildings');
         $technos = $this->Data->read('Technos');
 
+        $this->loadModel('Databuilding');
+
+        if(!$this->Nodeable->doesNodeExist(1,$type))
+        {
+            $data = $this->Databuilding->findByIdLvlBetween($type,0,4,$buildings,$technos);
+
+            $this->set(compact('data'));
+
+            return;
+        }
+
         $data['Building'] = current($this->Data->read('Buildings')[$type]);
 
         $lvl = $data['Building']['lvl'];
-        $this->loadModel('Databuilding');
         $tmp = $this->Databuilding->findByIdLvlBetween($type,$lvl,4,$buildings,$technos);
         $data = array_merge($data,$tmp);
 
         $this->loadModel('Dtbuilding');
         $data['Dtbuildings'] = $this->Dtbuilding->findByBuildingId($data['Building']['id']);
 
+
         $this->set(compact('data'));
-
-        if ($data['Building']['lvl'] <= 0) {
+        if ($data['Building']['lvl'] <= 0)
+        {
             $this->view = 'level0';
-        } else {
-            $type = $data['Building']['type'];
-            $func = 'view' . $type;
-            $this->view = $func;
-
-            if (method_exists($this,$func)) {
-                $this->$func($data);
-            }
         }
+        else
+        {
+            $type = $data['Building']['type'];
+            $this->view = 'view' . $type;
+
+            $func = 'view';
+            $this->$func($type,$data);
+
+        }
+    }
+
+    public function index()
+    {
+        $this->Data = $this->Components->load('Data');
+
+        $data['Camp'] = $this->Data->read('Camp');
+        $data['Buildings'] = $this->Data->read('Buildings');
+        $data['Technos'] = $this->Data->read('Technos');
+        $data['Dtbuildings'] = $this->Data->read('Dtbuildings');
+
+        $this->loadModel('Databuilding');
+        $data['Databuildings'] = $this->Databuilding->findByBuildings($data['Buildings'],$data['Technos'],1);
+
+        $data['Technos'] = $this->Data->read('Technos');
+        $data['Dttechnos'] = $this->Data->read('Dttechnos');
+
+        $this->set('data',$data);
     }
 
 /**
  * view11 method
  * view laboratory building
  */
-    private function view11($data)
+    private function view($type,$data)
     {
-        $this->Datanode = $this->Components->load('Datanode');
-        $allowedTechnos = $this->Datanode->allowedTechnos();
-        $this->loadModel('Dttechno');
-        $dttechnos = $this->Dttechno->findByBuildingId($data['Building']['id']);
-        $this->set(compact('allowedTechnos', 'dttechnos'));
+        $this->Data = $this->Components->load('Data');
+
+        $data['Buildings'] = $this->Data->read('Buildings');
+
+        if ($type == 11 || $type == 12)
+        {
+            $data['Technos'] = $this->Data->read('Technos'.$type);
+
+            $this->loadModel('Dttechno');
+            $data['Dttechnos'] = $this->Dttechno->findByBuildingId($data['Building']['id']);
+
+            $this->loadModel('Datatechno');
+            $data['Datatechnos'] = $this->Datatechno->findAllStuffed(
+                $data['Buildings'], $data['Technos'], 1
+            );
+        }
+        else if ($type == 7 || $type == 8 || $type == 9)
+        {
+            $data['UnitsCamps'] = $this->Data->read('UnitsCamps');
+            $data['Technos'] = $this->Data->read('Technos');
+
+            $this->loadModel('Dtunit');
+            $data['Dtunits'] = $this->Dtunit->findAllByBuilding($data['Building']['id']);
+
+            $data['Dataunits'] = $this->Data->read('Dataunits');
+        }
+
+        $this->set(compact('data'));
     }
+
 
 /**
 * create method
@@ -84,60 +135,68 @@ class BuildingsController extends AppController {
 * @param int $_POST['level']
 * @return void
 */
-	public function create()
+    public function buildable()
     {
-        if ($this->request->is('post'))
-        {
-            if(!isset($this->request->data['Building']['type']))
-                throw new NotImplementedException('Bad arguments in POST');
-            $query = array(
-                'type' => $this->request->data['Building']['type'],
-                'camp_id' => $this->Session->read('Camp.current')
-            );
-            $kind = 1; // is building
+        $this->Nodeable = $this->Components->load('Nodeable');
+        $this->Nodeable->nodeable($this);
+    }
 
-            if ($this->Nodeable->doesNodeExist($kind,$query['type']))
-                throw new NotImplementedException('Il existe déjà un batiment de ce type.');
+    /**
+     * Crée ou met à jour les batiments
+     *
+     * @param null $type
+     *
+     * @throws NotImplementedException
+     */
+    public function create($type=null)
+    {
+        if ($type !== null)
+        {
+            // récupère les infos du building à construire
+            $data['Databuilding'] = $this->_getNextDatabuilding($type);
 
             // vérification des prérequis
-            $this->Datanode = $this->Components->load('Datanode');
-            $type = $query['type'];
-            if($this->Datanode->isAllowed($kind, $type) !== true)
+            if ($data['Databuilding']['lvl'] === 1)
             {
-                throw new NotImplementedException('Les prérequis pour construire ce batiment sont manquants.');
+                $this->Datanode = $this->Components->load('Datanode');
+                if ($this->Datanode->isAllowed(1, $type) !== true) {
+                    throw new NotImplementedException('Les prérequis pour construire ce batiment sont manquants.');
+                }
             }
 
-            // récupère les infos du batiment à construire
-            $buildings = $this->Data->read('Buildings');
-            $technos = $this->Data->read('Technos');
-            $this->loadModel('Databuilding');
-            $lvl = 1;
-            $data['Databuilding'] = $this->Databuilding->findByIdLvl($query['type'],$lvl,$buildings,$technos);
-
-            // vérifie les ressources
-            if(!$this->Nodeable->isEnoughResources($data['Databuilding'])){
-                throw new NotImplementedException('Pas assez de ressources dispo');
-            }
+            $this->_verifyEnoughRes($data['Databuilding']);
+            $this->_verifyOneBoxeLeft($data['Databuilding']);
 
             // créer le batiment niveau 0
-            $this->loadModel('Building');
-            $this->Building->save(array(
-                'camp_id' => $this->Session->read('Camp.current'),
-                'databuilding_id' => $query['type'],
-                'lvl' => 0
-            ));
+            if ($data['Databuilding']['lvl'] === 1)
+            {
+                $this->loadModel('Building');
+                $this->Building->save(array(
+                    'camp_id' => $this->Session->read('Camp.current'),
+                    'databuilding_id' => $type,
+                    'lvl' => 0
+                ));
+                $data['Building']['id'] = $this->Building->id;
+            }
+            else
+            {
+                $data['Building']['id'] = current($this->Data->read('Buildings')[$type])['id'];
+            }
 
             // récupérer les temps de créations
-            $dtbuildings = $this->Data->read('Dtbuildings');
-            $times = $this->Nodeable->startFinishTimes($kind,$dtbuildings,$data['Databuilding']['time']);
+            $data['Dtbuildings'] = $this->Data->read('Dtbuildings');
+            $times = $this->Nodeable->startFinishTimes(
+                1,$data['Dtbuildings'],$data['Databuilding']['time']
+            );
 
             // créer la file de construction
             $this->loadModel('Dtbuilding');
             $this->Dtbuilding->save(array(
-                'building_id' => $this->Building->id,
+                'databuilding_id' => $type,
+                'building_id' => $data['Building']['id'],
                 'begin' => $times['start'],
                 'finish' => $times['finish'],
-                'camp_id' => $query['camp_id']
+                'camp_id' => $this->Session->read('Camp.current')
             ));
 
             // Mettre à jour les ressources du camp
@@ -153,89 +212,52 @@ class BuildingsController extends AppController {
             );
 
             $this->Session->setFlash(__('Le batiment a bien été créé.'));
-            return $this->redirect(array('controller'=>'camps','action'=>'actual'));
+            return $this->redirect(array('action'=>'index'));
+        }
+        return $this->redirect(array('action'=>'buildable'));
+    }
+
+    private function _getNextDatabuilding($type)
+    {
+        if (!$this->Nodeable->doesNodeExist(1,$type))
+        {
+            $nextLvl = 1;
         }
         else
         {
-            $this->Datanode = $this->Components->load('Datanode');
-            $allowed = $this->Datanode->allowedBuildings();
-            $this->set('allowedBuildings', $allowed);
+            $this->loadModel('Dtbuilding');
+            $dtbuildings = $this->Dtbuilding->findByDatabuilding($type);
+            $data['Buildings'] = $this->Data->read('Buildings');
+            $data['Building'] = current($data['Buildings'][$type]);
+            $nextLvl = $data['Building']['lvl'] + count($dtbuildings) + 1;
+        }
+
+        $data['Buildings'] = $this->Data->read('Buildings');
+        $data['Technos'] = $this->Data->read('Technos');
+        $this->loadModel('Databuilding');
+        $data['Databuilding'] = $this->Databuilding->findByIdLvl(
+            $type,$nextLvl,$data['Buildings'],$data['Technos']
+        );
+
+        return $data['Databuilding'];
+    }
+
+    private function _verifyOneBoxeLeft($databuilding)
+    {
+        $camp = $this->Data->read('Camp');
+
+        if ($camp['maxBoxes'] - $camp['boxes'] <= 1)
+        {
+            if ($databuilding['id'] != 16)
+                throw new NotImplementedException('Pas assez de place disponible, créez un terraformeur');
         }
     }
 
-
-
-/**
-* upgrade method
-* Améliorer le niveau d'un bâtiment
-*
-* @param int $_POST['building_id']
-* @param int $_SESSION['camp_id']
-* @return void
-*/
-	public function upgrade()
+    private function _verifyEnoughRes($databuilding)
     {
-        if ($this->request->is('post'))
-        {
-            if(!isset($this->request->data['Building']['id']))
-                throw new NotImplementedException('Bad arguments in POST');
-            $query = array(
-                'id' => $this->request->data['Building']['id'],
-                'camp_id' => $this->Session->read('Camp.current')
-            );
-            $kind = 1;
-
-            // Est ce que le batiment existe déjà ?
-            $this->loadModel('Building');
-            $data['Building'] = $this->Building->findById($query['id']);
-            if (!$this->Nodeable->doesNodeExist(1,$data['Building']['type']))
-                throw new NotImplementedException('Construisez d\'abord un batiment de niveau 1.');
-
-            // quel est le prochain niveau ?
-            $this->loadModel('Dtbuilding');
-            $data['Dtbuilding'] = $this->Dtbuilding->findByBuildingId($query['id']);
-            $nextLvl = $data['Building']['lvl'] + count($data['Dtbuilding']) + 1;
-
-            // récupère les infos du batiment à construire en fonction du niveau
-            $id = $data['Building']['type'];
-            $buildings = $this->Data->read('Buildings');
-            $technos = $this->Data->read('Technos');
-            $this->loadModel('Databuilding');
-            $data['Databuilding'] = $this->Databuilding->findByIdLvl($id,$nextLvl,$buildings,$technos);
-
-            // vérifie les ressources
-            if(!$this->Nodeable->isEnoughResources($data['Databuilding']))
-                throw new NotImplementedException('Pas assez de ressources dispo');
-
-            // récupération des temps de constructions
-            $dtbuildings = $this->Data->read('Dtbuildings');
-            $times = $this->Nodeable->startFinishTimes($kind,$dtbuildings,$data['Databuilding']['time']);
-
-            // ajout à la liste d'attente
-            $this->Dtbuilding->save(array(
-                'building_id' => $data['Building']['id'],
-                'begin' => $times['start'],
-                'finish' => $times['finish'],
-                'camp_id' => $query['camp_id']
-            ));
-
-            // Mise à jour des ressources
-            $this->loadModel('Camp');
-            $this->Camp->updateAll(
-                array(
-                    'res1' => $this->Data->read('Camp.newres1'),
-                    'res2' => $this->Data->read('Camp.newres2'),
-                    'res3' => $this->Data->read('Camp.newres3'),
-                    'last_update' => time()
-                ),
-                array('Camp.id' => $this->Session->read('Camp.current'))
-            );
-
-            $this->Session->setFlash(__('Le batiment a bien été amélioré.'));
-        }
-        return $this->redirect(array('controller'=>'camps','action'=>'actual'));
-	}
-
+        if(!$this->Nodeable->isEnoughResources($databuilding))
+            throw new NotImplementedException('Pas assez de ressources dispo');
+    }
 
 
 /**

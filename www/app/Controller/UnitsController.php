@@ -13,7 +13,7 @@ class UnitsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator','Nodeable');
 
 /**
  * index method
@@ -24,9 +24,16 @@ class UnitsController extends AppController {
  * @param int $_SESSION['user_id']
  * @return void
  */
-	public function index() {
-
-	}
+    /**
+     * Liste des unités en fonction de leur batiment de recherche
+     *
+     * @param $databuilding_id
+     */
+    public function trainable($databuilding_id)
+    {
+        $this->Nodeable = $this->Components->load('Nodeable');
+        $this->Nodeable->nodeable($this,'units',$databuilding_id);
+    }
 
 /**
  * create method
@@ -39,9 +46,97 @@ class UnitsController extends AppController {
  * @param int $_SESSION['camp_id']
  * @return void
  */
-	public function create() {
+	public function create($type=null)
+    {
+        $query = $this->request->data;
 
-	}
+        // récupération du Dataunit
+        $data['Dataunits'] = $this->Data->read('Dataunits');
+
+        if (!isset($data['Dataunits'][$type]))
+        {
+            throw new Exception('error type '.$type);
+        }
+        $data['Dataunit'] = current($data['Dataunits'][$type]);
+
+        $data['Buildings'] = $this->Data->read('Buildings');
+
+        // vérifictation de l'existence de building
+        if (!isset($data['Buildings'][$data['Dataunit']['databuilding_id']]))
+        {
+            throw new Exception('error pas de building');
+        }
+        else
+        {
+            $data['Building'] = current($data['Buildings'][$data['Dataunit']['databuilding_id']]);
+        }
+
+        // vérification des prérequis
+        $this->Datanode = $this->Components->load('Datanode');
+        if ($this->Datanode->isAllowed(3, $type) !== true)
+        {
+            throw new NotImplementedException('Les prérequis pour construire cette unité sont manquants.');
+        }
+
+        // vérifie les ressources
+        if (!$this->Nodeable->isEnoughResources($data['Dataunit'],$query['nbUnits']))
+        {
+            throw new NotImplementedException('Pas assez de ressources dispo');
+        }
+
+        // créer l'unité
+        $data['UnitsCamps'] = $this->Data->read('UnitsCamps');
+
+        if (!isset($data['UnitsCamps'][$type]))
+        {
+            $this->loadModel('UnitsCamp');
+            $this->UnitsCamp->save(array(
+                'camp_id' => $this->Session->read('Camp.current'),
+                'dataunit_id' => $type,
+                'num' => 0
+            ));
+            $data['UnitsCamp']['id'] = $this->UnitsCamp->id;
+        }
+        else
+        {
+            $data['UnitsCamp'] = current($data['UnitsCamps'][$type]);
+        }
+
+        // récupérer le temps de création
+        $this->loadModel('Dtunit');
+        $data['Dtunits'] = $this->Dtunit->findAllByBuilding($data['Building']['id']);
+        $times = $this->Nodeable->startFinishTimes(
+            3, $data['Dtunits'], $data['Dataunit']['time'] * $query['nbUnits']
+        );
+
+        // créer la file de construction
+        $this->loadModel('Dtunit');
+        $this->Dtunit->save(array(
+            'dataunit_id' => $type,
+            'unit_camp_id' => $data['UnitsCamp']['id'],
+            'building_id' => $data['Building']['id'],
+            'begin' => $times['start'],
+            'finish' => $times['finish']
+        ));
+
+        // Mettre à jour les ressources du camp
+        $this->loadModel('Camp');
+        $this->Camp->updateAll(
+            array(
+                'res1' => $this->Data->read('Camp.newres1'),
+                'res2' => $this->Data->read('Camp.newres2'),
+                'res3' => $this->Data->read('Camp.newres3'),
+                'last_update' => time()
+            ),
+            array('Camp.id' => $this->Session->read('Camp.current'))
+        );
+
+        $this->Session->setFlash(__('La techno a bien été créé.'));
+        return $this->redirect(array('controller'=>'buildings','action'=>'display',11));
+
+
+
+    }
 
 
 /**

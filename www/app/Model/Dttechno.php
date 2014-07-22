@@ -90,6 +90,17 @@ class Dttechno extends AppModel {
 	    ));
     }
 
+    public function findByDatatechno($datatechno_id)
+    {
+        return $this->find('all',array(
+            'recursive' => -1,
+            'conditions' => array(
+                'Dttechno.datatechno_id' => $datatechno_id
+            ),
+            'fields' => array('*')
+        ));
+    }
+
     // TODO à enlever ?
     public function lastByBuildingId($building_id){
         $tmp = $this->find('first',array(
@@ -109,7 +120,7 @@ class Dttechno extends AppModel {
 
     public function findByUserId($user_id)
     {
-        $tmp = $this->find('first',array(
+        $tmp = $this->find('all',array(
             'recursive' => -1,
             'conditions' => array(
                 'Dttechno.user_id' => $user_id
@@ -119,9 +130,8 @@ class Dttechno extends AppModel {
             ),
             'fields' => array('*')
         ));
-        if(empty($tmp))
-            return $tmp;
-        return $tmp['Dttechno'];
+
+        return $tmp;
     }
 
 
