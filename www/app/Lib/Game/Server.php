@@ -37,7 +37,7 @@ class Server {
         $sql .= $this->update('buildings');
         $sql .= $this->update('technos');
         $sql .= $this->update('units');
-        $sql .= $this->_updateCampsRes();
+        //$sql .= $this->_updateCampsRes();
 
         if (!empty($sql))
         {
@@ -179,7 +179,10 @@ class Server {
         $dts = $this->db->pdoToArray($dtPDO);
 
         foreach ($dts as $dt)
+        {
             $this->_addCamp($dt['camp_id'],$dt['last_update']);
+            debug($this->camps);
+        }
 
         return $dts;
     }

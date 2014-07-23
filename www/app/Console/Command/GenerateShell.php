@@ -1,8 +1,17 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Tamazy
- * Date: 23/07/2014
- * Time: 12:27
- * To change this template use File | Settings | File Templates.
- */
+
+class GenerateShell extends AppShell {
+
+    public function main()
+    {
+        $load = $this->Tasks->load('Load');
+        $load->execute();
+
+        $db = new DB();
+
+        $biskanah = Factory::makeBiskanah();
+        $biskanah->generateAll($db);
+
+        $this->out('Done!');
+    }
+}
