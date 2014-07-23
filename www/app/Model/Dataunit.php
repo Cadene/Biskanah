@@ -147,28 +147,38 @@ class Dataunit extends AppModel {
 
     public function findAll()
     {
-        $tmp = $this->find('all');
-        for ($i=1; $i <= count($tmp); $i++) {
-            $rslt[$i] = $tmp[$i-1];
-        }
-        return $rslt;
+        return $this->find('all',array(
+            'recursive' => -1
+        ));
     }
 
     public function findAllByDatabuilding($databuilding_id)
     {
-        $tmp = $this->find('all',array(
+        return $this->find('all',array(
             'recursive' => -1,
             'conditions' => array(
                 'Dataunit.databuilding_id' => $databuilding_id
             )
         ));
-        $init = current($tmp[0])['id'];
-        for ($i = $init; $i < count($tmp)+$init; $i++) {
-            $rslt[$i] = $tmp[$i-$init];
-        }
-        return $rslt;
     }
 
+    // TODO
+    public function afterFind($results, $primary=false)
+    {
+        App::uses('Data','Controller/Component');
+        $this->Data = new DataComponent(new ComponentCollection());
+        $data['Buildings'] = $this->Data->read('Buildings');
+        $data['Technos'] = $this->Data->read('Technos');
 
+        $dataunits = array();
+        foreach ($results as $k=>$v)
+        {
+            $id = current($v)['id'];
+            $dataunits[$id]['Dataunit'] = $results[$k]['Dataunit'];
+            $dataunits[$id]['Dataunit']['time'] = 10;
+        }
+
+        return $dataunits;
+    }
 
 }

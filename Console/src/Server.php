@@ -4,11 +4,23 @@ class Server {
 
     private $db;
 
+    // array of camp_id to update
+    private $camps;
+
     public function __construct($db)
     {
         $this->db = $db;
+        $this->camps = array();
     }
 
+
+    private function _addCamp($id,$last_update)
+    {
+        if (!isset($this->camps[$id]))
+        {
+            $this->camps[$id] = $last_update;
+        }
+    }
 
     /**
      * Rend un array de camp_id à mettre à jour au niveau des resources
@@ -24,6 +36,8 @@ class Server {
         $sql = '';
         $sql .= $this->update('buildings');
         $sql .= $this->update('technos');
+        $sql .= $this->update('units');
+        $sql .= $this->_updateCampsRes();
 
         if (!empty($sql))
         {
@@ -31,7 +45,7 @@ class Server {
             $transaction = 'START TRANSACTION;'."\n";
             $transaction .= $sql;
             $transaction .= 'COMMIT;';
-            $db->query($sql);
+            $db->query($transaction);
         }
     }
 
@@ -42,6 +56,7 @@ class Server {
         $sql = '';
         if (!empty($dt))
         {
+            // TODO rank for techn and units
             if ($nodes === 'buildings')
             {
                 $buildings = $this->_getBuildingsByCampIds($dt);
@@ -134,26 +149,39 @@ class Server {
         {
             $selectSQL = 'SELECT '.
                 'dt.id, dt.databuilding_id, dt.building_id, dt.camp_id, dt.finish, dt.begin, '.
-                'c.last_update , c.user_id '.
+                'c.last_update , c.user_id, c.id AS camp_id '.
                 'FROM dtbuildings dt, camps c '.
                 'WHERE dt.finish <= '.time().
-                //'WHERE dt.finish > 0';
+                ' AND dt.camp_id = c.id';
+        }
+        else if ($nodes === 'technos')
+        {
+            $selectSQL = 'SELECT '.
+                'dt.id, dt.datatechno_id, dt.techno_id, dt.building_id, dt.user_id, dt.finish, dt.begin, '.
+                'c.last_update , c.user_id, c.id AS camp_id '.
+                'FROM dttechnos dt, camps c '.
+                'WHERE dt.finish <= '.time().
                 ' AND dt.camp_id = c.id';
         }
         else
         {
             $selectSQL = 'SELECT '.
-                'dt.id, dt.datatechno_id, dt.techno_id, dt.building_id, dt.user_id, dt.finish, dt.begin, '.
-                'c.last_update , c.user_id '.
-                'FROM dttechnos dt, camps c '.
+                'dt.id, dt.dataunit_id, dt.unit_camp_id, dt.building_id, dt.finish, dt.begin, dt.num, '.
+                'c.last_update , c.user_id, c.id AS camp_id '.
+                'FROM dtunits dt, camps c, units_camps uc '.
                 'WHERE dt.finish <= '.time().
-                //'WHERE dt.finish > 0';
-                ' AND dt.camp_id = c.id';
+                ' AND dt.unit_camp_id = uc.id'.
+                ' AND uc.camp_id = c.id';
         }
 
         $dtPDO = $this->db->query($selectSQL);
 
-        return $this->db->pdoToArray($dtPDO);
+        $dts = $this->db->pdoToArray($dtPDO);
+
+        foreach ($dts as $dt)
+            $this->_addCamp($dt['camp_id'],$dt['last_update']);
+
+        return $dts;
     }
 
     /**
@@ -163,12 +191,10 @@ class Server {
      *
      * @return array
      */
-    private function _getBuildingsByCampIds($dtbuildings)
+    private function _getBuildingsByCampIds()
     {
-        $campIdsToUpdate = $this->_getCampIdToUpdate($dtbuildings);
-
         $buildings = array();
-        foreach ($campIdsToUpdate as $camp_id => $last_update)
+        foreach ($this->camps as $camp_id => $last_update)
         {
             $buildingsPDO = $this->db->select('buildings',
                 array('id','databuilding_id','lvl'),
@@ -184,8 +210,11 @@ class Server {
         return $buildings;
     }
 
-    private function _updateCampsRes($camps)
+    private function _updateCampsRes($camps = null)
     {
+        if ($camps === null)
+            $camps = $this->_getBuildingsByCampIds();
+
         $sql = '';
         foreach ($camps as $id => $buildings)
         {
@@ -217,21 +246,11 @@ class Server {
                 array('res1 = res1 + '.$res1,'res2 = res2 + '.$res2,'res3 = res3 + '.$res3),
                 array('id = '.$id),true);
         }
+
         return $sql;
     }
 
-    private function _getCampIdToUpdate($dtbuildings)
-    {
-        $campIds = array();
-        foreach ($dtbuildings as $dtb)
-        {
-            if (!isset($campIds[$dtb['camp_id']]))
-            {
-                $campIds[$dtb['camp_id']] = $dtb['last_update'];
-            }
-        }
-        return $campIds;
-    }
+
 
     /**
      * A partir d'un dtbuildings, rend le sql (transaction)
@@ -248,10 +267,20 @@ class Server {
         $sql = '';
         foreach ($dtnodes as $dtb)
         {
-            $sql .= $this->db->update($nodes,
-                array('lvl = lvl+1'),
-                array('id = '.$dtb[$node.'_id']),
-                true);
+            if ($nodes === 'units')
+            {
+                $sql .= $this->db->update('units_camps',
+                    array('num = num + '.$dtb['num']),
+                    array('id = '.$dtb['unit_camp_id']),
+                    true);
+            }
+            else
+            {
+                $sql .= $this->db->update($nodes,
+                    array('lvl = lvl+1'),
+                    array('id = '.$dtb[$node.'_id']),
+                    true);
+            }
         }
         return $sql;
     }
@@ -267,4 +296,10 @@ class Server {
         }
         return $sql;
     }
+
+
+
+
+
+
 }

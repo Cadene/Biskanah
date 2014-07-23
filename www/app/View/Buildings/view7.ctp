@@ -6,14 +6,14 @@ $this->start('specialize');?>
 <div class="camp info">
 
     <div class="divtop curvedtot">
-        Technologies recherchés dans votre laboratoire
+        Unités à disposition dans votre batiment
     </div>
 
     <?php //debug($allowedTechnos); debug($dttechnos); ?>
 
     <div class="space0">
 
-        <?php foreach ($data['UnitsCamps'] as $in):
+        <?php foreach ($data['UnitsCamps'] as $tech):
             $tech = current($tech);
             $type = $tech['dataunit_id'];
             $datat = current($data['Dataunits'][$type]);
@@ -21,11 +21,10 @@ $this->start('specialize');?>
             <div class="space1 curvedtot">
                 <div class="space">
                     <div><a href="<?= $this->Html->url('/technos/display/'.$datat['id']);?>">
-                            <?=$datat['name'];?> </a> (Niveau <?=$tech['lvl'];?>)
-                        </a>
+                            <?=$datat['name'];?> </a>
                     </div>
                     <div>
-                        Coût par unité : <?=($tech['lvl']+1);?> : <?=floor($datat['res1']);?> Métal <?=floor($datat['res2']);?> Cristal <?=floor($datat['res3']);?> Uranium
+                        Coût par unité : <?=floor($datat['res1']);?> Métal <?=floor($datat['res2']);?> Cristal <?=floor($datat['res3']);?> Uranium
                     </div>
                     <div>
                         Durée de construction : <?=gmdate("H:i:s", round($datat['time']));?>

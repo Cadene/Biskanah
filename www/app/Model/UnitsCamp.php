@@ -18,4 +18,14 @@ class UnitsCamp extends AppModel {
         ));
         return $tmp;
     }
+
+    public function afterFind($results, $primary=false)
+    {
+        foreach ($results as $k=>$v)
+        {
+            $results[$k]['UnitsCamp']['type'] = $results[$k]['UnitsCamp']['dataunit_id'];
+        }
+
+        return $results;
+    }
 }

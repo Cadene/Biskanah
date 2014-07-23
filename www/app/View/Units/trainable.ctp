@@ -11,8 +11,6 @@
         </div>
     <?php else:?>
 
-        
-
         <?php foreach ($allowedTypes as $type):
             $datab = current($dataunits[$type]);
             ?>
@@ -33,9 +31,9 @@
                             <input type="text" name="nbUnits"/>
                         </div>
                     </div>
+                    <input type="submit" value="Entrainer"/>
                 </div>
             </div>
-            <input type="submit" value="Entrainer"/>
         </form>
         <?php endforeach;?>
 

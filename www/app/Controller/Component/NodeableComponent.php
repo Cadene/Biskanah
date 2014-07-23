@@ -123,6 +123,7 @@
             }
 
             $data[$nodes] = $this->DataComponent->read($Nodes.$databuilding_id);
+
             $datanodes = ClassRegistry::init('Datanode')->findNodes($nodes);
 
             // les nodes qu'on possède

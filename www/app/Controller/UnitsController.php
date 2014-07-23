@@ -132,7 +132,7 @@ class UnitsController extends AppController {
         );
 
         $this->Session->setFlash(__('La techno a bien été créé.'));
-        return $this->redirect(array('controller'=>'buildings','action'=>'display',11));
+        return $this->redirect(array('controller'=>'buildings','action'=>'display',$data['Building']['id']));
 
 
 
