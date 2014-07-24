@@ -43,7 +43,7 @@ $this->start('specialize');?>
     <?php if (!empty($data['Dtunits'])): ?>
 
         <br>
-        <div class="divtop curvedtot">Technologie en cours de recherche</div>
+        <div class="divtop curvedtot">Unités en cours d'entrainement</div>
         <div class="space0">
             <?php for ($i=0; $i < count($data['Dtunits']); $i++):
                 $dtt = current($data['Dtunits'][$i]);

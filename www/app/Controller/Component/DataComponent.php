@@ -12,20 +12,11 @@
         // TODO vérifier l'utilité
         public $components = array('Session');
 
-        /*
-        protected $user;
-        protected $technos;
-        protected $buildings;
-        protected $units;
-        protected $camp;
-        protected $camps;
-        */
-
         protected $elements = array(
-            'rightmenu' => array('User','Camp','Camps','Team')
+            'rightmenu' => array('User','Camp','Camps','Team','UnitsCamps', 'Dataunits')
         );
 
-        protected $_DATA = array();
+        protected static $_DATA = array();
 
         public function writeIfNot($name, $value = array()){
             if(!$this->read($name)){
@@ -43,8 +34,8 @@
                 $write = array($name => $value);
             }
             foreach ($write as $key => $val) {
-                self::_overwrite($this->_DATA, Hash::insert($this->_DATA, $key, $val));
-                if (Hash::get($this->_DATA, $key) !== $val) {
+                self::_overwrite(self::$_DATA, Hash::insert(self::$_DATA, $key, $val));
+                if (Hash::get(self::$_DATA, $key) !== $val) {
                     return false;
                 }
             }
@@ -61,15 +52,15 @@
          */
         public function read($name=null){
             if ($name === null) {
-                return $this->_DATA;
+                return self::$_DATA;
             }
             if (empty($name)) {
                 return false;
             }
-            if(!isset($this->_DATA[$name])){
+            if(!isset(self::$_DATA[$name])){
                 $this->_recoverData($name);
             }
-            $result = Hash::get($this->_DATA, $name);
+            $result = Hash::get(self::$_DATA, $name);
 
             if (isset($result)) {
                 return $result;
@@ -166,13 +157,13 @@
                 $tableName = key($elementTables);
 
                 //checker dans ->_DATA si les tables sont bien chargées, sinon les charger
-                if(!isset($this->_DATA[$tableName])){
+                if(!isset(self::$DATA[$tableName])){
                     $functionName = '_recover'.ucfirst($elementName);
                     $this->write($tableName,$this->$functionName($controller));
                 }
 
                 //envoyer les données aux différents éléments
-                $controller->set($elementName,$this->_DATA[$tableName]);
+                $controller->set($elementName,self::$DATA[$tableName]);
             }
         }*/
 

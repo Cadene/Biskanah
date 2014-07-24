@@ -116,7 +116,8 @@ class UnitsController extends AppController {
             'unit_camp_id' => $data['UnitsCamp']['id'],
             'building_id' => $data['Building']['id'],
             'begin' => $times['start'],
-            'finish' => $times['finish']
+            'finish' => $times['finish'],
+            'num' => $query['nbUnits']
         ));
 
         // Mettre à jour les ressources du camp

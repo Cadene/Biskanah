@@ -181,7 +181,7 @@ class Server {
         foreach ($dts as $dt)
         {
             $this->_addCamp($dt['camp_id'],$dt['last_update']);
-            debug($this->camps);
+            //debug($this->camps);
         }
 
         return $dts;
@@ -272,10 +272,11 @@ class Server {
         {
             if ($nodes === 'units')
             {
-                $sql .= $this->db->update('units_camps',
+                $tmp = $this->db->update('units_camps',
                     array('num = num + '.$dtb['num']),
                     array('id = '.$dtb['unit_camp_id']),
                     true);
+                $sql .= $tmp;
             }
             else
             {

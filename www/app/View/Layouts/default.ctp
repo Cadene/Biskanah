@@ -74,7 +74,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
             'camps' => $rightmenu['Camps'],
             'camp' => $rightmenu['Camp'],
             'user' => $rightmenu['User'],
-            'team' => $rightmenu['Team']
+            'team' => $rightmenu['Team'],
+            'unitsCamps' => $rightmenu['UnitsCamps'],
+            'dataunits' => $rightmenu['Dataunits']
         )); ?>
     </div>
 

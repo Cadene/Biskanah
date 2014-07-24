@@ -89,14 +89,15 @@
         <br>
 
         <div class="lm_h lm_hcu">
-            <a href="#" title="Afficher le contenu de ce menu"onClick="show('lm_navig_cat');"> &dArr;</a>
+            <a href="#" title="Afficher le contenu de ce menu" onClick="show('lm_navig_cat');"> &dArr;</a>
             <a href="#">Armée</a>
             <a href="#" title="Cacher le contenu de ce menu" onClick="hide('lm_navig_cat');">&uArr;</a>
         </div>
         <div id="lm_navig_cat" class="lm_hs">
-            <div class="lm_smcu">Scout : *</div>
-            <div class="lm_smcu">Medic : *</div>
-            <div class="lm_smcu">Recon : *</div>
+        <?php foreach ($unitsCamps as $u):?>
+            <?php $u = current($u);?>
+            <div class="lm_smcu"><?=current($dataunits[$u['type']])['name'];?> : <?=$u['num'];?></div>
+        <?php endforeach;?>
         </div>
         <br>
 
