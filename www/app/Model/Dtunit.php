@@ -15,14 +15,31 @@ class Dtunit extends AppModel {
  */
     public function findAllByBuilding($building_id)
     {
-        return $this->find('all',array(
+        $results = $this->find('all',array(
             'recursive' => -1,
             'conditions' => array(
                 'Dtunit.building_id' => $building_id
             ),
             'fields' => array('*')
         ));
+        return $this->_afterFind($results);
     }
+
+    private function _afterFind($results)
+    {
+        foreach ($results as $k=>$v)
+        {
+            $finish = $results[$k]['Dtunit']['finish'];
+            $begin = $results[$k]['Dtunit']['begin'];
+            $num = $results[$k]['Dtunit']['num'];
+
+            $newUnits = floor( (time() - $begin) / (($finish - $begin) / $num) );
+            $results[$k]['Dtunit']['num'] -= $newUnits;
+        }
+
+        return $results;
+    }
+
 
     public function getFinished()
     {

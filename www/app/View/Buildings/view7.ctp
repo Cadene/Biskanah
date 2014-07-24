@@ -13,25 +13,27 @@ $this->start('specialize');?>
 
     <div class="space0">
 
-        <?php foreach ($data['UnitsCamps'] as $tech):
-            $tech = current($tech);
-            $type = $tech['dataunit_id'];
-            $datat = current($data['Dataunits'][$type]);
-            ?>
-            <div class="space1 curvedtot">
-                <div class="space">
-                    <div><a href="<?= $this->Html->url('/technos/display/'.$datat['id']);?>">
-                            <?=$datat['name'];?> </a>
-                    </div>
-                    <div>
-                        Coût par unité : <?=floor($datat['res1']);?> Métal <?=floor($datat['res2']);?> Cristal <?=floor($datat['res3']);?> Uranium
-                    </div>
-                    <div>
-                        Durée de construction : <?=gmdate("H:i:s", round($datat['time']));?>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach;?>
+        <table style="margin: 0px auto;">
+            <thead>
+                <tr>
+                <?php for ($i=1; $i<=5; $i++):?>
+                    <th><?= current($data['Dataunits'][$i])['name'];?></th>
+                <?php endfor;?>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <?php for ($i=1; $i<=5; $i++):?>
+                    <?php if (isset($data['UnitsCamps'][$i])) {
+                        $num = current($data['UnitsCamps'][$i])['num'];
+                    } else {
+                        $num = 0;
+                    }?>
+                    <td><?= $num; ?></td>
+                <?php endfor;?>
+                </tr>
+            </tbody>
+        </table>
 
         <br>
 
@@ -57,7 +59,7 @@ $this->start('specialize');?>
                         <?php if ($timeLeft <= 0):?>
                             <?= $datat['name'].' est fini.';?>
                         <?php else:?>
-                            <?= $datat['name'].' finira dans '.$datetime; ?>
+                            <?= $dtt['num'].' '.$datat['name'].' finiront dans '.$datetime; ?>
                         <?php endif;?>
                     </div>
                 </div>

@@ -96,7 +96,9 @@
         <div id="lm_navig_cat" class="lm_hs">
         <?php foreach ($unitsCamps as $u):?>
             <?php $u = current($u);?>
-            <div class="lm_smcu"><?=current($dataunits[$u['type']])['name'];?> : <?=$u['num'];?></div>
+            <?php if ($u['num'] != 0):?>
+                <div class="lm_smcu"><?=current($dataunits[$u['type']])['name'];?> : <?=$u['num'];?></div>
+            <?php endif;?>
         <?php endforeach;?>
         </div>
         <br>
