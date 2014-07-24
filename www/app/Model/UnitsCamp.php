@@ -35,10 +35,10 @@ class UnitsCamp extends AppModel {
 
     public function afterFind($results, $primary=false)
     {
-        App::uses('Data','Controller/Component');
+        /*App::uses('Data','Controller/Component');
         $this->Data = new DataComponent(new ComponentCollection());
         $data['Buildings'] = $this->Data->read('Buildings');
-        $data['Technos'] = $this->Data->read('Technos');
+        $data['Technos'] = $this->Data->read('Technos');*/
 
 
         $unitsCamp = array();
@@ -71,8 +71,14 @@ class UnitsCamp extends AppModel {
 
         }
 
-        //debug($unitsCamp);
-
         return $unitsCamp;
+    }
+
+    public function dtUpdate($dt)
+    {
+        return $this->updateAll(
+            array('num' => 'num + '.current($dt)['num']),
+            array('UnitsCamp.id' => current($dt)['unit_camp_id']
+        ));
     }
 }

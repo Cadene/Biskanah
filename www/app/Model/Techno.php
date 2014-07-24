@@ -136,4 +136,12 @@ class Techno extends AppModel {
         return $tmp['Techno'];
     }
 
+    public function dtUpdate($dt)
+    {
+        return $this->updateAll(
+            array('Techno.lvl' => 'Techno.lvl + 1'),
+            array('Techno.id' => current($dt)['techno_id']
+            ));
+    }
+
 }

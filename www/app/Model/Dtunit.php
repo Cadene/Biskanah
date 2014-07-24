@@ -13,93 +13,6 @@ class Dtunit extends AppModel {
  *
  * @var array
  */
-	public $validate = array(
-		'unit_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'building_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'begin' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'finish' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'num' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'num_ready' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'Unit' => array(
-			'className' => 'Unit',
-			'foreignKey' => 'unit_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Building' => array(
-			'className' => 'Building',
-			'foreignKey' => 'building_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
-
     public function findAllByBuilding($building_id)
     {
         return $this->find('all',array(
@@ -109,6 +22,21 @@ class Dtunit extends AppModel {
             ),
             'fields' => array('*')
         ));
+    }
+
+    public function getFinished()
+    {
+        return $this->find('all',array(
+            'conditions' => array(
+                'Dtunit.finish < '.time()
+            ),
+            'fields' => array('*')
+        ));
+    }
+
+    public function deleteFinished()
+    {
+        return $this->deleteAll(array('Dtunit.finish < '.time()),false);
     }
 
 }
