@@ -1,6 +1,9 @@
 <?php
 
-class Techno extends Element {
+App::uses('LGElement','Lib/Game');
+
+
+class LGBuilding extends LGElement {
 
     protected $id;
     protected $name;
@@ -11,13 +14,11 @@ class Techno extends Element {
     protected $res2;
     protected $res3;
 
-    protected $databuilding_id;
+    protected $struct;
 
-    public function __construct(
-        $id, $databuilding_id=1, $name='default',
-        $desc1='default',$desc2='default',
-        $res1=30, $res2=20, $res3=10
-    ){
+
+    public function __construct($id, $name='default', $desc1='default',$desc2='default',$res1=30, $res2=20, $res3=10, $struct=10)
+    {
         $this->id = $id;
         $this->name = $name;
         $this->desc1 = $desc1;
@@ -25,7 +26,7 @@ class Techno extends Element {
         $this->res1 = $res1;
         $this->res2 = $res2;
         $this->res3 = $res3;
-        $this->databuilding_id = $databuilding_id;
+        $this->struct = $struct;
     }
 
     public function set($att,$value)

@@ -1,6 +1,6 @@
 <?php
 
-class Building extends Element {
+class LGTechno extends LGElement {
 
     protected $id;
     protected $name;
@@ -11,11 +11,13 @@ class Building extends Element {
     protected $res2;
     protected $res3;
 
-    protected $struct;
+    protected $databuilding_id;
 
-
-    public function __construct($id, $name='default', $desc1='default',$desc2='default',$res1=30, $res2=20, $res3=10, $struct=10)
-    {
+    public function __construct(
+        $id, $databuilding_id=1, $name='default',
+        $desc1='default',$desc2='default',
+        $res1=30, $res2=20, $res3=10
+    ){
         $this->id = $id;
         $this->name = $name;
         $this->desc1 = $desc1;
@@ -23,7 +25,7 @@ class Building extends Element {
         $this->res1 = $res1;
         $this->res2 = $res2;
         $this->res3 = $res3;
-        $this->struct = $struct;
+        $this->databuilding_id = $databuilding_id;
     }
 
     public function set($att,$value)

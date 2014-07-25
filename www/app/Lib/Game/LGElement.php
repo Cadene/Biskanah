@@ -1,6 +1,6 @@
 <?php
 
-class Element {
+class LGElement {
 
     public static function getKeys()
     {

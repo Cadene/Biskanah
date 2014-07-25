@@ -8,81 +8,10 @@ App::uses('AppModel', 'Model');
 class World extends AppModel {
 
     /**
- * Validation rules
- *
- * @var array
- */
-	public $validate = array(
-		'x' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'y' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'type' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'occupied' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * hasMany associations
- *
- * @var array
- */
-	public $hasMany = array(
-		'Camp' => array(
-			'className' => 'Camp',
-			'foreignKey' => 'world_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
-
-/**
- * generateCamp method
- *
- * @var array
- */
+     * generateCamp method
+     *
+     * @var array
+     */
     //TODO don't use rand to choose
     public function generateFirstCamp()
     {
@@ -105,11 +34,33 @@ class World extends AppModel {
         return $d['World']['id'];
     }
 
+    /**
+     * Generate a square world
+     *
+     * @param $world World
+     */
+    public function generate($world)
+    {
+        $length = $world->get('length');
+        $max_x = $length;
+        $max_y = $length;
 
+        $data = array();
 
-    /*private function getId($x,$y,$max){
+        for($i=0-$max_x; $i<$max_x; $i++)
+        {
+            for($j=0-$max_y; $j<$max_y; $j++)
+            {
+                $data[] = array(
+                    'x' => $i,
+                    'y' => $j,
+                    'type' => 0
+                );
+            }
+        }
 
-    }*/
+        $this->saveMany($data);
+    }
 
     private function getSize(){
         $q = $this->query('SELECT COUNT(*) AS size_world FROM Worlds');

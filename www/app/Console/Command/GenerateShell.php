@@ -2,15 +2,16 @@
 
 class GenerateShell extends AppShell {
 
+    public $uses = array(
+        'World'
+    );
+
     public function main()
     {
-        $load = $this->Tasks->load('Load');
-        $load->execute();
+        App::uses('LGLoader','Lib/Game');
+        $world = LGLoader::read('World');
 
-        $db = new DB();
-
-        $biskanah = Factory::makeBiskanah();
-        $biskanah->generateAll($db);
+        $this->World->generate($world);
 
         $this->out('Done!');
     }

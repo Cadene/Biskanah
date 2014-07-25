@@ -125,9 +125,6 @@
             if($name == 'Units7'){
                 $this->write($name,ClassRegistry::init('UnitsCamp')->findAllbyCamp($camp_id));
             }else
-            if($name == 'Dataunits'){
-                $this->write($name,ClassRegistry::init('Dataunit')->findAll());
-            }else
             if ($name == 'UnitsCamps'){
                 $this->write($name,ClassRegistry::init('UnitsCamp')->findAllByCamp($camp_id));
             }
@@ -148,24 +145,7 @@
                 }
                 $controller->set($element,$data[$element]);
             }
-        }/*
-
-            if(!isset($this->config['layout'][$controller->layout]))
-                return;
-            foreach($this->config['layout'][$controller->layout] as $elementName => $elementTables)
-            {
-                $tableName = key($elementTables);
-
-                //checker dans ->_DATA si les tables sont bien chargées, sinon les charger
-                if(!isset(self::$DATA[$tableName])){
-                    $functionName = '_recover'.ucfirst($elementName);
-                    $this->write($tableName,$this->$functionName($controller));
-                }
-
-                //envoyer les données aux différents éléments
-                $controller->set($elementName,self::$DATA[$tableName]);
-            }
-        }*/
+        }
 
         /**
          * S'execute avant de rendre la vue
@@ -177,25 +157,7 @@
         }
 
 
-        protected function _recoverResources(Controller $controller){
-            $data = ClassRegistry::init('Camp')->recoverResources($controller->Session->read('Camp.current'));
-            return $data['Camp'];
-        }
 
-        protected function _recoverCamps(Controller $controller){
-            $data = ClassRegistry::init('Camp')->recoverCamps($controller->Session->read('User.id'));
-            return $data;
-        }
-
-        protected function _recoverRightmenu(){
-            $data['User'] = $this->read('User');
-            return $data;
-        }
-
-
-        public function toDataId($type,$lvl=1){
-            return $type*100+$lvl;
-        }
 
 
 

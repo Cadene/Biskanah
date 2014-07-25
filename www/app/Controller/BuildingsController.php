@@ -32,7 +32,7 @@ class BuildingsController extends AppController {
         $buildings = $this->Data->read('Buildings');
         $technos = $this->Data->read('Technos');
 
-        $this->loadModel('Databuilding');
+        App::uses('LGLoader','Lib/Game');
 
         if(!$this->Nodeable->doesNodeExist(1,$type))
         {
@@ -78,8 +78,8 @@ class BuildingsController extends AppController {
         $data['Technos'] = $this->Data->read('Technos');
         $data['Dtbuildings'] = $this->Data->read('Dtbuildings');
 
-        $this->loadModel('Databuilding');
-        $data['Databuildings'] = $this->Databuilding->findByBuildings($data['Buildings'],$data['Technos'],1);
+        App::uses('LGLoader','Lib/Game');
+        $data['Databuildings'] = LGLoader::read('Buildings');
 
         $data['Technos'] = $this->Data->read('Technos');
         $data['Dttechnos'] = $this->Data->read('Dttechnos');
