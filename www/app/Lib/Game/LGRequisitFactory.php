@@ -1,5 +1,9 @@
 <?php
 
+App::uses('LGNode','Lib/Game');
+App::uses('LGRequisit','Lib/Game');
+App::uses('LGRequisits','Lib/Game');
+
 class LGRequisitFactory {
 
     public static function makeAll($buildings, $technos, $units)
@@ -78,15 +82,15 @@ class LGRequisitFactory {
                     foreach ($nodes as $from_type => $from_lvl)
                     {
                         $needs = array();
-                        $needs[] = new Node(
-                            $from_kind->get($from_type),
+                        $needs[] = new LGNode(
+                            $$from_kind->get($from_type),
                             $from_lvl
                         );
                     }
 
-                    $requisits[] = new Requisit(
-                        new Node(
-                            $to_kind->get($to_type),
+                    $requisits[] = new LGRequisit(
+                        new LGNode(
+                            $$to_kind->get($to_type),
                             1
                         ),
                         $needs

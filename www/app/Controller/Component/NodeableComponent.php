@@ -109,6 +109,10 @@
 
             $allowedTypes = $this->DatanodeComponent->allowed($nodes,$databuilding_id);
 
+
+            App::uses('LGLoader','Lib/Game');
+            $data['Data'.$nodes] = LGLoader::read(ucfirst($nodes));
+
             if ($nodes === 'buildings')
             {
                 $data['data'.$nodes] = ClassRegistry::init('Data'.$node)->findAll();

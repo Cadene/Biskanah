@@ -6,7 +6,7 @@
      */
     class DatanodeComponent extends Component {
 
-        public $components = array('Session','Data','Nodeable');
+                public $components = array('Session','Data','Nodeable');
 
         /**
          * @param      $kind [1:buildings|2:technos|3:units]

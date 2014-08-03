@@ -18,24 +18,24 @@
 
         protected static $_DATA = array();
 
-        public function writeIfNot($name, $value = array()){
-            if(!$this->read($name)){
-                return $this->write($name,$value);
-            }
-        }
-
         // write comme session
-        public function write($name, $value = array()) {
-            if (empty($name)) {
+        public function write($name, $value = array())
+        {
+            if (empty($name))
+            {
                 return false;
             }
             $write = $name;
-            if (!is_array($name)) {
+            if (!is_array($name))
+            {
                 $write = array($name => $value);
             }
-            foreach ($write as $key => $val) {
-                self::_overwrite(self::$_DATA, Hash::insert(self::$_DATA, $key, $val));
-                if (Hash::get(self::$_DATA, $key) !== $val) {
+            foreach ($write as $key => $val)
+            {
+                $this->_overwrite(self::$_DATA, Hash::insert(self::$_DATA, $key, $val));
+
+                if (Hash::get(self::$_DATA, $key) !== $val)
+                {
                     return false;
                 }
             }
@@ -50,28 +50,37 @@
          *
          * @return array|bool|mixed|null
          */
-        public function read($name=null){
-            if ($name === null) {
+        public function read($name=null)
+        {
+            if ($name === null)
+            {
                 return self::$_DATA;
             }
-            if (empty($name)) {
+            if (empty($name))
+            {
                 return false;
             }
-            if(!isset(self::$_DATA[$name])){
+            if (!isset(self::$_DATA[$name]))
+            {
                 $this->_recoverData($name);
             }
             $result = Hash::get(self::$_DATA, $name);
 
-            if (isset($result)) {
+            if (isset($result))
+            {
                 return $result;
             }
             return null;
         }
 
-        protected static function _overwrite(&$old, $new) {
-            if (!empty($old)) {
-                foreach ($old as $key => $var) {
-                    if (!isset($new[$key])) {
+        protected function _overwrite(&$old, $new)
+        {
+            if (!empty($old))
+            {
+                foreach ($old as $key => $var)
+                {
+                    if (!isset($new[$key]))
+                    {
                         unset($old[$key]);
                     }
                 }

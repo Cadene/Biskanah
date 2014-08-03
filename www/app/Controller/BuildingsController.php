@@ -75,14 +75,19 @@ class BuildingsController extends AppController {
 
         $data['Camp'] = $this->Data->read('Camp');
         $data['Buildings'] = $this->Data->read('Buildings');
-        $data['Technos'] = $this->Data->read('Technos');
         $data['Dtbuildings'] = $this->Data->read('Dtbuildings');
+        $data['Technos'] = $this->Data->read('Technos');
+        $data['Dttechnos'] = $this->Data->read('Dttechnos');
 
         App::uses('LGLoader','Lib/Game');
         $data['Databuildings'] = LGLoader::read('Buildings');
+        $requisits = LGLoader::read('Requisits');
 
-        $data['Technos'] = $this->Data->read('Technos');
-        $data['Dttechnos'] = $this->Data->read('Dttechnos');
+        $data['Buildables'] = $requisits->allowed(
+            'buildings', $data['Buildings'], $data['Technos'], array()
+        );
+
+        debug($data['Buildables']);
 
         $this->set('data',$data);
     }
@@ -135,7 +140,7 @@ class BuildingsController extends AppController {
 * @param int $_POST['level']
 * @return void
 */
-    public function buildable()
+    public function requisits()
     {
         $this->Nodeable = $this->Components->load('Nodeable');
         $this->Nodeable->nodeable($this);

@@ -36,16 +36,14 @@ class LGLoader {
             case 'Buildings':
             case 'Technos':
             case 'Units':
-                $className = 'LG'.substr($name,0,-1);
-                self::_loadElements($className);
+                self::_loadElements($name);
                 break;
 
             case 'Requisits':
                 $b = self::read('Buildings');
                 $t = self::read('Technos');
                 $u = self::read('Units');
-                $className = 'LG'.substr($name,0,-1);
-                self::_loadElements($className,$b,$t,$u);
+                self::_loadElements($name,$b,$t,$u);
                 break;
 
             case 'World':
@@ -59,10 +57,10 @@ class LGLoader {
     }
 
 
-    protected static function _loadElements($className,$b=null,$t=null,$u=null)
+    protected static function _loadElements($name,$b=null,$t=null,$u=null)
     {
-        $elementName = $className;
-        $elementsName = $className.'s';
+        $elementsName = 'LG'.$name;
+        $elementName = substr($elementsName,0,-1);
         $factoryName = $elementName.'Factory';
 
         App::uses($elementName,'Lib/Game');
@@ -71,10 +69,10 @@ class LGLoader {
 
         $funcName = 'makeAll';
 
-        if ($b !== null)
-            self::write($className, $factoryName::$funcName());
+        if ($b === null)
+            self::write($name, $factoryName::$funcName());
         else
-            self::write($className, $factoryName::$funcName($b,$t,$u));
+            self::write($name, $factoryName::$funcName($b,$t,$u));
     }
 
 

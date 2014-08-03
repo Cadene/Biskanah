@@ -2,14 +2,9 @@
 
 class LGUnit extends LGElement{
 
-    protected $id;
-    protected $name;
-    protected $desc;
-    protected $res1;
-    protected $res2;
-    protected $res3;
+    protected $databuilding_id;
 
-    protected $kind;
+    protected $sort;
     protected $att1;
     protected $att2;
     protected $att3;
@@ -20,30 +15,25 @@ class LGUnit extends LGElement{
     protected $conso;
     protected $capacity;
 
-    protected $databuilding_id;
-
-    protected $num;
+    protected $kind = 3;
 
     public function __construct(
-        $id, $name='default', $desc='default',
-        $res1=30, $res2=20, $res3=10, $kind=1, $att1=100, $att2=100, $att3=100, $attbat=100,
-        $armor=100, $spy=0, $speed=6, $conso=1, $capacity=1000,$databuilding_id=7, $num=1
-    ){
-        foreach ($this->getKeys() as $key=>$value)
-        {
-            $this->$key = $$key;
-        }
-    }
-
-    public function set($att,$value)
+        $id, $name, $desc1, $desc2, $res1, $res2, $res3,
+        $databuilding_id,
+        $sort, $att1, $att2, $att3, $attbat, $armor, $spy, $speed, $conso, $capacity)
     {
-        $this->$att = $value;
+        parent::__construct($id,$name,$desc1,$desc2,$res1,$res2,$res3);
+        $this->databuilding_id = $databuilding_id;
+        $this->sort = $sort;
+        $this->att1 = $att1;
+        $this->att2 = $att2;
+        $this->att3 = $att3;
+        $this->attbat = $attbat;
+        $this->armor = $armor;
+        $this->spy = $spy;
+        $this->speed = $speed;
+        $this->conso = $conso;
+        $this->capacity = $capacity;
     }
-
-    public function get($att)
-    {
-        return $this->$att;
-    }
-
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 App::uses('LGBuilding','Lib/Game');
+App::uses('LGBuildings','Lib/Game');
 
 class LGBuildingFactory {
 

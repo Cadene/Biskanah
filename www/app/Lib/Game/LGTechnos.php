@@ -1,8 +1,8 @@
 <?php
 
-class LGTechnos {
+App::uses('LGElements','Lib/Game');
 
-    protected $technos;
+class LGTechnos extends LGElements {
 
     protected $kinds;
 
@@ -18,23 +18,9 @@ class LGTechnos {
 
     public function add($techno)
     {
-        $this->technos[$techno->get('id')] = $techno;
+        parent::add($techno);
         $this->kinds[$techno->get('kind')][] = $techno->get('id');
         $this->databuildings[$techno->get('databuilding_id')][] = $techno->get('id');
-    }
-
-    public function get($id)
-    {
-        if (isset($this->technos[$id])) {
-            return $this->technos[$id];
-        } else {
-            return array();
-        }
-    }
-
-    public function getSize()
-    {
-        return count($this->kinds);
     }
 
     public function getByKind($kind)

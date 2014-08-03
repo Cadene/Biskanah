@@ -1,8 +1,8 @@
 <?php
 
-class LGUnits {
+App::uses('LGElements','Lib/Game');
 
-    protected $units;
+class LGUnits extends LGElements {
 
     protected $kinds;
 
@@ -18,23 +18,9 @@ class LGUnits {
 
     public function add($unit)
     {
-        $this->units[$unit->get('id')] = $unit;
+        parent::add($unit);
         $this->kinds[$unit->get('kind')][] = $unit->get('id');
         $this->databuildings[$unit->get('databuilding_id')][] = $unit->get('id');
-    }
-
-    public function get($id)
-    {
-        if (isset($this->units[$id])) {
-            return $this->units[$id];
-        } else {
-            return array();
-        }
-    }
-
-    public function getSize()
-    {
-        return count($this->kinds);
     }
 
     public function getByKind($kind)
